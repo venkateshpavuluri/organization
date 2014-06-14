@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GrLineReport" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7f5c857c-d151-46dc-a884-53fd85bf7fb0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D3D3D3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="RFQ" uuid="3bfb39c6-fd48-4651-9016-62ce834f9cd6">
+		<queryString language="SQL">
+			<![CDATA[exec RFQList]]>
+		</queryString>
+		<field name="RFQNo" class="java.lang.String"/>
+		<field name="RFQDate" class="java.sql.Date"/>
+		<field name="QuotationDeadline" class="java.sql.Date"/>
+		<field name="ItemCategory" class="java.lang.String"/>
+		<field name="DeliveryDate" class="java.sql.Timestamp"/>
+		<field name="ValidFom" class="java.sql.Date"/>
+		<field name="ValidTo" class="java.sql.Date"/>
+		<field name="StorageLocation" class="java.lang.String"/>
+		<field name="Plant_name" class="java.lang.String"/>
+		<field name="RefNumber" class="java.lang.String"/>
+		<field name="PurchaseGroup" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="imagedataset" uuid="1594d008-791d-457d-b8c8-628840be6f85">
+		<parameter name="logoID" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{logoID}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[exec reportImage $P{logoID}]]>
+		</queryString>
+		<field name="logo" class="java.io.InputStream"/>
+	</subDataset>
+	<parameter name="GoodsReceiptTypeId" class="java.lang.Integer"/>
+	<parameter name="goodsReceiptNum" class="java.lang.String"/>
+	<parameter name="rootPath" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{rootPath}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logoID" class="java.lang.String"/>
+	<parameter name="datePattern" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[exec GoodsReceiptReport $P{GoodsReceiptTypeId},$P{goodsReceiptNum}]]>
+	</queryString>
+	<field name="GoodsReceipt_Id" class="java.lang.Integer"/>
+	<field name="GoodsReceiptType" class="java.lang.String"/>
+	<field name="GoodsReceiptTypeNum" class="java.lang.String"/>
+	<field name="ReceivingID" class="java.lang.String"/>
+	<field name="ReceivingDate" class="java.util.Date"/>
+	<field name="Status" class="java.lang.String"/>
+	<field name="Memo" class="java.lang.String"/>
+	<field name="vendorName" class="java.lang.String"/>
+	<field name="ShippingAddress" class="java.lang.String"/>
+	<field name="DCNumber" class="java.lang.String"/>
+	<field name="DCDate" class="java.util.Date"/>
+	<field name="TransportAgency" class="java.lang.String"/>
+	<field name="DocketNum" class="java.lang.String"/>
+	<field name="DocketDate" class="java.sql.Date"/>
+	<field name="TotalPackages" class="java.lang.Integer"/>
+	<field name="Weight" class="java.math.BigDecimal"/>
+	<field name="WeightUOM" class="java.lang.String"/>
+	<field name="ReceivingAddress" class="java.lang.String"/>
+	<field name="FreightCharges" class="java.math.BigDecimal"/>
+	<field name="ProdOrder_Id" class="java.lang.Integer"/>
+	<field name="Batch_Id" class="java.lang.Integer"/>
+	<field name="RouteCard_Id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8289a3e4-f982-45ee-b813-7346370bc80a" x="292" y="0" width="268" height="35" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  MNT SOFT PVT LTD]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8aa19537-0894-47d0-8b31-c8d1bc896116" x="0" y="55" width="802" height="1"/>
+			</line>
+			<componentElement>
+				<reportElement uuid="676c2bf3-c00b-47b5-bbc7-958472491984" x="7" y="2" width="259" height="50"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="imagedataset" uuid="1c373937-2851-4a83-98f0-c2c290697071">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="50" width="259">
+						<image>
+							<reportElement uuid="e7e512a4-bc4f-4842-abd3-c8a02856dafa" x="4" y="0" width="139" height="23"/>
+							<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+						</image>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c4f00aa5-b78a-43e1-842f-b16828d763d6" x="292" y="0" width="288" height="29" forecolor="#333333"/>
+				<textElement>
+					<font fontName="Verdana" size="18" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[GOODS RECEIPT REPORT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e4107ccf-419b-498e-a1ba-b988a78204a8" x="531" y="28" width="221" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[GoodsReceipt Details]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="9199c175-0d3c-4841-b241-938eb385d9cc" x="724" y="0" width="133" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="7e04a51b-c210-4c9b-a201-1f9cf4f94a7f" x="7" y="69" width="200" height="45"/>
+				<subreportParameter name="grid">
+					<subreportParameterExpression><![CDATA[$F{GoodsReceipt_Id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "/GrSubreport1.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="d6a47aae-5713-4505-9393-1ce05c217243" x="15" y="4" width="135" height="21"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GoodsReceiptType]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f6196f65-4b33-402f-974b-7d212ddae8bb" x="179" y="4" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{GoodsReceiptType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8ad655f9-0744-4c71-b435-3927169b60ad" x="15" y="25" width="135" height="21"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GoodsReceiptTypeNum]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="7bfc2170-e897-43be-a44c-a686eebf4555" x="180" y="24" width="100" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{GoodsReceiptTypeNum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e966ee27-006a-46a8-aaf9-06a0e80a08de" x="15" y="45" width="135" height="21"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ReceivingID]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a81d8159-3bb2-4c4f-9639-beae0ec9fde8" x="180" y="43" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ReceivingID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9e310d34-42db-4e2e-9e4d-901f85e51532" x="290" y="3" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ReceivingDate]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="97bdf223-0043-4647-8cad-cc16b3db6dac" x="417" y="5" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{ReceivingDate})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="19bbc055-9910-4699-b559-9344987c8ae8" x="290" y="22" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ca0ade0e-8129-4881-888f-201a5981a21d" x="417" y="25" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Status}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="974886b3-3448-467b-a912-1c146e601b84" x="289" y="42" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Memo]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f73bcf85-8798-4590-a2b4-364e8f73f0eb" x="417" y="44" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Memo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="955aaa94-af10-4a7e-8edb-05a1658f0375" x="150" y="4" width="11" height="22"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4c23ba5f-a5af-41ff-a176-8208729a7113" x="149" y="24" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6b1266f9-ee2a-45a4-b0e8-7d63eec13566" x="150" y="44" width="11" height="21"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="093549fc-b34e-4841-824a-6cf387097006" x="390" y="3" width="11" height="19"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed233545-f488-4fc0-ba2c-5f35857f0c58" x="390" y="22" width="11" height="19"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ae1ac4f-9925-43b3-8b41-2529f8c970d8" x="389" y="41" width="11" height="19"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9b32d459-81fa-4d2e-8990-0af7c67f27c0" x="542" y="5" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VendorName]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="075d6bd5-0b91-4638-a0e5-0a833dd34c60" x="659" y="6" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{vendorName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="854e241b-60b6-48a2-b0ba-75410b789c82" x="542" y="25" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ShippingAddress]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="6347865c-ad0f-4d5a-835d-7d9e39c6b52e" x="660" y="25" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ShippingAddress}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2c70c991-d599-4752-b24b-5d33dea17c60" x="542" y="45" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DCNumber]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="39b69af2-4cca-40ad-b3c8-1c4811079bd6" x="661" y="45" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DCNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="85c7bb67-010f-494b-b8d9-7398a05947cb" x="642" y="5" width="11" height="19"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d0570009-9f1b-4c6f-a2a6-0c2f129b8062" x="642" y="26" width="11" height="19"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b79a5c8d-1ec8-4072-ab1d-b0cd033f47e3" x="642" y="46" width="11" height="19"/>
+				<textElement/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ffbe06d2-688d-4ba0-ac83-add7accacd60" x="667" y="14" width="80" height="20" forecolor="#666666"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8b61a4c7-7762-4aef-b240-d82ca673c360" x="747" y="14" width="40" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="704709f0-5399-4e81-b105-3fe94a43bc2c" x="0" y="14" width="178" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<text><![CDATA[Copy rights @MNT Soft Pvt.Ltd]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

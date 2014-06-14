@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ProjectTaskDocument" table="ProjectTaskDocument">
+<id name="projectTaskDocId" column="ProjectTaskDoc_Id">
+<generator class="increment"></generator>
+</id>
+<!-- <property name="projectTaskId" column="ProjectTask_Id"></property> -->
+<property name="projectTaskDocument" column="ProjectTaskDocument"></property>
+<property name="documentPath" column="DocumentPath"></property>
+
+</class>
+</hibernate-mapping>

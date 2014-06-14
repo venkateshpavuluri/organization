@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.BreakDownMaintenance" table="BreakdownMaintenance">
+		<id name="breakdownMaintenace_Id" column="BreakdownMaintenace_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="breakDownNo" column="BreakdownMaintenaceNo"></property>
+		<property name="department_Id" column="Department_Id"></property>
+		<property name="equipment_Id" column="Equipment_Id"></property>
+		<property name="problem" column="Problem"></property>
+		<property name="recordedDT" column="RecordedDT"></property>
+		<property name="maintenanceProblemType_Id" column="MaintenanceProblemType_Id"></property>
+		<property name="status_Id" column="Status_Id"></property>
+
+		<many-to-one name="deptBean" cascade="all"
+			class="com.mnt.erp.bean.Department" not-null="true" insert="false"
+			update="false">
+			<column name="Department_Id" />
+		</many-to-one>
+		<many-to-one name="equiBean" cascade="all"
+			class="com.mnt.erp.bean.EquipmentBean" not-null="true" insert="false"
+			update="false">
+			<column name="Equipment_Id" />
+		</many-to-one>
+		<!-- <many-to-one name="mptBean" cascade="all"
+			class="com.mnt.erp.bean.MaintenanceProblemType" not-null="true"
+			insert="false" update="false">
+			<column name="MaintenanceProblemType_Id" />
+		</many-to-one> -->
+		<many-to-one name="statusBean" cascade="all"
+			class="com.mnt.erp.bean.Status" not-null="true" insert="false"
+			update="false">
+			<column name="Status_Id" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

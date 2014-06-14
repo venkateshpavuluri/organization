@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.InspLotIndResLine" table="InspLotIndResultLine">
+		<id name="inspLotIndResLineId" column="InspLotIndResultLine_Id"
+			type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="sampleNo" column="SampleNo"></property>
+		<property name="inspCharId" column="InspCharacteristic_Id"></property>
+		<property name="upperLimit" column="UpperLimit"></property>
+		<property name="lowerLimit" column="LowerLimit"></property>
+		<property name="minTolerance" column="MinTolerance"></property>
+		<property name="maxTolerance" column="MaxTolerance"></property>
+		<property name="uomId" column="Uom_Id"></property>
+		<property name="measuredVal" column="MeasuredValue"></property>
+		<property name="defectClsId" column="DefectClass_Id"></property>
+		<property name="defectTypeId" column="DefectType_Id"></property>
+		<property name="codeGrpId" column="CodeGroup_Id"></property>
+		<property name="codeId" column="Code_Id"></property>
+		<property name="defectLoc" column="DefectLocation"></property>
+		<property name="valuation" column="Valuation"></property>
+		<property name="inspDecisionId" column="InspDecision_Id"></property>
+
+		<many-to-one name="inspCharBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.InspCharacteristic" insert="false" update="false"
+			lazy="false" fetch="join">
+			<column name="InspCharacteristic_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="uomBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Uom" insert="false" update="false" lazy="false">
+			<column name="Uom_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="defClsBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.DefectClassBean" insert="false" update="false"
+			lazy="false">
+			<column name="DefectClass_Id" not-null="true"></column>
+		</many-to-one>
+		<many-to-one name="defTypeBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.DefectTypeBean" insert="false" update="false"
+			lazy="false">
+			<column name="DefectType_Id" not-null="true"></column>
+		</many-to-one>
+		<many-to-one name="codeGrpBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.CodeGroup" insert="false" update="false"
+			lazy="false">
+			<column name="CodeGroup_Id" not-null="true"></column>
+		</many-to-one>
+		<many-to-one name="codeBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Code" insert="false" update="false" lazy="false">
+			<column name="Code_Id" not-null="true"></column>
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

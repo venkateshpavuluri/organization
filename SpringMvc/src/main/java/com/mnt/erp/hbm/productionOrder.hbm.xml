@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.ProductionOrderBean" table="ProductionOrder">
+		<id name="prodOrderId" column="ProductionOrder_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="prodOrderTypeId" column="ProductionOrderType_Id"></property>
+		<property name="prodOrderNo" column="ProductionOrderNo"></property>
+		<property name="prodOrderDate" column="ProductionOrderDate"></property>
+		<property name="plantId" column="Plant_Id"></property>
+		<property name="materialId" column="Material_Id"></property>
+		<property name="totQty" column="TotalQty"></property>
+		<property name="uomId" column="UOM_Id"></property>
+		<property name="salesOrderId" column="SalesOrder_Id"></property>
+		<property name="estStartDate" column="EStartDT"></property>
+		<property name="estEndDate" column="EEndDT"></property>
+		<property name="actStartDate" column="AStartDT"></property>
+		<property name="actEndDate" column="AEndDT"></property>
+		<property name="priority" column="Priority"></property>
+		<property name="statusId" column="Status_Id"></property>
+		<property name="desc" column="Description"></property>
+
+
+		<many-to-one name="prodOrderType" cascade="all"
+			class="com.mnt.erp.bean.ProductionOrderType" not-null="true" insert="false"
+			update="false">
+			<column name="ProductionOrderType_Id" />
+		</many-to-one>
+
+		<many-to-one name="salesOrder" cascade="all"
+			class="com.mnt.erp.bean.SalesOrderBean" not-null="true" insert="false"
+			update="false">
+			<column name="SalesOrder_Id" />
+		</many-to-one>
+
+		<many-to-one name="plant" cascade="all" class="com.mnt.erp.bean.Plant"
+			not-null="true" insert="false" update="false">
+			<column name="Plant_Id" />
+		</many-to-one>
+
+		<many-to-one name="material" cascade="all"
+			class="com.mnt.erp.bean.Material" not-null="true" insert="false"
+			update="false">
+			<column name="Material_Id" />
+		</many-to-one>
+		<many-to-one name="uom" cascade="all" class="com.mnt.erp.bean.Uom"
+			not-null="true" insert="false" update="false">
+			<column name="UOM_Id" />
+		</many-to-one>
+		<many-to-one name="status" cascade="all"
+			class="com.mnt.erp.bean.Status" not-null="true" insert="false"
+			update="false">
+			<column name="Status_Id" />
+		</many-to-one>
+
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ChartofAccount" table="ChartofAccount">
+
+<id name="coaId" column="COA_Id">
+<generator class="increment"></generator>
+</id>
+<property name="coa" column="COA"></property>
+<property name="orgId" column="Org_Id"></property>
+
+<many-to-one name="orgDetails" class="com.mnt.erp.bean.Organization" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Org_Id"></column>
+</many-to-one> 
+
+</class>
+</hibernate-mapping>

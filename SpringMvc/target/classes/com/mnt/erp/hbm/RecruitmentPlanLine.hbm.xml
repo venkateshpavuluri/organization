@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.RecruitmentPlanLine" table="RecruitmentPlanLine">
+
+<id name="recruitmentPlanLineId" column="RecruitmentPlanLine_Id">
+<generator class="increment"></generator>
+</id>
+<property name="interviewRoundId" column="InterviewRound_Id"></property>
+<property name="description" column="Description"></property>
+<many-to-one name="interviewRound" class="com.mnt.erp.bean.InterviewRound" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="InterviewRound_Id"></column>
+</many-to-one> 
+ 
+
+</class>
+</hibernate-mapping>

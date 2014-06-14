@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.PurchaseOrder" table="PurchaseOrder">
+		<id name="purchaseOrderId" column="PurchaseOrder_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="purchaseOrderNo" column="PurchaseOrderNbr"></property>
+		<property name="purchaseOrderDate" column="PurchaseOrderDate"></property>
+		<property name="purchaseOrderValue" column="PurchaseOrderValue"></property>
+		<property name="purchaseOrderStatus" column="Status_Id"></property>
+		<property name="description" column="Description"></property>
+		<property name="vendorId" column="Vendor_Id" not-null="false"></property>
+		<property name="quotationId" column="Quotation_Id" not-null="false"></property>
+		<property name="paymentTerms" column="PaymentTerm_Id"></property>
+		<property name="memo" column="Memo"></property>
+	 	<property name="currencyCode" column="Currency_Id"></property> 
+		<property name="salesTaxAmt" column="SalesTaxAmount"></property>
+		<property name="vatAmt" column="VATAmount"></property>
+		<property name="exciseAmt" column="ExiciseAmount"></property>
+		<property name="frieghtCharges" column="FrieghtCharges"></property>
+		<property name="pnFCharges" column="PnFCharges"></property>
+		<property name="dueDate" column="DueDate"></property>
+		<property name="createdBy" column="CreatedBy"></property>
+		<property name="createdDateTime" column="CreatedDTTM"></property>
+		<property name="modifiedBy" column="ModifiedBy"></property>
+		<property name="modifiedDateTime" column="ModifiedDTTM"></property>
+		<property name="purchaseGroupId" column="PurchaseGroup_Id"></property>
+
+		<bag name="poLine" cascade="all" lazy="false" fetch="join">
+			<key column="PurchaseOrder_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.PurchaseOrderLine" />
+		</bag>
+		<many-to-one name="vendorDetails" class="com.mnt.erp.bean.Vendor"
+			cascade="all" not-null="true" fetch="join" lazy="false" insert="false"
+			update="false">
+			<column name="Vendor_Id"></column>
+		</many-to-one>
+		<many-to-one name="satatusDetails" class="com.mnt.erp.bean.Status"
+			cascade="all" not-null="true" fetch="join" lazy="false" insert="false"
+			update="false">
+			<column name="Status_Id" not-null="true"></column>
+		</many-to-one>
+		<many-to-one name="currencyDetails" class="com.mnt.erp.bean.Currency"
+			cascade="all" not-null="true" fetch="join" lazy="false" insert="false"
+			update="false">
+			<column name="Currency_Id"></column>
+		</many-to-one>
+		<many-to-one name="paymentDetails" class="com.mnt.erp.bean.PaymentTerms"
+			cascade="all" not-null="true" fetch="join" lazy="false" insert="false"
+			update="false">
+			<column name="PaymentTerm_Id"></column>
+		</many-to-one>
+	</class>
+	<sql-query name="StepUserForPO" callable="true">
+		<return-scalar column="StepId" type="string" />
+		<return-scalar column="User_Id" type="string" />
+		{call StepUserForPO()}
+	</sql-query>
+	
+<!-- 	DashBoard Screens -->
+	
+	<sql-query name="PendingPo" callable="true">
+		<return-scalar column="PurchaseOrderNbr" type="string" />
+		<return-scalar column="VendorName" type="string" />
+		<return-scalar column="DueDate" type="string" />
+		{call PendingPo()}
+	</sql-query>
+	<sql-query name="TOP5PendingPo" callable="true">
+		<return-scalar column="PurchaseOrderNbr" type="string" />
+		<return-scalar column="VendorName" type="string" />
+		<return-scalar column="DueDate" type="string" />
+		{call TOP5PendingPo()}
+	</sql-query>
+</hibernate-mapping>
+
+
+

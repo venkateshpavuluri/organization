@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PurchaseRequisitionListReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5c75bc2d-baaa-475d-9f74-6a13180c1053">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="prdataset" uuid="ce35961e-5c3e-4732-a49c-605ccfb350fb">
+		<parameter name="prno" class="java.lang.String" isForPrompting="false"/>
+		<parameter name="prdate" class="java.lang.String" isForPrompting="false"/>
+		<parameter name="datePattern" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[exec PurchaseRequisitionList $P{prno},$P{prdate}]]>
+		</queryString>
+		<field name="PurchaseReqNo" class="java.lang.String"/>
+		<field name="RequestedDate" class="java.util.Date"/>
+		<field name="RequiredDate" class="java.util.Date"/>
+		<field name="Org_Name" class="java.lang.String"/>
+		<field name="Description" class="java.lang.String"/>
+		<field name="RefNo" class="java.lang.Integer"/>
+		<field name="Status" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="prno" class="java.lang.String"/>
+	<parameter name="prdate" class="java.lang.String"/>
+	<parameter name="logoID" class="java.lang.String"/>
+	<parameter name="datePattern" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[exec reportImage $P{logoID}]]>
+	</queryString>
+	<field name="logo" class="java.io.InputStream"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ab50d2d2-191e-460a-9823-4243b52446f3" x="166" y="0" width="246" height="36" forecolor="#000000" backcolor="#009999"/>
+				<textElement>
+					<font fontName="Verdana" size="22" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[MNT SOFT PVT.LTD]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="f1f2b833-9597-4ef8-b7b9-a878ccb65ef9" positionType="Float" x="0" y="1" width="137" height="38"/>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="77239144-2294-4aa4-b823-18568a542537" x="0" y="58" width="549" height="1" forecolor="#333333"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a47c5747-a80f-4406-a484-623c9d8fecb0" x="168" y="0" width="229" height="32" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="18" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Purchase Requisition]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="7ae59dcc-9a79-4a73-97ee-a60366872e37" x="490" y="0" width="117" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="155" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="ce3da0ba-a29d-433e-86c6-acd3856210d2" key="table 1" style="table 1" mode="Opaque" x="0" y="0" width="540" height="50"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="prdataset" uuid="fb5953fa-f6f6-4d0f-a673-457acb88f596">
+						<datasetParameter name="prno">
+							<datasetParameterExpression><![CDATA[$P{prno}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="prdate">
+							<datasetParameterExpression><![CDATA[$P{prdate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="datePattern">
+							<datasetParameterExpression><![CDATA[$P{datePattern}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="63" uuid="2d586f92-5835-48d6-be21-93e534346c13">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="114ea543-7956-47ca-bee4-5ffd3b709188" style="table_CH" x="0" y="0" width="62" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Serial No]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="ca9d7eb5-e43c-4ca6-9246-dffc4c193bd3" x="0" y="0" width="62" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="705b9439-34ce-4447-86f3-87d5ee56d16e">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="531b3f1a-c118-496f-9f7c-56c853d7dcf6" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Requisition Number]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="b58b50a6-af22-4d41-9b10-660cc2ad1b95" x="0" y="0" width="90" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PurchaseReqNo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="a269e848-a158-4819-ab45-fb2da42a1a94">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="2e8170a9-a28e-46be-b527-c39611620390" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Requested Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="2a50347b-e938-4386-82da-f6219590be17" x="0" y="0" width="90" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{RequestedDate})
+]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f05f5170-879e-4bf7-bd4b-03184ad71a10">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="fe8bf569-412a-4105-9ca8-0e79383dd4ae" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Required Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="b48c2c24-f328-4db2-a623-57d578676b58" x="0" y="0" width="90" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{RequiredDate})
+]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f7c28b0c-794a-4c15-9242-9664ce4e4ece">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="172a1a45-112c-44fd-a6db-f2b90e6b8043" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Organization Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="739fca7b-44d9-44af-96a3-efb902eb4db6" x="0" y="0" width="90" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Org_Name}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="a4470540-0420-4d8d-ac4b-181e6544f55e">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="655df7ee-a352-4279-8dec-4ded31fa5313" style="table_CH" x="0" y="0" width="78" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Reference Number]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="27a9a4f4-94a7-44fe-a50d-566e8364a1f6" x="0" y="0" width="78" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{RefNo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="65" uuid="f20c5713-3dde-4d50-ab4a-f613f1f3e00b">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="980abb9e-3c35-4d5e-a375-af5705b04649" style="table_CH" x="0" y="0" width="65" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="b331cf7f-41b6-4360-ada0-c33e64c68d0d" x="0" y="0" width="65" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Status}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b8275244-556c-4de3-98e2-90d86cd1ecb8" x="397" y="20" width="112" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8bcff63a-a83f-4e07-96d8-6988ee17f055" x="509" y="20" width="40" height="20" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e1670128-e364-4ad2-ae15-871b3e86dd48" x="0" y="20" width="242" height="20" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Copyrights @MNT Soft Pvt.ltd]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

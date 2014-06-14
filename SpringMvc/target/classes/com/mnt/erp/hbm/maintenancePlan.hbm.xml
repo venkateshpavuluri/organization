@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.MaintenancePlan" table="MaintenancePlan">
+
+		<id name="maintenancePlan_Id" column="MaintenancePlan_Id">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="maintenanceType_Id" column="MaintenanceType_Id"></property>
+		<property name="plant_Id" column="Plant_Id"></property>
+		<property name="equipment_Id" column="Equipment_Id"></property>
+		<property name="plannedDT" column="PlannedDT"></property>
+		<property name="shift_Id" column="Shift_Id"></property>
+		<property name="description" column="Description"></property>
+		<property name="status_Id" column="Status_Id"></property>
+
+ <many-to-one name="mainTypeBean" cascade="all"
+			class="com.mnt.erp.bean.maintenanceTypeBean" not-null="true" insert="false"
+			update="false">
+			<column name="maintenanceType_Id" />
+		</many-to-one>
+
+      <many-to-one name="plant" cascade="all"
+			class="com.mnt.erp.bean.Plant" not-null="true" insert="false"
+			update="false">
+			<column name="plant_Id" />
+		</many-to-one>
+		
+		  <many-to-one name="status" cascade="all"
+			class="com.mnt.erp.bean.Status" not-null="true" insert="false"
+			update="false">
+			<column name="status_Id" />
+		</many-to-one>
+		<many-to-one name="shift" cascade="all"
+			class="com.mnt.erp.bean.ShiftBean" not-null="true" insert="false"
+			update="false">
+			<column name="shift_Id" />
+		</many-to-one>
+		
+		<many-to-one name="equipmentBean" cascade="all"
+			class="com.mnt.erp.bean.EquipmentBean" not-null="true" insert="false"
+			update="false">
+			<column name="equipment_Id" />
+		</many-to-one> 
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rfqchild" language="groovy" pageWidth="400" pageHeight="120" columnWidth="400" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="085ab840-6008-45da-b8f8-60e5356a37ce">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="rfqLine" uuid="4dd7a359-c426-474a-90cd-e1cc742aa1a7">
+		<parameter name="rfqId" class="java.lang.Integer"/>
+		<parameter name="datePattern" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[exec RFQLineReport $P{rfqId}]]>
+		</queryString>
+		<field name="RFQ_Id" class="java.lang.Integer"/>
+		<field name="MaterialName" class="java.lang.String"/>
+		<field name="Qty" class="java.lang.Integer"/>
+		<field name="UOM" class="java.lang.String"/>
+		<field name="DeliveryDate" class="java.util.Date"/>
+	</subDataset>
+	<parameter name="rfqId" class="java.lang.Integer"/>
+	<parameter name="datePattern" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select 1 as '1']]>
+	</queryString>
+	<field name="1" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="76" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="d2c2d195-6ca0-4c96-b368-f9f53d216ca3" key="table 5" style="table 5" x="15" y="12" width="360" height="50"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="rfqLine" uuid="6c945595-dcd7-4854-b44a-788aed4ca082">
+						<datasetParameter name="rfqId">
+							<datasetParameterExpression><![CDATA[$P{rfqId}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="datePattern">
+							<datasetParameterExpression><![CDATA[$P{datePattern}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="bb17505a-8416-4c21-9b2a-5ff3c78c48f8">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement uuid="6327283c-a79e-4a6c-9b20-072046ecdb81" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[MaterialName]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement uuid="9b1d93be-85fd-4e99-bd18-b7fbcc5837e1" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MaterialName}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="29737423-9bc7-48f0-8441-fef3a6111879">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement uuid="14ad835b-ecd8-4c0c-975a-553e345fd2ca" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement uuid="33215954-c3c4-4b6b-bf61-05484fd69024" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Qty}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2adb0bcf-6760-46c5-a77d-ca276ca387f0">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement uuid="09467044-fc07-4520-b387-de0c8f9d6571" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[UOM]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement uuid="16e75064-74f2-4fcd-95ac-66e07069a818" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{UOM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="24232768-0013-474b-8670-8ef986186699">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement uuid="f1fa4b65-7fa3-4ded-9548-01ee889eee57" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[DeliveryDate]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement uuid="32e65519-a9ee-4119-a19a-98d6e4c11fb2" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Top">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{DeliveryDate})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

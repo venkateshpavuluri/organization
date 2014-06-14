@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bmList" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7f5c857c-d151-46dc-a884-53fd85bf7fb0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="9"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D3D3D3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="bmList" uuid="a6adb4f3-8747-4218-8ec2-a3d7d41a1023">
+		<parameter name="bmId" class="java.lang.String"/>
+		<parameter name="datePattern" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[exec GetBreakdownMaintenanceList $P{bmId}]]>
+		</queryString>
+		<field name="BreakdownMaintenaceNo" class="java.lang.String"/>
+		<field name="Department" class="java.lang.String"/>
+		<field name="EquipmentName" class="java.lang.String"/>
+		<field name="Problem" class="java.lang.String"/>
+		<field name="RecordedDT" class="java.util.Date"/>
+		<field name="MaintenanceProblemType" class="java.lang.String"/>
+		<field name="Status" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="bmId" class="java.lang.String"/>
+	<parameter name="logoID" class="java.lang.String"/>
+	<parameter name="datePattern" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[exec reportImage $P{logoID}]]>
+	</queryString>
+	<field name="logo" class="java.io.InputStream"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8289a3e4-f982-45ee-b813-7346370bc80a" x="292" y="0" width="268" height="35" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  MNT SOFT PVT.LTD]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="1c2e5e0c-b8fd-4c81-8a46-72b290c4e8f7" x="18" y="2" width="160" height="50"/>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="8aa19537-0894-47d0-8b31-c8d1bc896116" x="0" y="55" width="802" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c4f00aa5-b78a-43e1-842f-b16828d763d6" x="292" y="0" width="316" height="29" forecolor="#333333"/>
+				<textElement>
+					<font fontName="Verdana" size="18" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[BREAKDOWN MAINTAINENCE]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="9199c175-0d3c-4841-b241-938eb385d9cc" x="713" y="0" width="112" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="c385603b-9ad2-4168-800a-55473ec84565" key="table 7" x="102" y="23" width="630" height="50"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="bmList" uuid="61e53367-43f6-4098-941c-4c6a9c5595fd">
+						<datasetParameter name="bmId">
+							<datasetParameterExpression><![CDATA[$P{bmId}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="datePattern">
+							<datasetParameterExpression><![CDATA[$P{datePattern}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="adee6930-affa-4af6-a18e-c5f4e4013f45">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="273ddb2b-939e-4f76-8143-5efb7d00ec64" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Breakdown MaintenaceNo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="69acd143-d763-4ad0-8b07-3f53258710cd" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BreakdownMaintenaceNo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2d754e8f-db41-4384-bfc6-911a1d5ad0f1">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="8ce2d623-abe3-4aae-a128-3261c59c48e1" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Department]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="7ae71cdb-00a4-417d-bdab-505f0c86c3f9" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Department}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="5362fcd1-f79d-4296-8ca2-4abeb8bf75e0">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="c02fcfd3-df0c-4afc-a090-34692c96079a" style="table_CH" x="0" y="0" width="100" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[EquipmentName]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="cc1671df-ce9c-4607-acaa-caa24de1957d" x="0" y="0" width="100" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EquipmentName}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f04c302e-6a05-4c0d-8d13-320fdc46779a">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="8555e973-207e-43a1-b399-b3c3b453ca30" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Problem]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="8705180e-11b1-461b-a9ff-ad1e95f63a76" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Problem}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="9f919c4c-d453-4580-8544-f5afd4a3a2ad">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="1a77137b-2fa1-4858-a24e-190f02275610" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[RecordedDT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="00270353-2ccd-4f4f-bd85-68b9bc1f8b0d" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{RecordedDT})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="c8f56ba1-3589-42b1-886f-4b8807e7debd">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="32bb5580-4447-40a5-878f-7f9640801570" style="table_CH" x="0" y="0" width="80" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[MaintenanceProblemType]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="0cf2d1ba-c650-4df9-9155-e2ea658e0a59" x="0" y="0" width="80" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MaintenanceProblemType}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="afe3949c-9ec4-4da6-95d6-c04bf9fa97f6">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="11bb8bc5-da26-4980-b134-f8d6fc6beb3c" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="59a19adf-b944-4356-bacb-5f55e04d6221" x="0" y="0" width="90" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Status}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ffbe06d2-688d-4ba0-ac83-add7accacd60" x="667" y="14" width="80" height="20" forecolor="#666666"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8b61a4c7-7762-4aef-b240-d82ca673c360" x="747" y="14" width="40" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="704709f0-5399-4e81-b105-3fe94a43bc2c" x="0" y="14" width="178" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<text><![CDATA[Copy rights @MNT Soft Pvt.Ltd]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.WorkInProgressBean" table="WIP">
+		<id name="wipId" column="WIP_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="jobcardId" column="Jobcard_Id"></property>
+		<property name="workDay" column="Workday"></property>
+		<property name="shiftId" column="Shift_Id"></property>
+		<property name="workcenterId" column="WorkCenter_Id"></property>
+		<property name="equipmentId" column="Equipment_Id"></property>
+		<property name="empId" column="Employee_Id"></property>
+		<property name="uomId" column="UOM_Id" ></property>
+		<property name="qtyPlanned" column="QtyPlanned"></property>
+		<property name="qtyManufactured" column="QtyManufactured"></property>
+
+		<property name="qtyAccepted" column="QtyAccepted" not-null="false"></property>
+		<property name="qtyRejected" column="QtyRejected" not-null="false"></property>
+		<property name="qtyRework" column="QtyRework" not-null="false"></property>
+		<property name="qtyRerun" column="QtyRerun" not-null="false"></property>
+		<property name="toBeInspected" column="ToBeInspected" not-null="false"></property>
+		<property name="electricalMain" column="ElectricalMaintenance" not-null="false"></property>
+		<property name="mechanicalmain" column="MechanicalMaintenance" not-null="false"></property>
+		<property name="idleTime" column="IdleTime" not-null="false"></property>
+		<property name="setUpTime" column="SetupTime" not-null="false"></property>
+		<property name="waitingTime" column="WaitingTime" not-null="false"></property>
+		<property name="unloadingTime" column="UnloadingTime" not-null="false"></property>
+		<property name="other" column="Other" not-null="false"></property>
+		<property name="remarks" column="Remarks" not-null="false"></property>
+
+
+		<many-to-one name="shiftBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.ShiftBean" insert="false" update="false"
+			lazy="false" fetch="join">
+			<column name="Shift_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="workBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.WorkCenter" insert="false" update="false"
+			lazy="false" fetch="join">
+			<column name="WorkCenter_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="eqipBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.EquipmentBean" insert="false" update="false" lazy="false"
+			fetch="join">
+			<column name="Equipment_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="uomBean" cascade="all"
+			class="com.mnt.erp.bean.Uom" insert="false" update="false"
+			lazy="false">
+			<column name="UOM_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="jobCardBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.JobCardBean" insert="false" update="false"
+			lazy="false">
+			<column name="Jobcard_Id" not-null="true"></column>
+		</many-to-one>
+		
+		<!-- <many-to-one name="empBean"  not-null="true"
+			class="com.mnt.erp.bean.Employee" insert="false" update="false" lazy="false"
+			fetch="join">
+			<column name="Employee_Id" not-null="true"></column>
+		</many-to-one>  -->
+
+	</class>
+</hibernate-mapping>

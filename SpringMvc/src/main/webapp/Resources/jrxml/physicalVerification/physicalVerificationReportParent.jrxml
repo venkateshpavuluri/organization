@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="physicalVerificationReportParent" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7f5c857c-d151-46dc-a884-53fd85bf7fb0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D3D3D3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="ImageDataset" uuid="e52344c5-9ec7-4f68-8ddc-38f0844e4d1c">
+		<parameter name="logoID" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{logoID}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[exec reportImage $P{logoID}]]>
+		</queryString>
+		<field name="logo" class="java.io.InputStream"/>
+	</subDataset>
+	<parameter name="logoID" class="java.lang.String"/>
+	<parameter name="verificationId" class="java.lang.String"/>
+	<parameter name="rootPath" class="java.lang.String"/>
+	<parameter name="datePattern" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[exec PhysicalVerificationReport $P{verificationId}]]>
+	</queryString>
+	<field name="Verification_Id" class="java.lang.Integer"/>
+	<field name="VerificationNo" class="java.lang.String"/>
+	<field name="VerificationType" class="java.lang.String"/>
+	<field name="Org_Name" class="java.lang.String"/>
+	<field name="Plant_name" class="java.lang.String"/>
+	<field name="StorageLocation" class="java.lang.String"/>
+	<field name="VerificationDate" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8289a3e4-f982-45ee-b813-7346370bc80a" x="292" y="0" width="268" height="35" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  MNT SOFT PVT.LTD]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8aa19537-0894-47d0-8b31-c8d1bc896116" x="0" y="55" width="802" height="1"/>
+			</line>
+			<componentElement>
+				<reportElement uuid="3c23a04c-4cd5-4d2d-bbd5-9e53f19a0b5e" x="0" y="0" width="243" height="45"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ImageDataset" uuid="2b88678b-8f9a-4288-825d-9ee5981f7120">
+						<datasetParameter name="logoID">
+							<datasetParameterExpression><![CDATA[$P{logoID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="45" width="243">
+						<image>
+							<reportElement uuid="738bd936-0610-4827-944c-ab15b91ca69f" x="16" y="0" width="208" height="45"/>
+							<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+						</image>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c4f00aa5-b78a-43e1-842f-b16828d763d6" x="280" y="9" width="291" height="29" forecolor="#333333"/>
+				<textElement>
+					<font fontName="Verdana" size="18" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Physical Verification Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ae6e9e9f-6489-49d1-8cb2-90003358447b" x="581" y="38" width="221" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Physical Verification Report Details]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="9199c175-0d3c-4841-b241-938eb385d9cc" x="700" y="0" width="112" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="181" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4ee28e51-4736-4d13-97a6-0dce95979d18" x="54" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VerificationNo]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="00930c65-bed4-4cd0-9ac8-c029eda8b7b1" x="207" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VerificationNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="90dccf8a-55eb-4e1f-b1b9-63aa22539e90" x="416" y="2" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VerificationType]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="27ace377-1340-48ff-8b4a-a5d08bc1cbbf" x="560" y="2" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VerificationType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="067cdf7a-9580-4c3a-a97b-a39ea241a1ac" x="54" y="22" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Org_Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="260eabff-83b0-406f-ad2b-23c12958ad27" x="207" y="20" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Org_Name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="10cc7643-a80a-4554-9288-bb6ce5cc5731" x="416" y="22" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plant_name]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="72708313-8e6d-45c1-b554-9f9ddd8b20bd" x="560" y="22" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Plant_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5389b6ff-ea46-4823-9317-38e0a58614e4" x="54" y="42" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[StorageLocation]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="bcb170a7-7259-499e-9c18-cebed938a3df" x="207" y="40" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{StorageLocation}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="eec2de6a-9c15-4779-89ce-42b415985bee" x="416" y="42" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VerificationDate]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="710ca278-e312-4698-8bda-cecf0bbfbe20" x="560" y="40" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{VerificationDate})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="094a3033-8dbb-4e29-a478-1b01f04d2bc7" x="516" y="42" width="7" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4ce88f19-4ea2-4b1b-8611-c2c256cf5210" x="154" y="0" width="7" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c71c4d99-daa9-4e53-a78a-279b3ac68f70" x="154" y="20" width="7" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="44dea5e4-3c8e-4a14-9914-aa9a361f36d5" x="154" y="40" width="7" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8242ade1-a711-4fc9-90a0-37aae6649262" x="516" y="2" width="7" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ecd85764-cd24-4f74-828d-c295ddeeacae" x="516" y="22" width="7" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="756a22d4-3d89-4218-aba2-8c505f927fa8" x="54" y="93" width="200" height="56"/>
+				<subreportParameter name="verificationId">
+					<subreportParameterExpression><![CDATA[$F{Verification_Id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{rootPath}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ffbe06d2-688d-4ba0-ac83-add7accacd60" x="667" y="14" width="80" height="20" forecolor="#666666"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8b61a4c7-7762-4aef-b240-d82ca673c360" x="747" y="14" width="40" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="704709f0-5399-4e81-b105-3fe94a43bc2c" x="0" y="14" width="178" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<text><![CDATA[Copy rights @MNT Soft Pvt.Ltd]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

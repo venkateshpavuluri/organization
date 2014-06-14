@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PaymentWithHold" table="PaymentWithHold">
+<id name="paymentWithHoldId" column="PaymentWithHold_Id">
+<generator class="increment"></generator>
+</id>
+ <property name="paymentId" column="Payment_Id" insert="false" update="false"></property>
+<property name="withHoldReason" column="WithHoldReason"></property>
+<property name="withHoldAmount" column="WithHoldAmount"></property>
+</class>
+</hibernate-mapping>

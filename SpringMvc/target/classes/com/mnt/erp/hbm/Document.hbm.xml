@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Document" table="Document">
+
+<id name="documentId" column="Document_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="documentUID" column="DocumentUID"></property>
+<property name="documentName" column="DocumentName"></property>
+<property name="documentNo" column="DocumentNo"></property>
+<property name="documentCategoryId" column="DocumentCategory_Id"></property>
+<property name="documentTypeId" column="DocumentType_Id"></property>
+<property name="documentPart" column="DocumentPart"></property>
+<property name="version" column="Version"></property>
+<property name="descripion" column="descripion"></property>
+<property name="departmentId" column="Department_Id"></property>
+<property name="employeeId" column="Employee_Id"></property>
+<property name="path" column="Path"></property>
+<property name="statusId" column="Status_Id"></property>
+<property name="parentDocId" column="ParentDoc_Id"></property>
+
+<bag  name="documentObject" cascade="all" lazy="false" fetch="join"  >
+<key column="Document_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.DocumentObject"/>
+</bag>
+ <many-to-one name="status" class="com.mnt.erp.bean.Status" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="Status_Id"></column>
+</many-to-one> 
+ <many-to-one name="documentCategory" class="com.mnt.erp.bean.DocumentCategory" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="DocumentCategory_Id"></column>
+</many-to-one> 
+ <many-to-one name="documentType" class="com.mnt.erp.bean.DocumentType" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="DocumentType_Id"></column>
+</many-to-one> 
+</class>
+</hibernate-mapping>

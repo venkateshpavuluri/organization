@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PurchaseReq" table="PurchaseReq">
+
+<id name="purchaseReq_Id" column="PurchaseReq_Id">
+<generator class="increment"></generator>
+</id>
+<property name="purchaseReqNo" column="PurchaseReqNo"></property> 
+<property name="requestedBy" column="RequestedBy"></property>
+<property name="requestedDate" column="RequestedDate"></property>
+<property name="reqDate" column="RequiredDate"></property>
+<property name="org_Id" column="Org_Id"></property>
+<property name="description" column="Description"></property>
+<property name="refNo" column="RefNo"></property>
+<property name="status_id" column="Status_Id"></property>
+<many-to-one name="organization" class="com.mnt.erp.bean.Organization" lazy="false"  cascade="all" not-null="true" insert="false" update="false">
+<column name="Org_Id"></column>
+</many-to-one>
+ <many-to-one name="statusDetails" class="com.mnt.erp.bean.Status" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="Status_Id"></column>
+</many-to-one> 
+<bag  name="purchaseReqLine" cascade="all" lazy="false" fetch="join"  >
+<key column="PurchaseReq_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.PurchaseReqLine"/>
+</bag>
+
+</class>
+
+<sql-query name="StepUserForPR" callable="true" >
+   <return-scalar column="StepId" type="string"/>
+   <return-scalar column="User_Id" type="string"/>
+      {call StepUserForPR()}
+    </sql-query> 
+</hibernate-mapping>

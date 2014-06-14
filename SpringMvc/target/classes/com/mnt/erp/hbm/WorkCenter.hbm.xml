@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.WorkCenter" table="WorkCenter">
+
+		<id name="workCenter_Id" column="WorkCenter_Id">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="workCenterName" column="WorkCenterName"></property>
+		<property name="plant_Id" column="Plant_Id"></property>
+		<property name="shop_Id" column="Shop_Id"></property>
+		<property name="capacityCategory_Id" column="CapacityCategory_Id"></property>
+		<property name="workCeterCategory_Id" column="WorkCeterCategory_Id"></property>
+
+        <many-to-one name="plant" cascade="all"
+			class="com.mnt.erp.bean.Plant" not-null="true" insert="false"
+			update="false">
+			<column name="plant_Id" />
+		</many-to-one>
+		
+		  <many-to-one name="shop" cascade="all"
+			class="com.mnt.erp.bean.Shop" not-null="true" insert="false"
+			update="false">
+			<column name="shop_Id" />
+		</many-to-one>
+		<many-to-one name="capacityCategory" cascade="all"
+			class="com.mnt.erp.bean.CapacityCategory" not-null="true" insert="false"
+			update="false">
+			<column name="capacityCategory_Id" />
+		</many-to-one>
+		
+		<many-to-one name="workCenterCategory" cascade="all"
+			class="com.mnt.erp.bean.WorkCenterCategory" not-null="true" insert="false"
+			update="false">
+			<column name="workCeterCategory_Id" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

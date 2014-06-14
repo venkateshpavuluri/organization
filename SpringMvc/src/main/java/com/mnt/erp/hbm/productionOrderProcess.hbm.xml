@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.ProductionOrderProcess" table="ProductionOrderProcess">
+
+		<id name="productionOrderProcessId" column="ProdOrderProcess_Id">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="productionOrder" column="ProdcutionOrder_Id"></property>
+		<property name="processdetailid" column="ProcessDetail_Id"></property>
+		<property name="workCenter_Id" column="WorkCenter_Id"></property>
+		<property name="startDate" column="StartDT"></property>
+		<property name="finishDate" column="FinishDT"></property>
+
+
+		<many-to-one name="productionOrderBean" class="com.mnt.erp.bean.ProductionOrderBean"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="ProdcutionOrder_Id"></column>
+		</many-to-one>
+		<many-to-one name="processDetailBean" class="com.mnt.erp.bean.ProcessDetailBean"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="ProcessDetail_Id"></column>
+		</many-to-one>
+		<many-to-one name="workCenterBean" class="com.mnt.erp.bean.WorkCenter"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="WorkCenter_Id"></column>
+		</many-to-one>
+	</class>
+
+</hibernate-mapping>

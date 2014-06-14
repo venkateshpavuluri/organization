@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.Users" table="Users">
+		<id name="user_Id" column="User_Id">
+			<generator class="guid"></generator>
+		</id>
+
+		<property name="userName" column="UserName"></property>
+		<property name="password" column="Password"></property>
+		<property name="IsActive" column="IsActive"></property>
+		<property name="validFrom" column="ValidFrom"></property>
+		<property name="validTo" column="ValidTo"></property>
+		<property name="usergroupId" column="UserGroup_Id"></property>
+		<property name="functionId" column="Function_Id"></property>
+        <property name="theme" column="Theme_Id"></property>
+        
+         <many-to-one name="tbean" cascade="all" class="com.mnt.erp.bean.ThemeBean" not-null="true" insert="false" update="false"  lazy="false" fetch="join">
+			<column name="Theme_Id"/>
+			</many-to-one>
+        
+
+		<many-to-one name="usergroupBean" class="com.mnt.erp.bean.UserGroup"
+			insert="false" lazy="false" fetch="join" not-null="true" cascade="all"
+			update="false">
+			<column name="UserGroup_Id"></column>
+		</many-to-one>
+		<many-to-one name="functionBean" class="com.mnt.erp.bean.Function"
+			insert="false" not-null="true" lazy="false" fetch="join" cascade="all"
+			update="false">
+			<column name="Function_Id"></column>
+		</many-to-one>
+		<bag name="userRolesset" table="User_Roles" lazy="false" fetch="join"
+			cascade="all">
+
+
+			<key update="false">
+				<column name="User_Id" not-null="true"></column>
+			</key>
+			<one-to-many class="com.mnt.erp.bean.UserRoles" />
+
+		</bag>
+
+		<set name="userorgbean" cascade="all" lazy="false">
+			<key column="User_Id" update="false"></key>
+			<one-to-many class="com.mnt.erp.bean.UserOrganizationBean" />
+		</set>
+
+	</class>
+</hibernate-mapping>

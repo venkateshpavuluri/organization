@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.WFStep" table="WFStep">
+<id name="wfstepid" column="StepId"><generator class="guid"></generator></id>
+<property name="wfstepStageGUID" column="StageGUID"></property>
+<property name="wfstepStep" column="Step"></property>
+<property name="wfstepName" column="Name"></property>
+<property name="wfstepType" column="Type"></property>
+<property name="wfstepStatus" column="Status"></property>
+<property name="wfstepAssignedTo" column="AssigenedTo"></property>
+<property name="wfstepCreatedBy" column="CreatedBy"></property>
+<property name="wfstepCreatedDate" column="CreatedDate"></property>
+<property name="wfstepUpdatedBy" column="UpdatedBy"></property>
+<property name="wfstepUpdatedDate" column="UpdatedDate"></property>
+<many-to-one name="wfstage" class="com.mnt.erp.bean.WFStage" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="StageGUID" ></column>
+</many-to-one>
+<many-to-one name="rolebean" class="com.mnt.erp.bean.Role" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="AssigenedTo" ></column>
+</many-to-one>    
+
+<set name="wfActionDetailski" lazy="false" cascade="all" fetch="join" inverse="true">
+<key column="StepId" not-null="true" update="false"  ></key>
+<one-to-many class="com.mnt.erp.bean.WFAction" />
+</set>
+
+</class>
+</hibernate-mapping>

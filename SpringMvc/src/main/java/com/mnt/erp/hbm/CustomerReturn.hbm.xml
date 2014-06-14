@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.CustomerReturn" table="CustomerReturn">
+
+<id name="customerReturnId" column="CustomerReturn_Id">
+<generator class="increment"></generator>
+</id>
+<property name="customerReturnNo" column="CustomerReturn_No"></property>
+<property name="customerReturnDate" column="CustomerReturnDate"></property>
+<property name="reference" column="Reference"></property>
+<property name="description" column="Description"></property>
+<property name="salesOrderId" column="SalesOrder_Id"></property>
+
+ <bag name="customerReturnLine" cascade="all" lazy="false" fetch="join"  >
+<key column="CustomerReturn_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.CustomerReturnLine"/>
+</bag>
+
+<many-to-one name="salesOrderBean" class="com.mnt.erp.bean.SalesOrderBean" insert="false" not-null="true" lazy="false" cascade="all" update="false" >
+<column name="SalesOrder_Id"></column>
+</many-to-one>
+
+
+</class>
+</hibernate-mapping>

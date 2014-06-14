@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.CustomerAccount" table="CustomerAccount">
+		<id name="custAccountId" column="CustomerAccount_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="acGroupId" column="AccountGroup_Id"></property>
+		<property name="reCondId" column="Reconciliation_Id"></property>
+		<property name="paymentTermId" column="PaymentTerm_Id"></property>
+		<property name="paymentMethodId" column="PaymentMethod_Id"></property>
+	 	
+	 	<many-to-one name="paymentTerm" cascade="all"
+			class="com.mnt.erp.bean.PaymentTerms" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="PaymentTerm_Id" not-null="true"/>
+		</many-to-one>
+		
+			<many-to-one name="paymentMethod" cascade="all"
+			class="com.mnt.erp.bean.PaymentMethod" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="PaymentMethod_Id" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="acGroup" cascade="all"
+			class="com.mnt.erp.bean.AccountGroupBean" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="AccountGroup_Id" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="recnd" cascade="all"
+			class="com.mnt.erp.bean.AccountGroupBean" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="Reconciliation_Id" not-null="true" />
+		</many-to-one> 
+		
+	</class>
+</hibernate-mapping>

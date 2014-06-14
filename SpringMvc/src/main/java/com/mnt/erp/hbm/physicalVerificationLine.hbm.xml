@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.physicalVerificationLine" table="PhisicalVerificationLine">
+<id name="verificationLineId" column="VerificationLine_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="materialId" column="Material_Id"></property>
+<property name="batchNo" column="BatchNo"></property>
+<property name="bookQty" column="BookQty"></property>
+<property name="physicalQty" column="PhysicalQty"></property>
+<property name="uomId" column="UOM_Id"></property>
+
+<many-to-one name="materialDetails" class="com.mnt.erp.bean.Material" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="Material_Id"></column>
+</many-to-one>
+<many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="UOM_Id" not-null="true"></column>
+</many-to-one>
+
+
+</class>
+</hibernate-mapping>

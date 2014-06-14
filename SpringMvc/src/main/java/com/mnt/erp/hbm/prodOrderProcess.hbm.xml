@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.ProdOrderProcessBean" table="ProductionOrderProcess">
+
+		<id name="popId" column="ProdOrderProcess_Id">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="prodOrderId" column="ProdcutionOrder_Id"></property>
+		<property name="processDetailId" column="ProcessDetail_Id"></property>
+		<property name="workCenterId" column="WorkCenter_Id"></property>
+		<property name="startDate" column="StartDT"></property>
+		<property name="endDate" column="FinishDT"></property>
+		<property name="inspPoint" column="InspectionPoint"></property>
+
+		<set name="popEqp" cascade="all" lazy="false">
+			<key column="ProdOrderProcess_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.ProdOrderProcessEqp" />
+		</set> 
+
+		<bag name="popEmp" cascade="all" lazy="false">
+			<key column="ProdOrderProcess_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.ProdProcessEmpBean" />
+		</bag>
+
+
+		<many-to-one name="productionOrder" class="com.mnt.erp.bean.ProductionOrderBean"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="ProdcutionOrder_Id"></column>
+		</many-to-one>
+
+		<many-to-one name="processDetail" class="com.mnt.erp.bean.ProcessDetailBean"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="ProcessDetail_Id"></column>
+		</many-to-one>
+
+		<many-to-one name="workCenter" class="com.mnt.erp.bean.WorkCenter"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="WorkCenter_Id"></column>
+		</many-to-one>
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Role" table="Roles">
+<id name="roleid" column="Role_Id"><generator class="guid"></generator></id>
+<property name="role" column="Role_Name"></property>
+<!-- <property name="status" column="Status"></property> -->
+<property name="adgroup" column="ADGroup"></property>
+</class>
+</hibernate-mapping>

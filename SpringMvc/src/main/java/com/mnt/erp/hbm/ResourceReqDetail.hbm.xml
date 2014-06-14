@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ResourceReqDetail" table="ResourceReqDetail">
+
+<id name="resourceReqDetId" column="ResourceReqDet_Id">
+<generator class="increment"></generator>
+</id>
+<property name="noOfPositions" column="NoofPositions"></property>
+<property name="jobDescription" column="JD"></property>
+<property name="requiredDate" column="RequiredDate"></property>
+<property name="priority" column="Priority"></property>
+<property name="rdstatusId" column="Status_Id"></property>
+<many-to-one name="status" class="com.mnt.erp.bean.Status" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Status_Id"></column>
+</many-to-one> 
+</class>
+</hibernate-mapping>

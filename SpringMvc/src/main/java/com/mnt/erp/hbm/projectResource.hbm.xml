@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.projectResourceBean"  table="ProjectResource">
+<id name="projectResource_Id" column="ProjectResource_Id">
+<generator class="increment"></generator>
+</id>
+<property name="stDate" column="STDT"></property>
+<property name="endDate" column="ENDDT"></property>
+<property name="stdCostHr" column="StdCostHr"></property>
+<property name="otCostHr" column="OTCostHr"></property>
+<property name="employee" column="Employee_Id"></property>
+<property name="project" column="Project_Id"></property>
+<property name="designation" column="Designation_Id"></property>
+<property name="prtype" column="ProjectResourceType_Id"></property>
+<property name="uom" column="UOM_Id"></property>
+
+		<many-to-one name="empBean" cascade="all"
+			class="com.mnt.erp.bean.Employee" not-null="true" insert="false" update="false">
+			<column name="Employee_Id"/>
+			</many-to-one>
+			<many-to-one name="projectBean" cascade="all"
+			class="com.mnt.erp.bean.Project" not-null="true" insert="false" update="false">
+			<column name="Project_Id"/>
+			</many-to-one>
+			<many-to-one name="desgBean" cascade="all"
+			class="com.mnt.erp.bean.Designation" not-null="true" insert="false" update="false">
+			<column name="Designation_Id"/>
+			</many-to-one>
+			<many-to-one name="prtBean" cascade="all"
+			class="com.mnt.erp.bean.ProjectResourceTypeBean" not-null="true" insert="false" update="false">
+			<column name="ProjectResourceType_Id"/>
+			</many-to-one>
+			<many-to-one name="uomBean" cascade="all"
+			class="com.mnt.erp.bean.Uom" not-null="true" insert="false" update="false">
+			<column name="UOM_Id"/>
+			</many-to-one>
+</class>
+</hibernate-mapping>

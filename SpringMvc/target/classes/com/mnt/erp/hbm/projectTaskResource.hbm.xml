@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ProjectTaskResource" table="ProjectTaskResource">
+
+<id name="projectTaskResourceId" column="ProjectTaskResource_Id">
+<generator class="increment"></generator>
+</id>
+<property name="projectTaskId" column="ProjectTask_Id" insert="false" update="false"></property>
+<property name="projectResourceId" column="ProjectResource_Id"></property>
+
+<many-to-one name="prjctTaskDetails" class="com.mnt.erp.bean.ProjectTask" not-null="true" insert="false" update="false" lazy="false">
+<column name="ProjectTask_Id"/>
+</many-to-one>
+<many-to-one name="PRDetails" class="com.mnt.erp.bean.projectResourceBean" not-null="true" insert="false" update="false" lazy="false">
+<column name="ProjectResource_Id"/>
+</many-to-one>
+</class>
+</hibernate-mapping>

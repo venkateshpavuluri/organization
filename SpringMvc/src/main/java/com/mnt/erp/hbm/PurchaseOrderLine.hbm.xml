@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PurchaseOrderLine" table="PurchaseOrderLine">
+<id name="purchaseOrderLineId" column="PurchaseOrderLine_Id">
+<generator class="increment"></generator>
+</id>
+
+ <property name="purchaseOrderId" column="PurchaseOrder_Id" insert="false" update="false"></property> 
+<!-- <property name="lineNumber" column="LineNum"></property> -->
+<property name="materialId" column="Material_Id"></property>
+<property name="unitPrice" column="UnitPrice"></property>
+<property name="currencyCode" column="Currency_Id"></property>
+<property name="quantity" column="Qty"></property>
+<property name="uom" column="UOM_Id"></property>
+<property name="lineAmt" column="LineAmount"></property>
+
+
+<property name="dueDate" column="DueDate"></property>
+<property name="createdBy" column="CreatedBy"></property>
+<property name="createdDateTime" column="CreatedDTTM"></property>
+<property name="modifiedBy" column="ModifiedBy"></property>
+<property name="modifiedDateTime" column="ModifiedDTTM"></property>
+
+
+<!-- WorkFlow -->
+
+<many-to-one name="materialDetails" class="com.mnt.erp.bean.Material"  insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Material_Id"></column>
+</many-to-one>
+<many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="UOM_Id"></column>
+</many-to-one>
+		
+		
+	<many-to-one name="currencyDetails" class="com.mnt.erp.bean.Currency" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Currency_Id"></column>
+</many-to-one>	
+
+</class>
+</hibernate-mapping>

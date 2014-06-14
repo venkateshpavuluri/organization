@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EmployeeLeave" table="EmployeeLeave">
+<id name="employeeLeaveId" column="EmployeeLeave_Id">
+<generator class="increment"></generator>
+</id>
+<property name="employeeId" column="Employee_Id"></property>
+      <property name="leaveTypeId" column="LeaveType_Id"></property>
+      <property name="reptMgrId" column="ReptMgr_Id"></property>
+      <property name="noOfAvailableCL" column="NoOfAvailableCL"></property>
+      <property name="noOfAvailableCFL" column="NoOfAvailableCFL"></property>
+      <property name="startDate" column="StartDate"></property>
+      <property name="sDayPart" column="SDayPart"></property>
+      <property name="endDate" column="EndDate"></property>
+      <property name="eDayPart" column="EDayPart"></property>
+      <property name="recursiveHalf" column="RecursiveHalf"></property>
+      <property name="reportingDate" column="ReportingDate"></property>
+      <property name="reason" column="Reason"></property>
+      <property name="mobile" column="Mobile"></property>
+      <property name="residence" column="Residence"></property>
+      <property name="otherNo" column="OtherNo"></property>
+      <property name="createdDate" column="CreatedDate"></property>
+      <property name="createdBy" column="CreatedBy"></property>
+      <property name="updatedDate" column="UpdatedDate"></property>
+      <property name="updatedBy" column="UpdatedBy"></property>
+      <property name="statusId" column="Status_Id"></property>
+      <property name="declineReason" column="DeclineReason"></property>
+      <property name="approvedBy" column="ApprovedBy"></property>
+      <property name="narration" column="Narration"></property>
+      <property name="emailCCList" column="EmailCCList"></property>
+      <property name="days" column="Days"></property>
+
+
+
+<many-to-one name="leaveTypeIdDetails" class="com.mnt.erp.bean.LeaveTypeBean" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="LeaveType_Id"></column>
+</many-to-one>
+ <many-to-one name="reptMgrIdDetails" class="com.mnt.erp.bean.Employee" not-null="true" fetch="join" lazy="false" insert="false" update="false" > 
+ <column name="ReptMgr_Id" not-null="true"></column> 
+ </many-to-one> 
+<many-to-one name="employeeIdDetails" class="com.mnt.erp.bean.Employee" not-null="true" fetch="join" lazy="false" insert="false" update="false" > 
+ <column name="Employee_Id"></column> 
+ </many-to-one> 
+<many-to-one name="status"  not-null="true" class="com.mnt.erp.bean.Status" insert="false" update="false" lazy="false"
+			fetch="join">
+			<column name="Status_Id" not-null="true"></column>
+		</many-to-one>
+
+</class>
+</hibernate-mapping>
+
+
+

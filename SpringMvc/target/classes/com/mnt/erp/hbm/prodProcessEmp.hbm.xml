@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.ProdProcessEmpBean" table="ProductionProessEmp">
+
+		<id name="popEmpId" column="ProductionProessEmp_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="empId" column="Employee_Id"></property>
+
+		<many-to-one name="employee" class="com.mnt.erp.bean.Employee"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="Employee_Id"></column>
+		</many-to-one>
+
+	</class>
+
+</hibernate-mapping>

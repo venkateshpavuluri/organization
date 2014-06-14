@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://mnt.org/types/sales" xmlns:dt="http://mnt.org/types/sales" elementFormDefault="qualified">
+<xs:element name="mobileTracking" type="dt:mobileTracking"/>
+<xs:complexType name="mobileTracking">
+<xs:sequence>
+<xs:element name="imienumber" type="xs:string"></xs:element>
+<xs:element name="latitude" type="xs:string"></xs:element>
+<xs:element name="longitude" type="xs:string"></xs:element>
+<xs:element name="dt" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

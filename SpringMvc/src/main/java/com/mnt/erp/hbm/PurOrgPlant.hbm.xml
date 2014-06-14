@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PurOrgPlant" table="PurOrgPlant">
+
+<id name="purOrgPlant_Id" column="PurOrgPlant_Id">
+<generator class="increment"></generator>
+</id>
+<!-- <property name="purOrg_Id" column="PurOrg_Id"></property> -->
+<property name="plant_Id" column="Plant_Id" not-null="true"></property>
+</class>
+</hibernate-mapping>

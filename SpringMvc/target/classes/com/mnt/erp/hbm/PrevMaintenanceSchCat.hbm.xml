@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PrevMaintenanceSchCat" table="PrevMaintenanceSchCat">
+
+<id name="prevMaintenanceSchCatId" column="PrevMaintenanceSchCat_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="maintenanceCategoryId" column="MaintenanceCategory_Id"></property>
+<property name="maintenanceTypeId" column="MaintenanceType_Id"></property>
+<property name="schDT" column="SchDT"></property>
+
+<many-to-one name="maintenanceCategory" class="com.mnt.erp.bean.MaintenanceCategory"  insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="MaintenanceCategory_Id"></column>
+</many-to-one>
+
+<many-to-one name="maintenanceTypeDetails" class="com.mnt.erp.bean.maintenanceTypeBean"  insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="MaintenanceType_Id"></column>
+</many-to-one>
+
+ 
+
+
+
+</class>
+</hibernate-mapping>

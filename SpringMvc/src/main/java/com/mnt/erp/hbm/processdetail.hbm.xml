@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ProcessDetailBean"  table="ProcessDetails">
+<id name="processdetailid" column="ProcessDetail_Id">
+<generator class="increment"></generator>
+</id>
+<property name="processseq" column="ProcessSeq"></property>
+<property name="processtypeid" column="ProcessType_Id" ></property>
+<property name="processdescription" column="ProcessDescription"></property>
+<property name="predessor" column="Predessor"></property>
+<property name="successor" column="Successor"></property>
+<property name="stageinspection" column="StageInspection"></property>
+<property name="serialcontrol" column="SerialControl"></property>
+<property name="inspectionpct" column="InspectionPCT"></property>
+<many-to-one name="ptbean" cascade="all"
+			class="com.mnt.erp.bean.ProcessTypeBean" lazy="false" not-null="true"  insert="false" update="false" fetch="join" >
+			<column name="ProcessType_Id" not-null="true" />
+		</many-to-one>
+</class>
+</hibernate-mapping>

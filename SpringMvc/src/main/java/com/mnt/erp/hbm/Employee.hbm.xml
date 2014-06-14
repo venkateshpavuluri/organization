@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Employee" table="Employee">
+
+<id name="employee_Id" column="Employee_Id">
+<generator class="increment"></generator>
+</id>
+<property name="employeeNo" column="EmployeeNo"></property>
+<property name="fName" column="FName"></property>
+<property name="lName" column="LName"></property>
+<property name="mName" column="MName"></property>
+<property name="gender" column="Gender"></property>
+<property name="dOB" column="DOB"></property>
+<property name="dOJ" column="DOJ"></property>
+<property name="pAdd" column="PAdd"></property>
+<property name="pCity" column="PCity"></property>
+<property name="pState" column="PState"></property>
+<property name="pCountry" column="PCountry"></property>
+<property name="tAdd" column="TAdd"></property>
+<property name="tCity" column="TCity"></property>
+<property name="tState" column="TState"></property>
+<property name="tCountry" column="TCountry"></property>
+<property name="eMail" column="EMail"></property>
+<property name="phone" column="Phone"></property>
+<property name="mobile" column="Mobile"></property>
+<property name="status" column="Status"></property>
+<property name="org_Id" column="Org_Id"></property>
+<property name="department_Id" column="Department_Id"></property>
+<property name="employeeGroup_Id" column="EmployeeGroup_Id"></property>
+ <property name="designationId" column="Designation_Id"></property>
+ <property name="ceMail" column="CompanyEMail"></property>
+ 
+ <set name="employeeManager" cascade="all" lazy="false"  fetch="join">
+<key column="Employee_Id" not-null="true" update="true"  ></key>
+
+<one-to-many  class="com.mnt.erp.bean.EmployeeManager"  />
+</set>
+
+<set name="employeeProject" cascade="all" lazy="false"  fetch="join">
+<key column="Employee_Id" not-null="true" update="true"  ></key>
+<one-to-many  class="com.mnt.erp.bean.EmployeeProject"  />
+</set>
+<!--  <bag  name="employeeManager" cascade="all" lazy="false" fetch="join"  >
+<key column="Employee_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.EmployeeManager"/>
+</bag>   
+  -->
+
+</class>
+<!-- Dashboard -->
+<sql-query name="GetPendingLeaveRequest" callable="true" >
+   <return-scalar column="EmployeeName" type="string"/>
+   <return-scalar column="Department" type="string"/>
+   <return-scalar column="LeaveType" type="string"/>
+   <return-scalar column="Mobile" type="string"/>
+   <return-scalar column="Status_Id" type="string"/>
+      {call GetPendingLeaveRequest()}
+    </sql-query> 
+</hibernate-mapping>

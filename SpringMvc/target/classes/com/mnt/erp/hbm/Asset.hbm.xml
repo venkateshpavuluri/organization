@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.AssetBean"  table="Asset">
+<id name="assetid" column="Asset_Id">
+<generator class="increment"></generator>
+</id>
+<property name="assettypeId" column="AssetType_Id"></property>
+<property name="assetgroupId" column="AssetGroup_Id"></property>
+<property name="model" column="Model"></property>
+<property name="serialNumber" column="SerialNumber"></property>
+<property name="status" column="Status"></property>
+<property name="weon" column="WarrentyEndsOn"></property>
+<bag name="assetasgnmentbean" cascade="all" lazy="false" fetch="join">
+			<key column="Asset_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.AssetAssignmentBean" />
+</bag>
+<many-to-one name="assetTypeBean" cascade="all"
+			class="com.mnt.erp.bean.AssertTypeBean" not-null="true" insert="false" update="false">
+			<column name="AssetType_Id"/>
+</many-to-one> 
+<many-to-one name="assetGroupBean" cascade="all"
+			class="com.mnt.erp.bean.AssetGroup" not-null="true" insert="false" update="false">
+			<column name="AssetGroup_Id"/>
+</many-to-one> 
+
+</class>
+</hibernate-mapping>

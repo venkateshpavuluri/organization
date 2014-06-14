@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EmployeeManager" table="EmployeeManager">
+<id name="employeeManager_Id" column="EmployeeManager_Id"><generator class="increment"></generator></id>
+<property name="manager_Id" column="Manager_Id"></property>
+<property name="startDate" column="StartDate"></property>
+<property name="endDate" column="EndDate"></property>
+
+
+ <many-to-one name="managerDetails" class="com.mnt.erp.bean.Employee" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Manager_Id"></column>
+</many-to-one>  
+</class>
+</hibernate-mapping>

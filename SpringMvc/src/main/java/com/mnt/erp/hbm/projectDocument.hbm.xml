@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ProjectDocument" table="ProjectDocument">
+
+<id name="projectDocId" column="ProjectDoc_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="projectId" column="Project_Id"></property>
+<property name="projectDocName" column="ProjectDocName"></property>
+
+<property name="path" column="Path"></property>
+<property name="documentTypeId" column="DocumentType_Id"></property>
+<property name="documentCategoryId" column="DocumentCategory_Id"></property>
+<property name="version" column="Version"></property>
+<property name="isSecret" column="IsSecret"></property>
+</class>
+</hibernate-mapping>

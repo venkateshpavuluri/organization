@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.QuotationLine" table="QuotationLine">
+<id name="quotationLineId" column="QuotationLine_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="material_Id" column="Material_Id"></property>
+<property name="quantity" column="Qty"></property>
+<property name="uom" column="UOM"></property>
+<property name="netPrice" column="NetPrice"></property>
+<property name="perUnit" column="PerUnit"></property>
+<property name="lineAmount" column="LineAmount"></property>
+<property name="currencyId" column="Currency_Id"></property>
+<property name="deliveryDate" column="DeliveryDate"></property>
+<property name="statusId" column="Status_Id"></property>
+<property name="plantId" column="Plant_Id"></property>
+<property name="storageLocId" column="StorageLocation_Id"></property>
+
+<many-to-one name="materialDetails" class="com.mnt.erp.bean.Material" insert="false" not-null="true" lazy="false"  update="false" >
+<column name="Material_Id"></column>
+</many-to-one>
+ <many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom" insert="false" not-null="true" lazy="false"  update="false" >
+<column name="UOM"></column>
+</many-to-one>
+<many-to-one name="currencyDetails" class="com.mnt.erp.bean.Currency" insert="false" not-null="true" lazy="false"  update="false" >
+<column name="Currency_Id"></column>
+</many-to-one>
+<many-to-one name="statusDetails" class="com.mnt.erp.bean.Status" insert="false" not-null="true" lazy="false"  update="false" >
+<column name="Status_Id"></column>
+</many-to-one>
+<many-to-one name="plantDetails" class="com.mnt.erp.bean.Plant" insert="false" not-null="true" lazy="false"  update="false" >
+<column name="Plant_Id"></column>
+</many-to-one>
+<many-to-one name="stLocDetails" class="com.mnt.erp.bean.StorageLocation" insert="false" not-null="true" lazy="false"  update="false" >
+<column name="StorageLocation_Id"></column>
+</many-to-one>
+
+
+	
+
+<!-- <many-to-one name="material" cascade="all"
+			class="com.mnt.erp.bean.Material" lazy="false" not-null="true" insert="false" update="false">
+			<column name="Material_Id"/>
+		</many-to-one>
+
+
+		<many-to-one name="uomName1" cascade="all"
+			class="com.mnt.erp.bean.Uom" lazy="false" not-null="true" insert="false" update="false">
+			<column name="UOM"/>
+		</many-to-one>
+		
+		<many-to-one name="currencyName1" cascade="all"
+			class="com.mnt.erp.bean.Currency" lazy="false" not-null="true" insert="false" update="false">
+			<column name="Currency_Id"/>
+		</many-to-one> -->
+		
+
+
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EvaluationCriteria"  table="EvaluationCriteria">
+<id name="evaluationCriteriaId" column="EvaluationCriteria_Id">
+<generator class="increment"></generator>
+</id>
+<property name="evaluationCriteria" column="EvaluationCriteria"></property>
+<property name="weightingFactor" column="WeightingFactor"></property>
+<bag  name="evaluationSubCriterias" cascade="all" lazy="false" fetch="join"  >
+<key column="EvaluationCriteria_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.EvaluationSubCriteria"/>
+</bag>
+</class>
+</hibernate-mapping>

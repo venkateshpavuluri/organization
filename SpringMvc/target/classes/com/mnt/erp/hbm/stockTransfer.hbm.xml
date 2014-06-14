@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.StockTransferBean" table="StockTransfer">
+		<id name="stockTransferId" column="StockTransfer_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="stockTransferNo" column="StockTransferNo"></property>
+		<property name="stockTransferDate" column="StockTransferDate"></property>
+		<property name="orgId" column="Org_Id"></property>
+		<property name="plantId" column="Plant_Id"></property>
+		<property name="storageLocationId" column="StorageLocation_Id"></property>
+		<property name="toOrgId" column="ToOrg_Id"></property>
+		<property name="toPlantId" column="ToPlant_Id"></property>
+		<property name="toStorageLocationId" column="ToStorageLocation_Id"></property>
+
+		<bag name="stockTransferLine" cascade="all" lazy="false">
+			<key column="StockTransfer_Id" not-null="true" update="true"></key>
+			<one-to-many class="com.mnt.erp.bean.StockTransferLineBean" />
+		</bag>
+
+		<many-to-one name="orgBean" cascade="all"
+			class="com.mnt.erp.bean.Organization" insert="false" update="false"
+			lazy="false">
+			<column name="Org_Id" not-null="true"></column>
+		</many-to-one>
+		
+		<many-to-one name="plantBean" cascade="all"
+			class="com.mnt.erp.bean.Plant" insert="false" update="false" lazy="false">
+			<column name="Plant_Id" not-null="true"></column>
+		</many-to-one>
+		
+		<many-to-one name="storLocBean" cascade="all"
+			class="com.mnt.erp.bean.StorageLocation" insert="false" update="false"
+			lazy="false">
+			<column name="StorageLocation_Id" not-null="true"></column>
+		</many-to-one>
+		
+	</class>
+
+</hibernate-mapping>

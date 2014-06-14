@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.VendorInvoice" table="VendorInvoice">
+		<id name="vendorinvoiceid" column="VendorInvoice_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="vendorinvoiceno" column="VendorInvoice_No"></property>
+		<property name="vendorinvoicedate" column="VendorInvoiceDate"></property>
+		<property name="postingdate" column="PostingDate"></property>
+		<property name="amount" column="Amount"></property>
+		<property name="currencyid" column="Currency_Id"></property>
+		<property name="reference" column="Reference"></property>
+		<property name="description" column="Description"></property>
+		<property name="purchaseorderid" column="PurchaseOrder_Id"></property>
+		<property name="orgid" column="Org_Id"></property>
+		<property name="fy" column="FY"></property>
+		<property name="vendorid" column="Vendor_Id"></property>
+		
+		<bag name="vendorinvoicelinebean" cascade="all" lazy="false"
+			fetch="join">
+			<key column="VendorInvoice_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.VendorInvoiceLine" />
+		</bag>
+		<many-to-one name="currencybean" cascade="all"
+			class="com.mnt.erp.bean.Currency" not-null="true" insert="false"
+			update="false">
+			<column name="Currency_Id" />
+		</many-to-one>
+		<many-to-one name="purchaseorderbean" cascade="all"
+			class="com.mnt.erp.bean.PurchaseOrder" not-null="true" insert="false"
+			update="false">
+			<column name="PurchaseOrder_Id" />
+		</many-to-one>
+		<many-to-one name="orgbean" cascade="all"
+			class="com.mnt.erp.bean.Organization" not-null="true" insert="false"
+			update="false">
+			<column name="Org_Id" />
+		</many-to-one>
+		<many-to-one name="vendorbean" cascade="all"
+			class="com.mnt.erp.bean.Vendor" not-null="true" insert="false"
+			update="false">
+			<column name="Vendor_Id" />
+		</many-to-one>
+	</class>
+
+	<!-- Dashboard purpose -->
+
+	<sql-query name="InvoiceToPay" callable="true">
+		<return-scalar column="VendorInvoice_No" type="string" />
+		<return-scalar column="VendorName" type="string" />
+		<return-scalar column="Amount" type="string" />
+		<return-scalar column="ReceivedAmount" type="string" />
+		<return-scalar column="PendingAmount" type="string" />
+		<return-scalar column="Currency" type="string" />
+		<return-scalar column="PostingDate" type="string" />
+
+		{call InvoiceToPay()}
+	</sql-query>
+
+	<sql-query name="TOP5InvoiceToPay" callable="true">
+		<return-scalar column="VendorInvoice_No" type="string" />
+		<return-scalar column="VendorName" type="string" />
+		<return-scalar column="Amount" type="string" />
+		<return-scalar column="ReceivedAmount" type="string" />
+		<return-scalar column="PendingAmount" type="string" />
+		<return-scalar column="Currency" type="string" />
+		<return-scalar column="PostingDate" type="string" />
+
+		{call TOP5InvoiceToPay()}
+	</sql-query>
+</hibernate-mapping>

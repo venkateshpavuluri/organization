@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EmployeeTimeSheet"  table="EmployeeTimeSheet">
+<id name="employeeTimeSheet_Id" column="EmployeeTimeSheet_Id">
+<generator class="increment"></generator>
+</id>
+<property name="employee" column="Employee_Id"></property>
+<property name="timeSheetDT" column="TimeSheetDT"></property>
+<property name="activity" column="Activity_Id"></property>
+<property name="timeSpent" column="TimeSpent"></property>
+
+
+		<many-to-one name="empBean" cascade="all"
+			class="com.mnt.erp.bean.Employee" not-null="true" insert="false" update="false">
+			<column name="Employee_Id"/>
+			</many-to-one>
+			<many-to-one name="activityBean" cascade="all"
+			class="com.mnt.erp.bean.ActivityBean" not-null="true" insert="false" update="false">
+			<column name="Activity_Id"/>
+			</many-to-one>
+</class>
+</hibernate-mapping>

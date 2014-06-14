@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EmployeeProject" table="EmployeeProject">
+<id name="employeeProject_Id" column="EmployeeProject_Id"><generator class="increment"></generator></id>
+<property name="project_Id" column="Project_Id"></property>
+<property name="startDatepro" column="FromDate"></property>
+<property name="endDatepro" column="Todate"></property>
+
+ <many-to-one name="projectbean" class="com.mnt.erp.bean.Project" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Project_Id"></column>
+</many-to-one> 
+</class>
+</hibernate-mapping>

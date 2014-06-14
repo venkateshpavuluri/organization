@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.WFStage" table="WFStage">
+<id name="wfstageId" column="Id"><generator class="guid"></generator></id>
+<property name="wfstageProcessGUID" column="ProcessGUID"></property>
+<property name="wfstageStage" column="Stage"></property>
+<property name="wfstageName" column="Name"></property>
+<property name="wfstageDescription" column="Description"></property>
+<property name="wfstageType" column="Type"></property>
+<property name="wfstageCreatedBy" column="CreatedBy"></property>
+<property name="wfstageCreatedDate" column="CreatedDate"></property>
+<property name="wfstageUpdatedBy" column="UpdatedBy"></property>
+<property name="wfstageUpdatedDate" column="UpdatedDate"></property>
+ <many-to-one name="wfprocess" class="com.mnt.erp.bean.WFProcess" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="ProcessGUID" ></column>
+</many-to-one>  
+</class>
+</hibernate-mapping>

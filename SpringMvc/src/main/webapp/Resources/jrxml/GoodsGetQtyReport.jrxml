@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GoodsGetQtyReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5c75bc2d-baaa-475d-9f74-6a13180c1053">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="grdataset" uuid="41100d3f-f136-4ee0-b766-49aad88a770f">
+		<parameter name="meterialId" class="java.lang.Integer" isForPrompting="false"/>
+		<parameter name="vendorId" class="java.lang.Integer" isForPrompting="false"/>
+		<queryString>
+			<![CDATA[exec GetGoodsQty $P{meterialId},$P{vendorId}]]>
+		</queryString>
+		<field name="MaterialName" class="java.lang.String"/>
+		<field name="GoodsReceiptType" class="java.lang.String"/>
+		<field name="VendorName" class="java.lang.String"/>
+		<field name="BatchNo" class="java.lang.String"/>
+		<field name="ReceivedQty" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="materialId" class="java.lang.Integer"/>
+	<parameter name="vendorId" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select Logo from Organization where Org_Id=1]]>
+	</queryString>
+	<field name="Logo" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="166" y="0" width="246" height="36" forecolor="#000000" backcolor="#009999" uuid="ab50d2d2-191e-460a-9823-4243b52446f3"/>
+				<textElement>
+					<font fontName="Verdana" size="22" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[MNT SOFT PVT.LTD]]></text>
+			</staticText>
+			<textField pattern="d/M/yyyy">
+				<reportElement x="422" y="39" width="133" height="20" forecolor="#000000" uuid="7ae59dcc-9a79-4a73-97ee-a60366872e37"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="1" width="137" height="38" uuid="f1f2b833-9597-4ef8-b7b9-a878ccb65ef9"/>
+				<imageExpression><![CDATA[$F{Logo}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="58" width="549" height="1" forecolor="#333333" uuid="77239144-2294-4aa4-b823-18568a542537"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="79" y="0" width="356" height="32" forecolor="#000000" uuid="a47c5747-a80f-4406-a484-623c9d8fecb0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="18" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Goods Receipt For Material]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="155" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 3" style="table 3" x="20" y="20" width="360" height="50" uuid="9cba63c3-0817-4783-95ed-16053e2e47b9"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="grdataset" uuid="04a6af4e-003c-425e-9691-4b229dddfe55">
+						<datasetParameter name="meterialId">
+							<datasetParameterExpression><![CDATA[$P{materialId}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="vendorId">
+							<datasetParameterExpression><![CDATA[$P{vendorId}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="112" uuid="e38853be-f999-4032-b6a1-776f9f61670a">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="112" height="30" uuid="60641cd2-2d6b-4426-88ce-a75ad860f608"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Material Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="112" height="20" uuid="8e1b1f73-0dbe-401b-b354-c6191468ccc5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MaterialName}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="135" uuid="3138296b-0ce4-4608-938a-068c914c388f">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="135" height="30" uuid="4146a392-5998-481e-be3f-e43ae99cc335"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[GoodsReceipt Type]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="135" height="20" uuid="65f22761-c539-4504-92a6-92bdbe9c3678"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{GoodsReceiptType}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="43988f0d-6d01-4078-b43f-3f37468ec8a9">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="1cefa8f3-f88e-422e-8805-6e4e0ef7eb90"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Vendor Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="316b2056-6a86-463b-9c61-9e1b15c414c2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{VendorName}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="1a18dea5-2eed-4439-91a9-7184961ee33a">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="1000c419-ad7c-4c49-8413-37abbf9efd4e"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[BatchNo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="02c2b27e-922f-400c-8552-2b5d95dc2507"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BatchNo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3a0b41f8-03e3-49bb-b94a-1734823f8c7d">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="509f0bda-2650-41df-aa72-cbe4063855dc"/>
+								<textElement textAlignment="Center">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Received Quatity]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="36fd1b7a-99d7-4d2a-a169-a1ec7b75dca2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ReceivedQty}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="397" y="20" width="112" height="20" forecolor="#000000" uuid="b8275244-556c-4de3-98e2-90d86cd1ecb8"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="509" y="20" width="40" height="20" forecolor="#000000" uuid="8bcff63a-a83f-4e07-96d8-6988ee17f055"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="242" height="20" forecolor="#000000" uuid="e1670128-e364-4ad2-ae15-871b3e86dd48"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Copyrights @MNT Soft Pvt.ltd]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

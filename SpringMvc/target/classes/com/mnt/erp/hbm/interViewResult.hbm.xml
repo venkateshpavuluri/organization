@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.InterViewResult"  table="InterviewResult">
+<id name="interviewResultId" column="InterviewResult_Id">
+<generator class="increment"></generator>
+</id>
+<property name="scheduleId" column="Schedule_Id" insert="false" update="false"></property>
+<property name="rating" column="Rating"></property>
+<property name="irApplicantId" column="Applicant_Id"></property>
+<property name="nextRound" column="NextRound"></property>
+<property name="comments" column="Commnets"></property>
+
+<many-to-one name="applicantsDetails" lazy="false" class="com.mnt.erp.bean.ApplicantBean" insert="false" not-null="true" update="false" >
+<column name="Applicant_Id"></column>
+</many-to-one>
+</class>
+</hibernate-mapping>

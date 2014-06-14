@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.DebitNoteBean" table="DebitNote">
+		<id name="debitNoteId" column="DebitNote_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		
+		<property name="debitNoteNo" column="DebitNoteNo"></property>
+		<property name="debitNoteDT" column="DebitNoteDT"></property>
+		<property name="custInvoiceId" column="CustomerInvoice_Id"></property>
+		<property name="vendorInvoiceId" column="VendorInvoice_Id"></property>
+		
+
+		<bag name="debitNoteDetail" cascade="all" lazy="false">
+			<key column="DebitNote_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.DebitNoteDetail" />
+		</bag>
+		
+
+		<many-to-one name="custInvoice" cascade="all"
+			class="com.mnt.erp.bean.CustomerInvoice" not-null="true" insert="false"
+			update="false">
+			<column name="CustomerInvoice_Id" />
+		</many-to-one>
+
+		<many-to-one name="vendorInvoice" cascade="all"
+			class="com.mnt.erp.bean.VendorInvoice" not-null="true" insert="false"
+			update="false">
+			<column name="VendorInvoice_Id" />
+		</many-to-one>
+		
+		
+	</class>
+
+</hibernate-mapping>

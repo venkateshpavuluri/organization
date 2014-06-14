@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ShiftBean"  table="Shift">
+<id name="shiftId" column="Shift_Id">
+<generator class="increment"></generator>
+</id>
+<property name="shiftcode" column="ShiftCode"></property>
+<property name="shift" column="Shift"></property>
+<property name="starttime" column="StartTime"></property>
+<property name="endtime" column="EndTime"></property>
+<property name="workhrs" column="Workhrs"></property>
+</class>
+</hibernate-mapping>

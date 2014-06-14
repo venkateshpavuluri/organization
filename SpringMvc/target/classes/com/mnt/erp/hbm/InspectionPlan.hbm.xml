@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.InspectionPlan" table="InspectionPlan">
+
+<id name="inspectionPlanId" column="InspectionPlan_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="materialId" column="Material_Id"></property>
+<property name="inspLotOriginId" column="InspLotOrigin_Id"></property>
+<many-to-one name="insplotOrgin" class="com.mnt.erp.bean.InsplotOrigin" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="InspLotOrigin_Id"></column>
+</many-to-one>
+<many-to-one name="material" class="com.mnt.erp.bean.Material" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="Material_Id"></column>
+</many-to-one>
+<bag  name="inspectionPlanLine" cascade="all" lazy="false" fetch="join">
+<key column="InspectionPlan_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.InspectionPlanLine"/>
+</bag>
+</class>
+</hibernate-mapping>

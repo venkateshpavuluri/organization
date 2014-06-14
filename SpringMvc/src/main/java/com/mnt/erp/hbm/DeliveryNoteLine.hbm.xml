@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.DeliveryNoteLine" table="DeliveryNoteLine">
+
+		<id name="deliveryNoteLineId" column="DeliveryNoteLine_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="deliveryNoteId" column="DeliveryNote_Id"
+			insert="false" update="false"></property>
+
+		<property name="materialId" column="Material_Id"></property>
+		<property name="quantity" column="Qty"></property>
+		<property name="uomId" column="UOM_Id"></property>
+		<property name="storageLoacationId" column="StorageLoacation_Id"></property>
+		<property name="batchNo" column="BatchNo"></property>
+		
+		<many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom"
+			not-null="true" insert="false" update="false" lazy="false">
+			<column name="UOM_Id" />
+		</many-to-one>
+		<many-to-one name="storageLocDetails" class="com.mnt.erp.bean.StorageLocation"
+			not-null="true" insert="false" update="false" lazy="false">
+			<column name="StorageLoacation_Id" />
+		</many-to-one>
+		<many-to-one name="materialDetails" class="com.mnt.erp.bean.Material"
+			not-null="true" insert="false" update="false" lazy="false">
+			<column name="Material_Id"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

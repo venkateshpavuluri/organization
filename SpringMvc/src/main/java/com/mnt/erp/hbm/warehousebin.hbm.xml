@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Warehousebin" table="WarehouseBin">
+<id name="warehousebinId" column="WarehouseBin_Id"><generator class="increment"></generator></id>
+<property name="storagetypeId" column="StorageType_Id"></property>
+<property name="whbtypeid" column="WarehouseBinType_Id"></property>
+<property name="whbno" column="WarehouseBinNo"></property>
+<property name="whbname" column="WarehouseBinName"></property>
+<property name="storagesectionId" column="StorageSection_Id"></property>
+  <many-to-one name="storagebean" class="com.mnt.erp.bean.StorageType" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="StorageType_Id" ></column>
+</many-to-one>  
+ <many-to-one name="whbtypebean" class="com.mnt.erp.bean.WarehouseBinType" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="WarehouseBinType_Id" ></column>
+</many-to-one> 
+ <many-to-one name="storagesectionbean" class="com.mnt.erp.bean.StorageSectionBean" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="StorageSection_Id" ></column>
+</many-to-one> 
+</class>
+</hibernate-mapping>

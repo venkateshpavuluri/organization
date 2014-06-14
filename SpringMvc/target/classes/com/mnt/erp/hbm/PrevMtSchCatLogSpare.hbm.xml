@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PrevMaintenanceSchCatLogSpare" table="PrevMaintenanceSchCatLogSpare">
+
+<id name="prevMtSchCatLogSpareId" column="PrevMaintenanceSchCatLogSpare_Id">
+<generator class="increment"></generator>
+</id>
+<property name="PrevMtSchCatLogId" column="PrevMaintenanceSchCatLog_Id" insert="false" update="false"></property>
+<property name="materialId" column="Material_Id"></property>
+<property name="quantity" column="QTY"></property>
+<property name="uomId" column="UOM_Id"></property>
+
+		<many-to-one name="materials"  class="com.mnt.erp.bean.Material" lazy="false" not-null="true" insert="false" update="false">
+			<column name="Material_Id" />
+		</many-to-one>
+		<many-to-one name="uomDetails"  class="com.mnt.erp.bean.Uom" lazy="false" not-null="true" insert="false" update="false">
+			<column name="UOM_Id" />
+		</many-to-one>
+</class>
+</hibernate-mapping>

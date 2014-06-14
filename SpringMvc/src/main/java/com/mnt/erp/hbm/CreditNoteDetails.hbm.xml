@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.CreditNoteDetail" table="CreditNoteDetail">
+<id name="creditNoteDetailId" column="CreditNoteDetail_Id">
+<generator class="increment"></generator>
+</id>
+<property name="materialId" column="Material_Id"></property>
+<property name="qty" column="Qty"></property>
+<property name="uomId" column="UOM_Id"></property>
+<property name="perUnit" column="PerUnit"></property>
+<property name="netPrice" column="NetPrice"></property>
+<property name="demitAmont" column="DemitAmont"></property>
+<many-to-one name="materialDetails" class="com.mnt.erp.bean.Material"  insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Material_Id"></column>
+</many-to-one>
+<many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="UOM_Id"></column>
+</many-to-one>
+</class>
+</hibernate-mapping>

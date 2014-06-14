@@ -1,0 +1,14 @@
+.tmr .menuList{font:  11px  Geneva, sans-serif;width:210px;}
+.tmr .menuList, .tmr .menuList li {margin: 0; padding: 0; border: none;}
+.tmr .menuList a {padding: 10px 10px 5px 28px; background: #000 url(images/bg_graphite.png) repeat-x 0 0; text-decoration:none; display: block; color: #fff; font-weight: normal;border-bottom: 1px solid #fff;}
+.tmr .menuList ul a {background: #cee0e7;}
+.tmr .menuList a.dcjq-parent, .tmr .menuList a.dcjq-parent:hover {background: #000 url(images/graphite_arrow_right.png) no-repeat 0 0; font-weight: bold; color: #fff;}
+.tmr .menuList a.dcjq-parent.active {background: #000 url(images/graphite_arrow_down.png) no-repeat 0 0;}
+.tmr .menuList a:hover {background: #121212;}
+.tmr .menuList a:active{}
+.tmr .menuList a.actuator { display:none;}
+
+.tmr .menuList ul.menu a { background:#cee0e7 url(images/arrow2.jpg) no-repeat 13px 15px; color:#666; text-shadow:1px 1px #ccc;}
+.tmr .menuList ul.menu a:hover, .tmr .menuList ul.menu a.active { background:#BACDD4 url(images/arrow2.jpg) no-repeat 13px 15px; color:#666 !important;}
+
+.tmr .menuList ul.menu ul.submenu { margin:0 0 0 10px;}

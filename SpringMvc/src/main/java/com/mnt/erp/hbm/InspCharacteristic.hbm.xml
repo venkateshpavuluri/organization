@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.InspCharacteristic" table="InspCharacteristic">
+
+<id name="inspCharacteristicId" column="InspCharacteristic_Id">
+<generator class="increment"></generator>
+</id>
+
+     <property name="inspCharacteristicCode" column="InspCharacteristicCode"></property>
+      <property name="inspCharacteristic" column="InspCharacteristic"></property>
+      <property name="upperLimit" column="UpperLimit"></property>
+      <property name="lowerLimit" column="LowerLimit"></property>
+      <property name="uomId" column="Uom_Id"></property>
+      <property name="validFrom" column="ValidFrom"></property>
+      <property name="characteristicTypeId" column="CharacteristicType_Id"></property>
+      <property name="priority" column="Priority"></property>
+      <property name="rules" column="Rules"></property>
+      <property name="minTolerance" column="MinTolerance"></property>
+      <property name="maxTolerance" column="MaxTolerance"></property>
+      <property name="specification" column="Specification"></property>
+      
+
+ <set name="inspCharacteristicMethodGroupDetails" cascade="all" lazy="false"  fetch="join">
+<key column="InspCharacteristic_Id" not-null="true" update="true"  ></key>
+
+<one-to-many  class="com.mnt.erp.bean.InspCharacteristicMethod"  />
+</set>
+
+<many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="Uom_Id" not-null="true"></column>
+</many-to-one>
+
+ <many-to-one name="characteristicType" class="com.mnt.erp.bean.CharacteristicType" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="CharacteristicType_Id"></column>
+</many-to-one> 
+
+
+</class>
+</hibernate-mapping>

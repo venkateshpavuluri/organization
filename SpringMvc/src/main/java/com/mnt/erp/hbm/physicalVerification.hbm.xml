@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.physicalVerification" table="PhysicalVerification">
+<id name="verificationId" column="Verification_Id">
+<generator class="increment"></generator>
+</id>
+<property name="verificationNo" column="VerificationNo"></property>
+<property name="verificationTypeId" column="VerificationType_Id"></property>
+<property name="orgId" column="Org_Id"></property>
+<property name="plantId" column="Plant_Id"></property>
+<property name="storageLocaionId" column="StorageLocaion_Id"></property>
+<property name="verificationDate" column="VerificationDate"></property>
+
+
+
+
+<set name="physicalVerificationFk" cascade="all" lazy="false" fetch="join">
+<key column="Verification_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.physicalVerificationLine"/>
+</set> 
+
+
+
+
+<many-to-one name="verfTypeDetails" class="com.mnt.erp.bean.VerificationtypeBean" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="Org_Id"></column>
+</many-to-one> 
+
+
+
+<many-to-one name="orgDetails" class="com.mnt.erp.bean.Organization" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="Org_Id"></column>
+</many-to-one>
+<many-to-one name="plantDetails" class="com.mnt.erp.bean.Plant" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="Plant_Id" not-null="true"></column>
+</many-to-one>
+<many-to-one name="storageLocDetails" class="com.mnt.erp.bean.StorageLocation" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="StorageLocaion_Id"></column>
+</many-to-one>
+
+
+
+
+</class>
+</hibernate-mapping>

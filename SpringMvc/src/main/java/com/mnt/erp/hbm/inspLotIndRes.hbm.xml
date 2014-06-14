@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.InspLotIndResBean" table="InspLotIndResult">
+		<id name="inspLotIndResId" column="InspLotIndResult_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="inspLotId" column="InspLotNo_Id"></property>
+		<property name="processDetailId" column="ProcessDetail_Id"></property>
+		<property name="inspect" column="Inspect"></property>
+		<property name="inspected" column="Inspected"></property>
+
+		<bag name="inspLotIndResList" cascade="all" lazy="false" fetch="select">
+			<key column="InspLotIndResult_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.InspLotIndResLine" />
+		</bag>
+
+		<many-to-one name="inspLotBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.InspectionLotBean" insert="false" update="false"
+			lazy="false" fetch="join">
+			<column name="InspLotNo_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="processDetail" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.ProcessDetailBean" insert="false" update="false"
+			lazy="false">
+			<column name="ProcessDetail_Id" not-null="true"></column>
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

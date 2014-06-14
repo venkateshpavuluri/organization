@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.MaterialPrice" table="MaterialPrice">
+
+<id name="materialPrice_Id" column="MaterialPrice_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="material_Id" column="Material_Id"></property>
+<property name="batchNo" column="BatchNo"></property>
+<property name="amount" column="Amount"></property>
+
+<property name="currency_Id" column="Currency_Id"></property>
+<property name="perUnit" column="PerUnit"></property>
+<property name="validFrom" column="ValidFrom"></property>
+<property name="validTo" column="ValidTo"></property>
+<property name="org_Id" column="Org_Id"></property>
+
+ <many-to-one name="material" cascade="all"
+			class="com.mnt.erp.bean.Material" not-null="true" insert="false"
+			update="false">
+			<column name="material_Id" />
+		</many-to-one>
+		
+		
+</class>
+
+</hibernate-mapping>

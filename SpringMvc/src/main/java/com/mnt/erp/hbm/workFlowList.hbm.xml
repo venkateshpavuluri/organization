@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.WorkFlowList" table="WorkflowList">
+<id name="workFlowListId" column="workFlowListId" type="string">
+<generator class="guid"></generator>
+</id>
+<property name="userId" column="UserId" type="string"></property>
+<property name="receivedFrom" column="ReceivedFrom" type="string"></property>
+<property name="receivedDTTM" column="ReceivedDTTM" type="string"></property>
+<property name="workListId" column="WorkListId"></property>
+<property name="workListContext" column="WorkListContext"></property>
+<property name="workListStatus" column="WorkListStatus"></property>
+<property name="message" column="Message"></property>
+<property name="details" column="Details"></property>
+<property name="parentWorkListGuid" column="ParentWorkListGuid"></property>
+ <property name="actionBy" column="ActionBy" type="string"></property>
+<property name="actionType" column="ActionType"></property>
+<property name="actionCode" column="ActionCode"></property>
+<property name="actionComments" column="actionComments"></property>
+<property name="actionDTTM" column="ActionDTTM"></property>
+<property name="appCode" column="AppCode"></property>
+<property name="step" column="Step"  ></property>
+<property name="action" column="Action"></property>
+<property name="createdBy" column="createdBy"></property>
+<property name="createdDateTime" column="CreatedDateTime"></property>
+<property name="lastUpdatedBy" column="lastUpdatedBy"></property>
+<property name="lastUpdatedDateTime" column="LastUpdatedDateTime"></property> 
+<property name="sign" column="Signature"></property> 
+ <many-to-one name="purchaseReql" class="com.mnt.erp.bean.PurchaseReq" fetch="join" lazy="false" cascade="all" insert="false" update="false" >
+<column name="WorkListId" ></column>
+</many-to-one>
+ <many-to-one name="purOrderDetails" class="com.mnt.erp.bean.PurchaseOrder" fetch="join" lazy="false" cascade="all" insert="false" update="false" >
+<column name="WorkListId" not-null="true"></column>
+</many-to-one>
+  <many-to-one name="wfActionDetails" class="com.mnt.erp.bean.WFStep" fetch="join" cascade="all" not-null="true" insert="false" update="false">
+<column name="Step" not-null="true" ></column>
+</many-to-one>  
+ <!-- <many-to-one name="userDetails" class="com.mnt.erp.bean.Users" fetch="join" cascade="all"  insert="false" update="false">
+<column name="ActionBy" ></column>
+</many-to-one> --> 
+
+
+
+</class>
+ <sql-query name="workflow" callable="true" >
+   <return-scalar column="retval" type="integer"/>
+      {call UpdateWorklist(:WorkflowlistId,:LoggedUserId,:ActionComments,:ActionType,:ActionCode,:Signature,:RetVal)}
+    </sql-query> 
+    
+     <sql-query name="workflowPurOrder" callable="true" >
+   <return-scalar column="retval" type="integer"/>
+      {call UpdatePurOrderWorklist(:materialListId,:LoggedUserId,:ActionComments,:ActionType,:RetVal)}
+    </sql-query> 
+    
+     <sql-query name="getActionComments" callable="true" >
+   <return-scalar column="username" type="string"/>
+   <return-scalar column="ActionComments" type="string"/>
+      {call GetActionComments(:CurrentStepId,:CurrentStep)}
+    </sql-query> 
+</hibernate-mapping>

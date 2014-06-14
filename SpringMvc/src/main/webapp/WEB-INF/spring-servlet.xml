@@ -1,0 +1,2686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- @Controller, @Service, @Configuration, etc. -->
+	<context:component-scan base-package="com.mnt.erp" />
+
+	<!--Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+	<mvc:interceptors>
+		<bean id="webContentInterceptor"
+			class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+			<property name="cacheSeconds" value="0" />
+			<property name="useExpiresHeader" value="true" />
+			<property name="useCacheControlHeader" value="true" />
+			<property name="useCacheControlNoStore" value="true" />
+		</bean>
+
+		<!-- I18N Configuration -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+				<property name="paramName" value="language" />
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<mvc:resources location="/img/" mapping="/img/**" />
+
+	<!-- i18n configurations: which i18n resolver we want use CookieLocaleResolver 
+		or SessionLocaleResolver -->
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>/Resources/messages</value>
+				<value>/Resources/operators</value>
+				<value>/Resources/DataBase</value>
+			</list>
+		</property>
+		<property name="fallbackToSystemLocale" value="false" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+
+	<!-- Tiles Configuration -->
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="view"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.tiles2.TilesView</value>
+		</property>
+	</bean>
+
+	<bean id="internalResourceViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/Login/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- max upload size in bytes -->
+		<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+
+		<!-- max size of file in memory (in bytes) -->
+		<property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+
+	</bean>
+
+	<!-- Struts Menu Configuration -->
+	<bean id="menu" class="net.sf.navigator.menu.MenuLoader">
+		<property name="menuConfig">
+			<value>/WEB-INF/menu-config.xml</value>
+		</property>
+	</bean>
+
+
+	<!-- Property placeholder configurer for database settings -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="/Resources/DataBase.properties" />
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${cs}"></property>
+		<property name="username" value="${userName}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<!-- <prop key="hibernate.connection.pool_size">10</prop> -->
+				<prop key="hibernate.show_sql">
+					false
+				</prop>
+
+			</props>
+		</property>
+		<property name="mappingResources">
+
+			<list>
+
+
+
+				<value>com/mnt/erp/hbm/assetCondition.hbm.xml</value>
+				<value>com/mnt/erp/hbm/news.hbm.xml</value>
+				<value>com/mnt/erp/hbm/activity.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/KPI.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CharacteristicType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/DocumentType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/login.hbm.xml</value>
+				<value>com/mnt/erp/hbm/ProductionPlan.hbm.xml</value>
+				<value>com/mnt/erp/hbm/ProductionPlanLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/productionPlanType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/paymentWithHold.hbm.xml</value>
+				<value>com/mnt/erp/hbm/MaterialPrice.hbm.xml</value>
+				<value>com/mnt/erp/hbm/accountgroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/eventType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/storageSection.hbm.xml</value>
+				<value>com/mnt/erp/hbm/matStock.hbm.xml</value>
+				<value>com/mnt/erp/hbm/InspectionDecision.hbm.xml</value>
+				<value>com/mnt/erp/hbm/productionbatch.hbm.xml</value>
+				<value>com/mnt/erp/hbm/shift.hbm.xml</value>
+				<value>com/mnt/erp/hbm/process.hbm.xml</value>
+				<value>com/mnt/erp/hbm/inspectionmethod.hbm.xml</value>
+				<value>com/mnt/erp/hbm/processdetail.hbm.xml</value>
+				<value>com/mnt/erp/hbm/processtype.hbm.xml</value>
+				<value>com/mnt/erp/hbm/verificationtype.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesOrganization.hbm.xml</value>
+				<value>com/mnt/erp/hbm/voucherType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/defect.hbm.xml</value>
+				<value>com/mnt/erp/hbm/rfq.hbm.xml</value>
+				<value>com/mnt/erp/hbm/rfqline.hbm.xml</value>
+				<value>com/mnt/erp/hbm/VendorInvoice.hbm.xml</value>
+				<value>com/mnt/erp/hbm/VendorInvoiceLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CustomerInvoice.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CustomerInvoiceLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/education.hbm.xml</value>
+				<value>com/mnt/erp/hbm/documentcategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/employmenttype.hbm.xml</value>
+				<value>com/mnt/erp/hbm/nationality.hbm.xml</value>
+				<value>com/mnt/erp/hbm/terminationreason.hbm.xml</value>
+				<value>com/mnt/erp/hbm/skill.hbm.xml</value>
+				<value>com/mnt/erp/hbm/licence.hbm.xml</value>
+				<value>com/mnt/erp/hbm/event.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/Shop.hbm.xml</value>
+				<value>com/mnt/erp/hbm/EmpQualification.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Voucher.hbm.xml</value>
+				<value>com/mnt/erp/hbm/maintenanceType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/maintenancePlan.hbm.xml</value>
+				<value>com/mnt/erp/hbm/TrainingSchedule.hbm.xml</value>
+				<value>com/mnt/erp/hbm/TrainingScheduleDetail.hbm.xml</value>
+				<value>com/mnt/erp/hbm/trainingCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/ChartofAccount.hbm.xml</value>
+				<value>com/mnt/erp/hbm/MaintenanceOrderType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/stocktype.hbm.xml</value>
+				<value>com/mnt/erp/hbm/industry.hbm.xml</value>
+				<value>com/mnt/erp/hbm/assetGroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/status.hbm.xml</value>
+				<value>com/mnt/erp/hbm/goodsReceiptType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/valuationCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/equipmentCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/inspectionType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/assertType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/shippingCondition.hbm.xml</value>
+				<value>com/mnt/erp/hbm/schedulingType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/customer.hbm.xml</value>
+				<value>com/mnt/erp/hbm/customerBankDept.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesArea.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesInquiry.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesInquiryLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesQuotation.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesQuotationLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesOrder.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesOrderLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesOrderLineSch.hbm.xml</value>
+				<value>com/mnt/erp/hbm/stockTransfer.hbm.xml</value>
+				<value>com/mnt/erp/hbm/stockTransferLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesPO.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesPOLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/jobCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/leaveType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/KPIGroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/membership.hbm.xml</value>
+				<value>com/mnt/erp/hbm/payGrade.hbm.xml</value>
+				<value>com/mnt/erp/hbm/debitNote.hbm.xml</value>
+				<value>com/mnt/erp/hbm/debitNoteDetail.hbm.xml</value>
+				<value>com/mnt/erp/hbm/glJournalLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/glJournal.hbm.xml</value>
+				<value>com/mnt/erp/hbm/inspectionLot.hbm.xml</value>
+				<value>com/mnt/erp/hbm/inspLotResult.hbm.xml</value>
+				<value>com/mnt/erp/hbm/receipt.hbm.xml</value>
+				<value>com/mnt/erp/hbm/receiptWithHold.hbm.xml</value>
+				<value>com/mnt/erp/hbm/productionOrder.hbm.xml</value>
+				<value>com/mnt/erp/hbm/prodOrderType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/inspOperation.hbm.xml</value>
+				<value>com/mnt/erp/hbm/inspOperationStep.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/AgreementType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/VendGroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/DeliveryType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/uom.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PurchaseOrganization.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PurOrgCompany.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PurOrgPlant.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PurchaseReq.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PurchaseReqLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Users.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PurchaseOrder.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PurchaseOrderLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/GoodsReceipt.hbm.xml</value>
+				<value>com/mnt/erp/hbm/GoodsReceiptLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/GoodsIssue.hbm.xml</value>
+				<value>com/mnt/erp/hbm/GoodsIssueLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/WorkCenter.hbm.xml</value>
+				<value>com/mnt/erp/hbm/SalesGroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/bom.hbm.xml</value>
+				<value>com/mnt/erp/hbm/bomLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CustomerReturn.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CustomerReturnLine.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/materialCatogery.hbm.xml</value>
+				<value>com/mnt/erp/hbm/bomCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/currency.hbm.xml</value>
+				<value>com/mnt/erp/hbm/vendor.hbm.xml</value>
+				<value>com/mnt/erp/hbm/VendorBankDet.hbm.xml</value>
+				<value>com/mnt/erp/hbm/vendorDocuments.hbm.xml</value>
+				<value>com/mnt/erp/hbm/vendorMaterial.hbm.xml</value>
+				<value>com/mnt/erp/hbm/materialexample.hbm.xml</value>
+				<value>com/mnt/erp/hbm/OrganizationType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/countryList.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Organization.hbm.xml</value>
+				<value>com/mnt/erp/hbm/plant.hbm.xml</value>
+				<value>com/mnt/erp/hbm/storageLocation.hbm.xml</value>
+				<value>com/mnt/erp/hbm/storageOrg.hbm.xml</value>
+				<value>com/mnt/erp/hbm/stockCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/workFlowList.hbm.xml</value>
+				<value>com/mnt/erp/hbm/materialType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/taxCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/ItemCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CustomerGroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PaymentMethod.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PaymentTerm.hbm.xml</value>
+				<value>com/mnt/erp/hbm/OrderType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/RFQType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Quotation.hbm.xml</value>
+				<value>com/mnt/erp/hbm/QuotationLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PurchaseGroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/workCenterCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/reasonForRejection.hbm.xml</value>
+				<value>com/mnt/erp/hbm/reasonForMovement.hbm.xml</value>
+				<value>com/mnt/erp/hbm/salesOffice.hbm.xml</value>
+				<value>com/mnt/erp/hbm/userGroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/function.hbm.xml</value>
+				<value>com/mnt/erp/hbm/vendorReturn.hbm.xml</value>
+				<value>com/mnt/erp/hbm/vendorReturnLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/mrpType.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/vendorAccountDetails.hbm.xml</value>
+				<value>com/mnt/erp/hbm/GLFiscalYear.hbm.xml</value>
+				<value>com/mnt/erp/hbm/role.hbm.xml</value>
+				<value>com/mnt/erp/hbm/privilege.hbm.xml</value>
+				<value>com/mnt/erp/hbm/wfprocess.hbm.xml</value>
+				<value>com/mnt/erp/hbm/wfstage.hbm.xml</value>
+				<value>com/mnt/erp/hbm/wfstep.hbm.xml</value>
+				<value>com/mnt/erp/hbm/wfaction.hbm.xml</value>
+				<value>com/mnt/erp/hbm/UserRoles.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/userorganization.hbm.xml</value>
+				<value>com/mnt/erp/hbm/productionOrderProcess.hbm.xml</value>
+				<value>com/mnt/erp/hbm/projectResourceType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/projectPhase.hbm.xml</value>
+				<value>com/mnt/erp/hbm/projectResource.hbm.xml</value>
+				<value>com/mnt/erp/hbm/department.hbm.xml</value>
+				<value>com/mnt/erp/hbm/designation.hbm.xml</value>
+				<value>com/mnt/erp/hbm/employeeGroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/capacityCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/vehicleType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/vehicle.hbm.xml</value>
+				<value>com/mnt/erp/hbm/insplotOrigin.hbm.xml</value>
+				<value>com/mnt/erp/hbm/billingType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/warehousebinType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/storageType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/warehouse.hbm.xml</value>
+				<value>com/mnt/erp/hbm/route.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/conditionType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/condition.hbm.xml</value>
+				<value>com/mnt/erp/hbm/equipment.hbm.xml</value>
+				<value>com/mnt/erp/hbm/equipmentDocument.hbm.xml</value>
+				<value>com/mnt/erp/hbm/DeliveryNote.hbm.xml</value>
+				<value>com/mnt/erp/hbm/DeliveryNoteLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PayElement.hbm.xml</value>
+				<value>com/mnt/erp/hbm/paymentType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/payment.hbm.xml</value>
+				<value>com/mnt/erp/hbm/houseBank.hbm.xml</value>
+				<value>com/mnt/erp/hbm/MenuItem.hbm.xml</value>
+				<value>com/mnt/erp/hbm/ObjectPrivilege.hbm.xml</value>
+				<value>com/mnt/erp/hbm/UserRolePrivileges.hbm.xml</value>
+				<value>com/mnt/erp/hbm/physicalVerification.hbm.xml</value>
+				<value>com/mnt/erp/hbm/physicalVerificationLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/auditLog.hbm.xml</value>
+				<value>com/mnt/erp/hbm/auditLogDetail.hbm.xml</value>
+				<value>com/mnt/erp/hbm/customerAccount.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CodeGroup.hbm.xml</value>
+				<value>com/mnt/erp/hbm/holiday.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Project.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Employee.hbm.xml</value>
+				<value>com/mnt/erp/hbm/EmployeeManager.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CreditNote.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CreditNoteDetails.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Code.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Qualification.hbm.xml</value>
+				<value>com/mnt/erp/hbm/InspCharacteristic.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/InspCharacteristicMethod.hbm.xml</value>
+				<value>com/mnt/erp/hbm/projectTaskDocument.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/interViewResult.hbm.xml</value>
+				<value>com/mnt/erp/hbm/interViewSchedule.hbm.xml</value>
+				<value>com/mnt/erp/hbm/interviewRound.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Applicant.hbm.xml</value>
+				<value>com/mnt/erp/hbm/VacancyDetailLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Vacancy.hbm.xml</value>
+				<value>com/mnt/erp/hbm/mediaType.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/ResourceRequest.hbm.xml</value>
+				<value>com/mnt/erp/hbm/ResourceReqDetail.hbm.xml</value>
+				<value>com/mnt/erp/hbm/RecruitmentPlan.hbm.xml</value>
+				<value>com/mnt/erp/hbm/RecruitmentPlanLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/VacancyVendor.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/ProfitCenter.hbm.xml</value>
+				<value>com/mnt/erp/hbm/SamplingType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/CostCenter.hbm.xml</value>
+				<value>com/mnt/erp/hbm/theme.hbm.xml</value>
+				<value>com/mnt/erp/hbm/wAction.hbm.xml</value>
+				<value>com/mnt/erp/hbm/maintenanceProblemType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/breakDownMaintenance.hbm.xml</value>
+				<value>com/mnt/erp/hbm/jobCard.hbm.xml</value>
+				<value>com/mnt/erp/hbm/workInProgress.hbm.xml</value>
+				<value>com/mnt/erp/hbm/breakdownMaintenaceLog.hbm.xml</value>
+				<value>com/mnt/erp/hbm/BreakdownMaintenaceSpare.hbm.xml</value>
+				<value>com/mnt/erp/hbm/payGradeSalElement.hbm.xml</value>
+				<value>com/mnt/erp/hbm/MaintenanceCategory.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PrevMaintenance.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PrevMaintenanceSchCat.hbm.xml</value>
+				<value>com/mnt/erp/hbm/projectTask.hbm.xml</value>
+				<value>com/mnt/erp/hbm/projectTaskResource.hbm.xml</value>
+				<value>com/mnt/erp/hbm/EmployeeLeave.hbm.xml</value>
+				<value>com/mnt/erp/hbm/employeeAttendance.hbm.xml</value>
+				<value>com/mnt/erp/hbm/EmpExperience.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PrevMtSchCatLog.hbm.xml</value>
+				<value>com/mnt/erp/hbm/PrevMtSchCatLogSpare.hbm.xml</value>
+				<value>com/mnt/erp/hbm/EmpPerformance.hbm.xml</value>
+
+				<value>com/mnt/erp/hbm/EmpPerformanceKPI.hbm.xml</value>
+				<value>com/mnt/erp/hbm/warehousebin.hbm.xml</value>
+				<value>com/mnt/erp/hbm/EvaluationCriteria.hbm.xml</value>
+				<value>com/mnt/erp/hbm/evaluationSubCriteria.hbm.xml</value>
+				<value>com/mnt/erp/hbm/agreement.hbm.xml</value>
+				<value>com/mnt/erp/hbm/agreementLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/prodOrderProcess.hbm.xml</value>
+				<value>com/mnt/erp/hbm/prodProcessEmp.hbm.xml</value>
+				<value>com/mnt/erp/hbm/prodOdrProcessEqp.hbm.xml</value>
+				<value>com/mnt/erp/hbm/EmpTimeSheet.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Asset.hbm.xml</value>
+				<value>com/mnt/erp/hbm/AssetAssignment.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Document.hbm.xml</value>
+				<value>com/mnt/erp/hbm/DocumentObject.hbm.xml</value>
+				<value>com/mnt/erp/hbm/EmpAdvance.hbm.xml</value>
+				<value>com/mnt/erp/hbm/Object.hbm.xml</value>
+				<value>com/mnt/erp/hbm/empadvpayments.hbm.xml</value>
+				<value>com/mnt/erp/hbm/empadvReceipts.hbm.xml</value>
+				<value>com/mnt/erp/hbm/OrganizationChart.hbm.xml</value>
+				<value>com/mnt/erp/hbm/payMode.hbm.xml</value>
+				<value>com/mnt/erp/hbm/ticketType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/awardType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/bonusType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/loanType.hbm.xml</value>
+				<value>com/mnt/erp/hbm/inspLotEqp.hbm.xml</value>
+				<value>com/mnt/erp/hbm/inspLotIndRes.hbm.xml</value>
+				<value>com/mnt/erp/hbm/inspLotIndResLine.hbm.xml</value>
+				<value>com/mnt/erp/hbm/defectClass.hbm.xml</value>
+				<value>com/mnt/erp/hbm/materialInspection.hbm.xml</value>
+				<value>com/mnt/erp/hbm/InspectionPlan.hbm.xml</value>
+				<value>com/mnt/erp/hbm/InspectionPlanLine.hbm.xml</value>
+<value>com/mnt/erp/hbm/employeeproject.hbm.xml</value>
+
+<value>com/mnt/erp/hbm/Claim.hbm.xml</value>
+<value>com/mnt/erp/hbm/ClaimDocuments.hbm.xml</value>
+<value>com/mnt/erp/hbm/claimType.hbm.xml</value>
+
+			</list>
+		</property>
+
+	</bean>
+
+	<!-- Annotations -->
+
+	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> 
+		<property name="dataSource"> <ref bean="dataSource" /> </property> <property 
+		name="hibernateProperties"> <props> <prop key="hibernate.dialect"> org.hibernate.dialect.SQLServerDialect 
+		</prop> <prop key="hibernate.show_sql"> false </prop> </props> </property> 
+		<property name="annotatedClasses"> <list> <value>com.mnt.erp.bean.EventBean</value> 
+		</list> </property> </bean> -->
+
+
+	<!-- HibernateTransactionManager -->
+
+	<bean id="hibernateTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- loginConfiguration -->
+	<bean id="loginDao" class="com.mnt.erp.dao.LoginDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="loginServiceImpl" class="com.mnt.erp.service.LoginServiceImpl">
+		<property name="daoImpl">
+			<ref bean="loginDao" />
+		</property>
+	</bean>
+
+	<!-- MaterialConfiguration -->
+	<bean id="materialService" class="com.mnt.erp.service.MaterialServiceImpl">
+		<property name="dao">
+			<ref bean="materialDao" />
+		</property>
+	</bean>
+	<bean id="materialDao" class="com.mnt.erp.dao.MaterialDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+	<!-- AccountGroups -->
+	<bean id="accountgroupservice" class="com.mnt.erp.service.AccountGroupServiceImpl">
+		<property name="acdao">
+			<ref bean="accountgroupDaoImpl" />
+		</property>
+	</bean>
+	<bean id="accountgroupDaoImpl" class="com.mnt.erp.dao.AccountGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Production Batch -->
+	<bean id="pbservice" class="com.mnt.erp.service.ProductionBatchServiceImpl">
+		<property name="pbdao">
+			<ref bean="pbdaoImpl" />
+		</property>
+	</bean>
+	<bean id="pbdaoImpl" class="com.mnt.erp.dao.ProductionBatchDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Shift -->
+	<bean id="shiftService" class="com.mnt.erp.service.ShiftServiceImpl">
+		<property name="sdao">
+			<ref bean="shiftdao" />
+		</property>
+	</bean>
+	<bean id="shiftdao" class="com.mnt.erp.dao.ShiftDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Process -->
+	<bean id="processService" class="com.mnt.erp.service.ProcessServiceImpl">
+		<property name="pdao">
+			<ref bean="processdao" />
+		</property>
+	</bean>
+	<bean id="processdao" class="com.mnt.erp.dao.ProcessDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- InspectionMethod -->
+	<bean id="inspectionService" class="com.mnt.erp.service.InspectionMethodServiceImpl">
+		<property name="idao">
+			<ref bean="inspectionmethoddao" />
+		</property>
+	</bean>
+	<bean id="inspectionmethoddao" class="com.mnt.erp.dao.InspectionMethodDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Vendor Configuration -->
+
+	<bean id="vendorDao" class="com.mnt.erp.dao.VendorDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="VendorServiceImpl" class="com.mnt.erp.service.VendorServiceImpl"
+		scope="request">
+		<property name="dao">
+			<ref bean="vendorDao" />
+		</property>
+	</bean>
+
+	<!-- UomConfiguration -->
+
+	<bean id="uomService" class="com.mnt.erp.service.UomServiceImpl">
+		<property name="udao">
+			<ref bean="uomDao" />
+		</property>
+
+	</bean>
+	<bean id="uomDao" class="com.mnt.erp.dao.UomDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Industry Configuration -->
+	<bean id="IndustryService" class="com.mnt.erp.service.IndustryServiceImpl">
+		<property name="dao">
+			<ref bean="industryDao" />
+		</property>
+	</bean>
+	<bean id="industryDao" class="com.mnt.erp.dao.IndustryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- AssetGroup Configuration -->
+	<bean id="assetGroupService" class="com.mnt.erp.service.AssetGroupServiceImpl">
+		<property name="dao">
+			<ref bean="assetGroupDao" />
+		</property>
+	</bean>
+	<bean id="assetGroupDao" class="com.mnt.erp.dao.AssetGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Status Configuration -->
+	<bean id="statusService" class="com.mnt.erp.service.StatusServiceImpl">
+		<property name="dao">
+			<ref bean="statusDao" />
+		</property>
+	</bean>
+	<bean id="statusDao" class="com.mnt.erp.dao.StatusDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- GoodsreceiptType Configuration -->
+	<bean id="goodsReceiptTypeService" class="com.mnt.erp.service.GoodsReceiptTypeServiceImpl">
+		<property name="dao">
+			<ref bean="goodsReceiptTypeDao" />
+		</property>
+	</bean>
+	<bean id="goodsReceiptTypeDao" class="com.mnt.erp.dao.GoodsReceiptTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- ValuationCategory Configuration -->
+	<bean id="valuationCategoryService" class="com.mnt.erp.service.ValuationCategoryServiceImpl">
+		<property name="dao">
+			<ref bean="valuationCategoryDao" />
+		</property>
+	</bean>
+	<bean id="valuationCategoryDao" class="com.mnt.erp.dao.ValuationCategoryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- EquipmentCategory Configuration -->
+	<bean id="equipmentCategoryService" class="com.mnt.erp.service.EquipmentCategoryServiceImpl">
+		<property name="dao">
+			<ref bean="equipmentCategoryDao" />
+		</property>
+	</bean>
+	<bean id="equipmentCategoryDao" class="com.mnt.erp.dao.EquipmentCategoryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- InspectionType Configuration -->
+	<bean id="inspectionTypeService" class="com.mnt.erp.service.InspectionTypeServiceImpl">
+		<property name="dao">
+			<ref bean="inspectionTypeDao" />
+		</property>
+	</bean>
+	<bean id="inspectionTypeDao" class="com.mnt.erp.dao.InspectionTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- PayElement Configuration -->
+	<bean id="payElementService" class="com.mnt.erp.service.PayElementServiceImpl ">
+		<property name="dao">
+			<ref bean="payElementDao" />
+		</property>
+	</bean>
+	<bean id="payElementDao" class="com.mnt.erp.dao.PayElementDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- AssetType Configuration -->
+
+	<bean id="assertDao" class="com.mnt.erp.dao.AssertTypeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="assertService" class="com.mnt.erp.service.AssertTypeServiceImpl">
+		<property name="atDao" ref="assertDao"></property>
+	</bean>
+
+	<!-- Shipping Condition Configuration -->
+
+	<bean id="shpcndDao" class="com.mnt.erp.dao.ShippingConditionDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="shipcndService" class="com.mnt.erp.service.ShippingCndServiceImpl">
+		<property name="scDao" ref="shpcndDao"></property>
+	</bean>
+
+	<!-- Scheduling Type Configuration -->
+
+	<bean id="schedulingDao" class="com.mnt.erp.dao.ShedulingTypeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="schedulingService" class="com.mnt.erp.service.ShedulingTypeServiceImpl">
+		<property name="stDao" ref="schedulingDao"></property>
+	</bean>
+
+	<!-- Customer Configuration -->
+
+	<bean id="customerDao" class="com.mnt.erp.dao.CustomerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="custService" class="com.mnt.erp.service.CustomerServiceImpl">
+		<property name="custDao" ref="customerDao"></property>
+	</bean>
+
+	<!--XmlLabels Configuration -->
+
+	<bean id="xmlDao" class="com.mnt.erp.dao.XmlLabelsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="xmlService" class="com.mnt.erp.service.XmlLabelsServiceImpl">
+		<property name="xmlDao" ref="xmlDao"></property>
+	</bean>
+
+	<!--Date Configuration -->
+
+	<bean id="dateDao" class="com.mnt.erp.dao.DateConversionDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="dateService" class="com.mnt.erp.service.DateConversionServiceImpl">
+	</bean>
+
+	<!--Sales Area Configuration -->
+
+	<bean id="salesAreaDao" class="com.mnt.erp.dao.SalesAreaDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="salesAreaService" class="com.mnt.erp.service.SalesAreaServiceImpl">
+		<property name="salesAreaDao" ref="salesAreaDao"></property>
+
+	</bean>
+
+	<!--Sales Inquiry Configuration -->
+
+	<bean id="salesInquiryDao" class="com.mnt.erp.dao.SalesInquiryDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="salesInquiryService" class="com.mnt.erp.service.SalesInquiryServiceImpl">
+		<property name="salesInquiryDao" ref="salesInquiryDao"></property>
+
+	</bean>
+
+	<!--Sales Quotation Configuration -->
+
+	<bean id="salesQuotationDao" class="com.mnt.erp.dao.SalesQuotationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="salesQuotationService" class="com.mnt.erp.service.SalesQuotationServiceImpl">
+		<property name="salesQuotDao" ref="salesQuotationDao"></property>
+	</bean>
+
+	<!--Sales Order Configuration -->
+
+	<bean id="salesOrderDao" class="com.mnt.erp.dao.SalesOrderDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="salesOrderService" class="com.mnt.erp.service.SalesOrderServiceImpl">
+		<property name="salesOrderDao" ref="salesOrderDao"></property>
+	</bean>
+
+	<!--Stock Transfer Configuration -->
+
+	<bean id="stockTransferDao" class="com.mnt.erp.dao.StockTransferDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="stockTransferService" class="com.mnt.erp.service.StockTransferServiceImpl">
+		<property name="stockTransferDao" ref="stockTransferDao"></property>
+	</bean>
+
+	<!--Sales PO Configuration -->
+
+	<bean id="salesPODao" class="com.mnt.erp.dao.SalesPODaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="salesPOService" class="com.mnt.erp.service.SalesPOServiceImpl">
+		<property name="salesPODao" ref="salesPODao"></property>
+	</bean>
+
+
+	<!--Debit Note Configuration -->
+
+	<bean id="debitNoteDao" class="com.mnt.erp.dao.DebitNoteDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="debitNoteService" class="com.mnt.erp.service.DebitNoteServiceImpl">
+		<property name="debitNoteDao" ref="debitNoteDao"></property>
+	</bean>
+
+	<!-- GLJournal Configuration -->
+	<bean id="glJournalDao" class="com.mnt.erp.dao.GLJournalDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="glJournalService" class="com.mnt.erp.service.GLJournalServiceImpl">
+		<property name="glJournalDao" ref="glJournalDao"></property>
+	</bean>
+
+	<!-- Inspection Lot Configuration -->
+
+	<bean id="inspectionLotDao" class="com.mnt.erp.dao.InspectionLotDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="inspLotService" class="com.mnt.erp.service.InspectionLotServiceImpl">
+		<property name="inspectionLotDao" ref="inspectionLotDao"></property>
+	</bean>
+
+	<!-- Inspection Lot Result Configuration -->
+
+	<bean id="inspLotResDao" class="com.mnt.erp.dao.InspLotResultDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="inspLotResService" class="com.mnt.erp.service.InspLotResultServiceImpl">
+		<property name="inspLotResDao" ref="inspLotResDao"></property>
+	</bean>
+
+	<!-- Receipt Configuration -->
+
+	<bean id="receiptDao" class="com.mnt.erp.dao.ReceiptDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="receiptService" class="com.mnt.erp.service.ReceiptServiceImpl">
+		<property name="receiptDao" ref="receiptDao"></property>
+	</bean>
+
+	<!-- Production Order Configuration -->
+
+	<bean id="prodOrderDao" class="com.mnt.erp.dao.ProductionOrderDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="prodOrderService" class="com.mnt.erp.service.ProductionOrderServiceImpl">
+		<property name="prodOrderDao" ref="prodOrderDao"></property>
+	</bean>
+
+	<!-- Inspection Operation Configuration -->
+
+	<bean id="inspOprDao" class="com.mnt.erp.dao.InspOperationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="inspOperService" class="com.mnt.erp.service.InspOperationServiceImpl">
+	</bean>
+
+	<!--Break Down Configuration -->
+
+	<bean id="breakDownDao" class="com.mnt.erp.dao.BreakDownMaintenanceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="breakDownService" class="com.mnt.erp.service.BreakDownMaintenanceServiceImpl">
+	</bean>
+
+	<!-- WIP Configuration -->
+
+	<bean id="wipDao" class="com.mnt.erp.dao.WorkInProgressDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="wipService" class="com.mnt.erp.service.WorkInProgressServiceImpl">
+	</bean>
+
+	<!-- AgreementType Configuration -->
+
+	<bean id="agservice" class="com.mnt.erp.service.AgreementTypeServiceImpl">
+		<property name="atdao">
+			<ref bean="atdao" />
+		</property>
+	</bean>
+	<bean id="atdao" class="com.mnt.erp.dao.AgreementTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<!-- DeliveryType Configuration -->
+	<bean id="dtservice" class="com.mnt.erp.service.DeliveryTypeServiceImpl">
+		<property name="dtdao">
+			<ref bean="dtdao" />
+		</property>
+	</bean>
+	<bean id="dtdao" class="com.mnt.erp.dao.DeliveryTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<!-- UomConfiguration -->
+	<bean id="Udao" class="com.mnt.erp.dao.UomDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+
+		</property>
+
+	</bean>
+	<bean id="UomServiceImpl" class="com.mnt.erp.service.UomServiceImpl">
+		<property name="udao">
+			<ref bean="Udao" />
+		</property>
+
+	</bean>
+
+
+	<!-- VendGroup configuration -->
+
+
+	<bean id="vgservice" class="com.mnt.erp.service.VendorGourpServiceImpl">
+		<property name="vdao">
+			<ref bean="vgdao" />
+		</property>
+	</bean>
+	<bean id="vgdao" class="com.mnt.erp.dao.VendorGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<!-- PurchaseOrganization configuration -->
+
+
+	<bean id="poservice" class="com.mnt.erp.service.PurchaseOrganizationServiceImpl">
+		<property name="podao">
+			<ref bean="podao" />
+		</property>
+	</bean>
+	<bean id="podao" class="com.mnt.erp.dao.PurchaseOrganizationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<bean id="categoryService" class="com.mnt.erp.service.MaterialCategoryServiceImpl"
+		scope="request">
+		<property name="dao">
+			<ref bean="materialCategory" />
+		</property>
+	</bean>
+	<bean id="materialCategory" class="com.mnt.erp.dao.MaterialCategoryImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="BomCategoryDao" class="com.mnt.erp.dao.BomCategoryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BomCategoryServiceImpl" class="com.mnt.erp.service.BomCategoryServiceImpl">
+		<property name="dao">
+			<ref bean="BomCategoryDao" />
+		</property>
+	</bean>
+
+	<bean id="CurrencyDao" class="com.mnt.erp.dao.CurrencyDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CurrencyServiceImpl" class="com.mnt.erp.service.CurrencyServiceImpl">
+		<property name="dao">
+			<ref bean="CurrencyDao" />
+		</property>
+	</bean>
+	<!-- OrganizationType Configration -->
+
+	<bean id="organizationTypeService" class="com.mnt.erp.service.OrganizationTypeServiceImpl">
+		<property name="dao">
+			<ref bean="organizationTypeDao" />
+		</property>
+	</bean>
+	<bean id="organizationTypeDao" class="com.mnt.erp.dao.OrganizationTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- CountryList Configuration -->
+
+	<bean id="countryService" class="com.mnt.erp.service.CountryServiceImpl">
+		<property name="countryDao">
+			<ref bean="countryDao" />
+		</property>
+	</bean>
+	<bean id="countryDao" class="com.mnt.erp.dao.CountryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Organization Configuration -->
+
+	<bean id="organizationService" class="com.mnt.erp.service.OrganizationServiceImpl">
+		<property name="dao">
+			<ref bean="organizationDao" />
+		</property>
+	</bean>
+	<bean id="organizationDao" class="com.mnt.erp.dao.OrganizationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Plant Details Configuration -->
+	<bean id="plantService" class="com.mnt.erp.service.PlantServiceImpl">
+		<property name="dao">
+			<ref bean="plantDao" />
+		</property>
+	</bean>
+	<bean id="plantDao" class="com.mnt.erp.dao.PlantDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- StrorageLocation Configuration -->
+
+
+	<bean id="storageLocationService" class="com.mnt.erp.service.StorageLocationServiceImpl">
+		<property name="dao">
+			<ref bean="storageLocationDao" />
+		</property>
+	</bean>
+	<bean id="storageLocationDao" class="com.mnt.erp.dao.StorageLocationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- MaterialTypeConfiguration -->
+	<bean id="materialTypeService" class="com.mnt.erp.service.MaterialTypeServiceImpl"
+		scope="request">
+		<property name="dao">
+			<ref bean="materialTypeDao" />
+		</property>
+	</bean>
+	<bean id="materialTypeDao" class="com.mnt.erp.dao.MaterialTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- TaxCatogery Configuration -->
+	<bean id="tc_service" class="com.mnt.erp.service.TaxCategoryServiceImpl">
+		<property name="dao">
+			<ref bean="taxCategoryDaoImpl" />
+		</property>
+	</bean>
+	<bean id="taxCategoryDaoImpl" class="com.mnt.erp.dao.TaxCategoryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Payment Term Configuration -->
+	<bean id="pt_service" class="com.mnt.erp.service.PaymentTermServiceImpl">
+		<property name="ptdao">
+			<ref bean="paymentTermDaoImpl" />
+		</property>
+	</bean>
+	<bean id="paymentTermDaoImpl" class="com.mnt.erp.dao.PaymentTermDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Payment Method Configuration -->
+	<bean id="pm_service" class="com.mnt.erp.service.PaymentMethodServiceImpl">
+		<property name="pmdao">
+			<ref bean="paymentMethodDaoImpl" />
+		</property>
+	</bean>
+	<bean id="paymentMethodDaoImpl" class="com.mnt.erp.dao.PaymentMethodDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Order Type Configuration -->
+	<bean id="ot_service" class="com.mnt.erp.service.OrderTypeServiceImpl">
+		<property name="otdao">
+			<ref bean="orderTypeDaoImpl" />
+		</property>
+	</bean>
+	<bean id="orderTypeDaoImpl" class="com.mnt.erp.dao.OrderTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Customer Group Configuration -->
+	<bean id="cg_service" class="com.mnt.erp.service.CustomerGroupServiceImpl">
+		<property name="cgdao">
+			<ref bean="custGroupDaoImpl" />
+		</property>
+	</bean>
+	<bean id="custGroupDaoImpl" class="com.mnt.erp.dao.CustomerGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Item Category Configuration -->
+	<bean id="ic_service" class="com.mnt.erp.service.ItemCategoryServiceImpl">
+		<property name="icdao">
+			<ref bean="itemCategoryDaoImpl" />
+		</property>
+	</bean>
+	<bean id="itemCategoryDaoImpl" class="com.mnt.erp.dao.ItemCategoryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- RFQ Type Configuration -->
+	<bean id="rfq_service" class="com.mnt.erp.service.RFQTypeServiceImpl">
+		<property name="rfqdao">
+			<ref bean="rfqdaoImpl" />
+		</property>
+	</bean>
+	<bean id="rfqdaoImpl" class="com.mnt.erp.dao.RFQTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- PoPulateBean Configuration -->
+
+	<bean id="populateService" class="com.mnt.erp.service.PopulateServiceImpl">
+		<property name="dao">
+			<ref bean="poPulateDao" />
+		</property>
+	</bean>
+	<bean id="poPulateDao" class="com.mnt.erp.dao.PoPulateDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- PurchaseRequisition configuration -->
+
+	<bean id="prservice" class="com.mnt.erp.service.PurchaseRequisitionServiceImpl">
+		<property name="purchaseRequisitionDao">
+			<ref bean="purchaseRequisitionDao" />
+		</property>
+	</bean>
+	<bean id="purchaseRequisitionDao" class="com.mnt.erp.dao.PurchaseRequisitionDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+	<!-- Quotation Configuration -->
+
+	<bean id="qt_service" class="com.mnt.erp.service.QuotationServiceImpl">
+		<property name="qtdao">
+			<ref bean="qtdaoImpl" />
+		</property>
+	</bean>
+	<bean id="qtdaoImpl" class="com.mnt.erp.dao.QuotationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Security Configuration -->
+
+	<bean id="roleservice" class="com.mnt.erp.service.RoleServiceImpl">
+		<property name="dao">
+			<ref bean="roleDaoImpl" />
+		</property>
+	</bean>
+	<bean id="roleDaoImpl" class="com.mnt.erp.dao.RoleDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="privilegeservice" class="com.mnt.erp.service.PrivilegeServiceImpl">
+		<property name="dao">
+			<ref bean="privilegeDaoImpl" />
+		</property>
+	</bean>
+	<bean id="privilegeDaoImpl" class="com.mnt.erp.dao.PrivilegeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="wfprocessservice" class="com.mnt.erp.service.WFProcessServiceImpl">
+		<property name="dao">
+			<ref bean="wfprocessDaoImpl" />
+		</property>
+	</bean>
+	<bean id="wfprocessDaoImpl" class="com.mnt.erp.dao.WFProcessDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="wfstageservice" class="com.mnt.erp.service.WFStageServiceImpl">
+		<property name="dao">
+			<ref bean="wfstageDaoImpl" />
+		</property>
+	</bean>
+	<bean id="wfstageDaoImpl" class="com.mnt.erp.dao.WFStageDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="wfstepservice" class="com.mnt.erp.service.WFStepServiceImpl">
+		<property name="dao">
+			<ref bean="wfstepDaoImpl" />
+		</property>
+	</bean>
+	<bean id="wfstepDaoImpl" class="com.mnt.erp.dao.WFStepDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="wfactionservice" class="com.mnt.erp.service.WFActionServiceImpl">
+		<property name="dao">
+			<ref bean="wfactionDaoImpl" />
+		</property>
+	</bean>
+	<bean id="wfactionDaoImpl" class="com.mnt.erp.dao.WFActionDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="userservice" class="com.mnt.erp.service.UsersServiceImpl">
+		<property name="dao">
+			<ref bean="UsersDaoImpl" />
+		</property>
+	</bean>
+	<bean id="UsersDaoImpl" class="com.mnt.erp.dao.UsersDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="departmentservice" class="com.mnt.erp.service.DepartmentServiceImpl">
+		<property name="dao">
+			<ref bean="DepartmentDaoImpl" />
+		</property>
+	</bean>
+	<bean id="DepartmentDaoImpl" class="com.mnt.erp.dao.DepartmentDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="designationservice" class="com.mnt.erp.service.DesignationServiceImpl">
+		<property name="dao">
+			<ref bean="DesignationDaoImpl" />
+		</property>
+	</bean>
+	<bean id="DesignationDaoImpl" class="com.mnt.erp.dao.DesignationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="employeeGroupservice" class="com.mnt.erp.service.EmployeeGroupServiceImpl">
+		<property name="dao">
+			<ref bean="EmployeeGroupDaoImpl" />
+		</property>
+	</bean>
+	<bean id="EmployeeGroupDaoImpl" class="com.mnt.erp.dao.EmployeeGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="capcategoryservice" class="com.mnt.erp.service.CapacityCategoryServiceImpl">
+		<property name="dao">
+			<ref bean="CapacityCategoryDaoImpl" />
+		</property>
+	</bean>
+	<bean id="CapacityCategoryDaoImpl" class="com.mnt.erp.dao.CapacityCategoryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="vehicletypeservice" class="com.mnt.erp.service.VehicleTypeServiceImpl">
+		<property name="vehTypeDao">
+			<ref bean="VehicleTypeDaoImpl" />
+		</property>
+	</bean>
+	<bean id="VehicleTypeDaoImpl" class="com.mnt.erp.dao.VehicleTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="vehicleservice" class="com.mnt.erp.service.VehicleServiceImpl">
+		<property name="vehidao">
+			<ref bean="VehicleDaoImpl" />
+		</property>
+	</bean>
+	<bean id="VehicleDaoImpl" class="com.mnt.erp.dao.VehicleDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="insplotoriginservice" class="com.mnt.erp.service.InsplotOriginServiceImpl">
+		<property name="inspDao">
+			<ref bean="InsplotOriginDaoImpl" />
+		</property>
+	</bean>
+	<bean id="InsplotOriginDaoImpl" class="com.mnt.erp.dao.InsplotOriginDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="billingtypeservice" class="com.mnt.erp.service.BillingTypeServiceImpl">
+		<property name="billTypeDao">
+			<ref bean="BillingTypeDaoImpl" />
+		</property>
+	</bean>
+	<bean id="BillingTypeDaoImpl" class="com.mnt.erp.dao.BillingTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<bean id="storagetypeservice" class="com.mnt.erp.service.StorageTypeServiceImpl">
+		<property name="storageTypeDao">
+			<ref bean="StorageTypeDaoImpl" />
+		</property>
+	</bean>
+	<bean id="StorageTypeDaoImpl" class="com.mnt.erp.dao.StorageTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="warehouseservice" class="com.mnt.erp.service.WarehouseServiceImpl">
+		<property name="warehousedao">
+			<ref bean="WarehouseDaoImpl" />
+		</property>
+	</bean>
+	<bean id="WarehouseDaoImpl" class="com.mnt.erp.dao.WarehouseDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="routeservice" class="com.mnt.erp.service.RouteServiceImpl">
+		<property name="rotDao">
+			<ref bean="RouteDaoImpl" />
+		</property>
+	</bean>
+	<bean id="RouteDaoImpl" class="com.mnt.erp.dao.RouteDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- PurchaseGroup Configuration -->
+
+	<bean id="pgService" class="com.mnt.erp.service.PurchaseGroupServiceImpl">
+		<property name="pgDao">
+			<ref bean="pgDaoImpl" />
+		</property>
+	</bean>
+	<bean id="pgDaoImpl" class="com.mnt.erp.dao.PurchaseGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Work Center Category Configuration -->
+
+	<bean id="wcService" class="com.mnt.erp.service.WorkCenterCategoryServiceImpl">
+		<property name="wccDao">
+			<ref bean="wccDaoImpl" />
+		</property>
+	</bean>
+	<bean id="wccDaoImpl" class="com.mnt.erp.dao.WorkCenterCategoryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- BOM Configuration -->
+
+	<bean id="bomService" class="com.mnt.erp.service.BomServiceImpl">
+		<property name="bomDao">
+			<ref bean="bomDaoImpl" />
+		</property>
+	</bean>
+	<bean id="bomDaoImpl" class="com.mnt.erp.dao.BomDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- VerificationType -->
+	<bean id="verificationtypeService" class="com.mnt.erp.service.VerificationTypeServiceImpl">
+		<property name="vtdao">
+			<ref bean="Verificationtypedao" />
+		</property>
+	</bean>
+	<bean id="Verificationtypedao" class="com.mnt.erp.dao.VerificationTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- SalesOrganization -->
+	<bean id="Salesorgservice" class="com.mnt.erp.service.SalesOrganizationServiceImpl">
+		<property name="sodao">
+			<ref bean="salesorgdao" />
+		</property>
+	</bean>
+	<bean id="salesorgdao" class="com.mnt.erp.dao.SalesOrganizationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Voucher Type -->
+	<bean id="voucherservice" class="com.mnt.erp.service.VoucherTypeServiceImpl">
+		<property name="vtypedao">
+			<ref bean="voucherdao" />
+		</property>
+	</bean>
+	<bean id="voucherdao" class="com.mnt.erp.dao.VoucherTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- GoodsReceip configuration -->
+
+	<bean id="goodsrservice" class="com.mnt.erp.service.GoodsReceiptServiceImpl">
+		<property name="gdao">
+			<ref bean="gdao" />
+		</property>
+	</bean>
+	<bean id="gdao" class="com.mnt.erp.dao.GoodsReceiptDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+	<!-- PurchaseOrder configuration -->
+
+
+	<bean id="porderservice" class="com.mnt.erp.service.PurchaseOrderServiceImpl">
+		<property name="podao">
+			<ref bean="pordao" />
+		</property>
+	</bean>
+	<bean id="pordao" class="com.mnt.erp.dao.PurchaseOrderDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+	<!-- Stock Category Configuration -->
+
+	<bean id="stockCategoryService" class="com.mnt.erp.service.StockCategoryServiceImpl">
+		<property name="stockCategoryDao">
+			<ref bean="stockCategoryDao" />
+		</property>
+	</bean>
+	<bean id="stockCategoryDao" class="com.mnt.erp.dao.StockCategoryDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Defect Type -->
+	<bean id="defectservice" class="com.mnt.erp.service.DefectTypeServiceImpl">
+		<property name="dtdao">
+			<ref bean="defectdao" />
+		</property>
+	</bean>
+	<bean id="defectdao" class="com.mnt.erp.dao.DefectTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Reason For Rejection Configuration -->
+
+	<bean id="rfrService" class="com.mnt.erp.service.ReasonForRejectionServiceImpl">
+		<property name="rfrDao">
+			<ref bean="rfrDaoImpl" />
+		</property>
+	</bean>
+	<bean id="rfrDaoImpl" class="com.mnt.erp.dao.ReasonForRejectionDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Reason For Movement Configuration -->
+
+	<bean id="rfmService" class="com.mnt.erp.service.ReasonForMovementServiceImpl">
+		<property name="rfmDao">
+			<ref bean="rfmDaoImpl" />
+		</property>
+	</bean>
+	<bean id="rfmDaoImpl" class="com.mnt.erp.dao.ReasonForMovementDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Sales Office Configuration -->
+
+	<bean id="soService" class="com.mnt.erp.service.SalesOfficeServiceImpl">
+		<property name="soDao">
+			<ref bean="soDaoImpl" />
+		</property>
+	</bean>
+	<bean id="soDaoImpl" class="com.mnt.erp.dao.SalesOfficeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- WorkCeter Configuration -->
+
+	<bean id="wccservice" class="com.mnt.erp.service.WorkCenterServiceImpl">
+		<property name="wcenterDao">
+			<ref bean="wcenterDaoimpl" />
+		</property>
+	</bean>
+	<bean id="wcenterDaoimpl" class="com.mnt.erp.dao.WorkCenterDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Sales Group Configuration -->
+
+	<bean id="sgservice" class="com.mnt.erp.service.SalesGroupServiceImpl">
+		<property name="sgdao">
+			<ref bean="sgimpl" />
+		</property>
+	</bean>
+	<bean id="sgimpl" class="com.mnt.erp.dao.SalesGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- RFQ -->
+	<bean id="rfqService" class="com.mnt.erp.service.RfqServiceImpl">
+		<property name="rfqdao">
+			<ref bean="rfqrefer" />
+		</property>
+	</bean>
+	<bean id="rfqrefer" class="com.mnt.erp.dao.RfqDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- ConditionType Configuration -->
+
+	<bean id="conditionTypeDao" class="com.mnt.erp.dao.ConditionTypeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="conditionTypeService" class="com.mnt.erp.service.ConditionTypeServiceImpl">
+		<property name="ctDao" ref="conditionTypeDao"></property>
+	</bean>
+	<!-- Condition Configuration -->
+
+	<bean id="conditionDao" class="com.mnt.erp.dao.ConditionDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="conditionService" class="com.mnt.erp.service.ConditionServiceImpl">
+		<property name="conditionDao" ref="conditionDao"></property>
+	</bean>
+
+
+	<!-- WorkFlowList Configuration -->
+
+	<bean id="workFlowListService" class="com.mnt.erp.service.WorkFlowListServiceImpl">
+		<property name="dao">
+			<ref bean="workFlowListDao" />
+		</property>
+	</bean>
+	<bean id="workFlowListDao" class="com.mnt.erp.dao.WorkFlowListDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Users Group -->
+	<bean id="usergroupService" class="com.mnt.erp.service.UserGroupServiceImpl">
+		<property name="ugdao">
+			<ref bean="UserGroupDaoImpl" />
+		</property>
+	</bean>
+	<bean id="UserGroupDaoImpl" class="com.mnt.erp.dao.UserGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Function -->
+	<bean id="functionservice" class="com.mnt.erp.service.FunctionServiceImpl">
+		<property name="funcdao">
+			<ref bean="FunctionDaoImpl" />
+		</property>
+	</bean>
+	<bean id="FunctionDaoImpl" class="com.mnt.erp.dao.FunctionDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Equipment Configuration -->
+
+	<bean id="equipmentDao" class="com.mnt.erp.dao.EquipmentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="equipmentService" class="com.mnt.erp.service.EquipmentServiceImpl">
+		<property name="equipmentDao" ref="equipmentDao"></property>
+	</bean>
+	<!--Vendor Return Configuration -->
+
+	<bean id="vendorReturnService" class="com.mnt.erp.service.VendorReturnServiceImpl">
+		<property name="vendorReturnDao">
+			<ref bean="vendorReturnDaoImpl" />
+		</property>
+	</bean>
+	<bean id="vendorReturnDaoImpl" class="com.mnt.erp.dao.VendorReturnDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Vendor Invoice -->
+	<bean id="vendorinvoiceservice" class="com.mnt.erp.service.VendorInvoiceServiceImpl">
+		<property name="vidao">
+			<ref bean="vendorInvoiceDao" />
+		</property>
+	</bean>
+	<bean id="vendorInvoiceDao" class="com.mnt.erp.dao.VendorInvoiceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- cusotmoer Invoice -->
+	<bean id="customerinvoiceservice" class="com.mnt.erp.service.CustomerInvoiceServiceImpl">
+		<property name="cidao">
+			<ref bean="customerInvoiceDao" />
+		</property>
+	</bean>
+	<bean id="customerInvoiceDao" class="com.mnt.erp.dao.CustomerInvoiceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Delivery Note Configuration -->
+
+
+	<bean id="deliveryNoteService" class="com.mnt.erp.service.DeliveryNoteServiceImpl">
+		<property name="deliveryNoteDao">
+			<ref bean="deliveryNoteDao" />
+		</property>
+	</bean>
+	<bean id="deliveryNoteDao" class="com.mnt.erp.dao.DeliveryNoteDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Customer Return Configuration -->
+
+	<bean id="CustomerReturnService" class="com.mnt.erp.service.CustomerReturnServiceImpl">
+		<property name="crdao">
+			<ref bean="creturnDao" />
+		</property>
+	</bean>
+	<bean id="creturnDao" class="com.mnt.erp.dao.CustomerReturnDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Jar Configurations -->
+	<bean id="erpDao" class="com.mnt.erp.daojar.ERPDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Payment Type Configuration -->
+	<bean id="ptypeService" class="com.mnt.erp.service.PaymentTypeServiceImpl">
+		<property name="ptdao">
+			<ref bean="paymentDaoImpl" />
+		</property>
+	</bean>
+	<bean id="paymentDaoImpl" class="com.mnt.erp.dao.PaymentTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- MRP Type Configuration -->
+	<bean id="mrpTypeService" class="com.mnt.erp.service.MrpTypeServiceImpl">
+		<property name="mrtdao">
+			<ref bean="MrpTypeDaoImpl" />
+		</property>
+	</bean>
+	<bean id="MrpTypeDaoImpl" class="com.mnt.erp.dao.MrpTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Document Type Configuration -->
+	<bean id="docservice" class="com.mnt.erp.service.DocumentTypeServiceImpl">
+		<property name="doctdao">
+			<ref bean="dcimpl" />
+		</property>
+	</bean>
+	<bean id="dcimpl" class="com.mnt.erp.dao.DocumentTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Employee -->
+	<bean id="employeeService" class="com.mnt.erp.service.EmployeeServiceImpl">
+		<property name="edao">
+			<ref bean="employeeDao" />
+		</property>
+	</bean>
+	<bean id="employeeDao" class="com.mnt.erp.dao.EmployeeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Payment Configration -->
+
+	<bean id="paymentService" class="com.mnt.erp.service.PaymentServiceImpl">
+		<property name="dao">
+			<ref bean="paymentDao" />
+		</property>
+	</bean>
+	<bean id="paymentDao" class="com.mnt.erp.dao.PaymentDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+
+
+	<!-- House Bank -->
+	<bean id="hbService" class="com.mnt.erp.service.HouseBankSeriveImpl">
+		<property name="hbdao">
+			<ref bean="housebankdao" />
+		</property>
+	</bean>
+	<bean id="housebankdao" class="com.mnt.erp.dao.HouseBankDaoImpl">
+
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+
+
+
+	<!-- UserRolePrivilege Configuration -->
+
+	<bean id="userRolePrivilegeService" class="com.mnt.erp.service.UserRolePrivilegeServiceImpl">
+	</bean>
+	<bean id="userRolePrivilegeDao" class="com.mnt.erp.dao.UserRolePrivilegeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Audit Log -->
+
+
+	<bean id="auditLogService" class="com.mnt.erp.dao.AuditLogDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AuditLogServiceImpl" class="com.mnt.erp.service.AuditLogServiceImpl">
+		<property name="dao">
+			<ref bean="auditLogService" />
+		</property>
+	</bean>
+
+
+	<!-- Physical Verification -->
+
+	<!-- Physical Verification Configuration -->
+
+	<bean id="pVService" class="com.mnt.erp.service.physicalVerificationServiceImpl">
+		<property name="pvdao">
+			<ref bean="pvdaoImpl" />
+		</property>
+	</bean>
+	<bean id="pvdaoImpl" class="com.mnt.erp.dao.physicalVerificationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Credit Note configuration -->
+
+
+	<bean id="creditNoteservice" class="com.mnt.erp.service.CreditNoteServiceImpl">
+		<property name="CreditNotedao">
+			<ref bean="CreditNotedao" />
+		</property>
+	</bean>
+	<bean id="CreditNotedao" class="com.mnt.erp.dao.CreditNoteDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+
+
+	<!-- Credit Note configuration -->
+
+
+	<bean id="codeservice" class="com.mnt.erp.service.CodeServiceImpl">
+		<property name="Codedao">
+			<ref bean="Codedao" />
+		</property>
+	</bean>
+	<bean id="Codedao" class="com.mnt.erp.dao.CodeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+
+
+	<!--InspCharacteristic configuration -->
+
+
+	<bean id="inspCharacteristicservice" class="com.mnt.erp.service.InspCharacteristicServiceImpl">
+
+		<property name="InspCharacteristicDao">
+			<ref bean="InspCharacteristicDao" />
+		</property>
+	</bean>
+	<bean id="InspCharacteristicDao" class="com.mnt.erp.dao.InspCharacteristicDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+
+
+	<!--Project configuration -->
+
+
+
+
+	<bean id="projectservice" class="com.mnt.erp.service.ProjectServiceImpl">
+
+		<property name="Projectdao">
+			<ref bean="Projectdao" />
+		</property>
+	</bean>
+	<bean id="Projectdao" class="com.mnt.erp.dao.ProjectDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<!-- Menu Configuration -->
+	<bean id="menuService" class="com.mnt.erp.service.MenuServiceImpl">
+
+		<property name="dao">
+			<ref bean="menuDao" />
+		</property>
+	</bean>
+	<bean id="menuDao" class="com.mnt.erp.dao.MenuDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Characteristic Type Configuration -->
+
+	<bean id="ctypeService" class="com.mnt.erp.service.CharacteristicTypeServiceImpl">
+		<property name="charTypeDao">
+			<ref bean="ctypeDao" />
+		</property>
+
+	</bean>
+	<bean id="ctypeDao" class="com.mnt.erp.dao.CharacteristicTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- MaintenanceOrderType Configuration -->
+
+	<bean id="mainTypeService" class="com.mnt.erp.service.MaintenanceOrderTypeServiceImpl">
+		<property name="motDao">
+			<ref bean="mtDao" />
+		</property>
+	</bean>
+	<bean id="mtDao" class="com.mnt.erp.dao.MaintenanceOrderTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- MaterialPrice Configuration -->
+
+	<bean id="mpService" class="com.mnt.erp.service.MaterialPriceServiceImpl">
+		<property name="mpricedao">
+			<ref bean="mpDao" />
+		</property>
+	</bean>
+	<bean id="mpDao" class="com.mnt.erp.dao.MaterialPriceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- GLFiscalYear Configuration -->
+	<bean id="glfService" class="com.mnt.erp.service.GLFiscalYearServiceImpl">
+		<property name="glfDao">
+			<ref bean="glDao" />
+		</property>
+	</bean>
+	<bean id="glDao" class="com.mnt.erp.dao.GLFiscalYearDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+
+	<!-- Break Time configuration -->
+
+	<bean id="breakService" class="com.mnt.erp.service.BreakTimeServiceImpl">
+		<property name="dao">
+			<ref bean="break" />
+		</property>
+	</bean>
+	<bean id="break" class="com.mnt.erp.dao.breakTimeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Maintenance type configuration -->
+	<bean id="MService" class="com.mnt.erp.service.maintenanceTypeServiceImpl">
+		<property name="mdao">
+			<ref bean="mainDao" />
+		</property>
+	</bean>
+	<bean id="mainDao" class="com.mnt.erp.dao.maintenanceTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Work Incedence configuration -->
+	<bean id="WIService" class="com.mnt.erp.service.workIncedenceServiceImpl">
+		<property name="wdao">
+			<ref bean="workDao" />
+		</property>
+	</bean>
+	<bean id="workDao" class="com.mnt.erp.dao.workIncedenceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+
+	<!-- Qualification configuration -->
+	<bean id="QService" class="com.mnt.erp.service.qualificationServiceImpl">
+		<property name="qudao">
+			<ref bean="quaDao" />
+		</property>
+	</bean>
+	<bean id="quaDao" class="com.mnt.erp.dao.qualificationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Defect Class configuration -->
+	<bean id="DService" class="com.mnt.erp.service.defectClassServiceImpl">
+		<property name="deDao">
+			<ref bean="defectDao" />
+		</property>
+	</bean>
+	<bean id="defectDao" class="com.mnt.erp.dao.defectClassDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--InterView Schedule configuration -->
+	<bean id="ivScheduleService" class="com.mnt.erp.service.InterviewScheduleServiceImpl">
+		<property name="dao">
+			<ref bean="ivScheduleDao" />
+		</property>
+	</bean>
+	<bean id="ivScheduleDao" class="com.mnt.erp.dao.InterviewScheduleDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- mail configuration -->
+
+	<!-- <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" 
+		> <property name="host" value="smtp.gmail.com" /> <property name="port" value="587" 
+		/> <property name="username" value="sridurga.salugu@gmail.com" /> <property 
+		name="password" value="password" /> <property name="javaMailProperties"> 
+		<props> <prop key="mail.smtp.starttls.enable">true</prop> </props> </property> 
+		</bean> <bean id="userRegistrationService"> <property name="mailSender" ref="mailSender" 
+		/> <property name="userEmailIds"> <set> <value>sridurga.salugu@gmail.com</value> 
+		<value>durga.sri36@gmail.com</value> </set> </property> </bean> -->
+
+
+
+
+
+	<!-- Shop Configuration -->
+	<bean id="shopService" class="com.mnt.erp.service.ShopServiceImpl">
+		<property name="shopDao">
+			<ref bean="shDao" />
+		</property>
+	</bean>
+	<bean id="shDao" class="com.mnt.erp.dao.ShopDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- MaintenancePlan Configuration -->
+	<bean id="mainplanService" class="com.mnt.erp.service.MaintenancePlanServiceImpl">
+		<property name="mplanDao">
+			<ref bean="mpdao" />
+		</property>
+	</bean>
+	<bean id="mpdao" class="com.mnt.erp.dao.MaintenancePlanDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- MaintenancePlan Configuration -->
+	<bean id="empQualificationService" class="com.mnt.erp.service.EmpQualificationServiceImpl">
+		<property name="empqdao">
+			<ref bean="emqdao" />
+		</property>
+	</bean>
+	<bean id="emqdao" class="com.mnt.erp.dao.EmpQualificationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Chart of Account configuration -->
+
+
+	<bean id="chartofAccountservice" class="com.mnt.erp.service.ChartofAccountServiceImpl">
+		<property name="ChartofAccountdao">
+			<ref bean="ChartofAccountdao" />
+		</property>
+	</bean>
+	<bean id="ChartofAccountdao" class="com.mnt.erp.dao.ChartofAccountDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+
+	<!--Goods Issue configuration -->
+
+
+	<bean id="goodsIssueservice" class="com.mnt.erp.service.GoodsIssueServiceImpl">
+		<property name="GoodsIssueDao">
+			<ref bean="GoodsIssueDao" />
+		</property>
+	</bean>
+	<bean id="GoodsIssueDao" class="com.mnt.erp.dao.GoodsIssueDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+
+	<!-- Employee Leave configuration -->
+
+
+	<bean id="employeeLeaveservice" class="com.mnt.erp.service.EmployeeLeaveServiceImpl">
+		<property name="EmployeeLeavedao">
+			<ref bean="EmployeeLeavedao" />
+		</property>
+	</bean>
+	<bean id="EmployeeLeavedao" class="com.mnt.erp.dao.EmployeeLeaveDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<!-- mail configuration -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="MailService" class="com.mnt.mail.MailService">
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+
+
+
+	<bean id="imageUploadDao" class="com.mnt.erp.dao.ImageUploadDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+
+	<!-- Voucher configuration -->
+
+	<bean id="voucherServiceForVoucher" class="com.mnt.erp.service.VoucherServiceImpl">
+		<property name="Voucherdao">
+			<ref bean="Voucherdao" />
+		</property>
+	</bean>
+	<bean id="Voucherdao" class="com.mnt.erp.dao.VoucherDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+	<!-- Prod Plan Type configuration -->
+	<bean id="prodService" class="com.mnt.erp.service.productionPlanTypeServiceImpl">
+		<property name="ppdao">
+			<ref bean="planDao" />
+		</property>
+	</bean>
+	<bean id="planDao" class="com.mnt.erp.dao.productionPlanTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!--Production Plan configuration -->
+
+
+	<bean id="proPlanservice" class="com.mnt.erp.service.ProductionPlanServiceImpl">
+		<property name="proPlanDao">
+			<ref bean="proPlanDao" />
+		</property>
+	</bean>
+	<bean id="proPlanDao" class="com.mnt.erp.dao.ProductionPlanDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+	<!-- Prod Order type configuration -->
+	<bean id="POTService" class="com.mnt.erp.service.prodOrderTypeServiceImpl">
+		<property name="dao">
+			<ref bean="prodDao" />
+		</property>
+	</bean>
+	<bean id="prodDao" class="com.mnt.erp.dao.prodOrderTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Production Order Process Configuration -->
+	<bean id="productionOrderProcessService" class="com.mnt.erp.service.ProductionOrderProcessServiceImpl">
+		<property name="productionOrderProcessDao">
+			<ref bean="productionOrderProcessDaoImpl" />
+		</property>
+	</bean>
+	<bean id="productionOrderProcessDaoImpl" class="com.mnt.erp.dao.ProductionOrderProcessDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Project ResorceType Configuration -->
+	<bean id="PRTService" class="com.mnt.erp.service.projectResourceTypeServiceImpl">
+		<property name="prtDao">
+			<ref bean="projResourceTypeDao" />
+		</property>
+	</bean>
+	<bean id="projResourceTypeDao" class="com.mnt.erp.dao.projectResourceTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Project Resource -->
+	<bean id="prService" class="com.mnt.erp.service.projectResourceServiceImpl">
+		<property name="PRDao">
+			<ref bean="projResourceDao" />
+		</property>
+	</bean>
+	<bean id="projResourceDao" class="com.mnt.erp.dao.projectResourceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!--Project Phase -->
+
+
+	<bean id="PPService" class="com.mnt.erp.service.projectPhaseServiceImpl">
+		<property name="ppDao">
+			<ref bean="projPhaseDao" />
+		</property>
+	</bean>
+	<bean id="projPhaseDao" class="com.mnt.erp.dao.projectPhaseDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--Resorce Request -->
+
+
+	<bean id="requestResource" class="com.mnt.erp.service.ResourceRequestServiceImpl">
+		<property name="resourceRequestDao">
+			<ref bean="resRequestDao" />
+		</property>
+	</bean>
+	<bean id="resRequestDao" class="com.mnt.erp.dao.ResourceRequestDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Process Type Service -->
+
+	<bean id="processTypeService" class="com.mnt.erp.service.processTypeServiceImpl">
+		<property name="processDao">
+			<ref bean="processTypeDao" />
+		</property>
+	</bean>
+	<bean id="processTypeDao" class="com.mnt.erp.dao.processTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Vacancy Service -->
+
+	<bean id="vacancyService" class="com.mnt.erp.service.vacancyServiceImpl">
+		<property name="vacancyDao">
+			<ref bean="vacancyDao" />
+		</property>
+	</bean>
+	<bean id="vacancyDao" class="com.mnt.erp.dao.vacancyDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Applicant -->
+
+	<bean id="appService" class="com.mnt.erp.service.ApplicantServiceImpl">
+		<property name="appDao">
+			<ref bean="AppDao" />
+		</property>
+	</bean>
+	<bean id="AppDao" class="com.mnt.erp.dao.ApplicantDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--RecruitmentPlan -->
+
+	<bean id="recplanservice" class="com.mnt.erp.service.RecruitmentPlanServiceImpl">
+		<property name="recruitmentPlanDao">
+			<ref bean="recruitmentPlanDao" />
+		</property>
+	</bean>
+	<bean id="recruitmentPlanDao" class="com.mnt.erp.dao.RecruitmentPlanDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- ShortList -->
+	<bean id="shService" class="com.mnt.erp.service.shortListServiceImpl">
+		<property name="shDao">
+			<ref bean="sListDao" />
+		</property>
+	</bean>
+	<bean id="sListDao" class="com.mnt.erp.dao.shortListDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Training Schedule -->
+	<bean id="tScheduleService" class="com.mnt.erp.service.trainingScheduleServiceImpl">
+		<property name="tScheduleDao">
+			<ref bean="scheduleDao" />
+		</property>
+	</bean>
+	<bean id="scheduleDao" class="com.mnt.erp.dao.trainingScheduleDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--Cost Center -->
+
+	<bean id="costCenterservice" class="com.mnt.erp.service.CostCenterServiceImpl">
+		<property name="costCenterDao">
+			<ref bean="costCenterDao" />
+		</property>
+	</bean>
+	<bean id="costCenterDao" class="com.mnt.erp.dao.CostCenterDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--Profit Centre -->
+
+	<bean id="profitCenterservice" class="com.mnt.erp.service.ProfitCenterServiceImpl">
+		<property name="profitCenterdao">
+			<ref bean="profitCendao" />
+		</property>
+	</bean>
+	<bean id="profitCendao" class="com.mnt.erp.dao.ProfitCenterDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--Sampling Type -->
+
+	<bean id="samplingTypeservice" class="com.mnt.erp.service.SamplingTypeServiceImpl">
+		<property name="samplingTypeDao">
+			<ref bean="samplingTypeDao" />
+		</property>
+	</bean>
+	<bean id="samplingTypeDao" class="com.mnt.erp.dao.SamplingTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Training Schedule -->
+	<bean id="dashBoardService" class="com.mnt.erp.service.DashBoardServiceImpl">
+		<property name="boardDao">
+			<ref bean="dashBoardDao" />
+		</property>
+	</bean>
+	<bean id="dashBoardDao" class="com.mnt.erp.dao.DashBoardDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Inspection Decision -->
+	<bean id="idService" class="com.mnt.erp.service.inspectionDecisionServiceImpl">
+		<property name="isDao">
+			<ref bean="inspDecisionDao" />
+		</property>
+	</bean>
+	<bean id="inspDecisionDao" class="com.mnt.erp.dao.InspectionDecisionDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CGService" class="com.mnt.erp.service.CodeGroupServiceImpl">
+		<property name="codeGroupDao">
+			<ref bean="cgDao" />
+		</property>
+	</bean>
+	<bean id="cgDao" class="com.mnt.erp.dao.CodeGroupDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<!-- BreakDown Maintenance Log -->
+	<bean id="brkdownLogService" class="com.mnt.erp.service.BrkdownMaintenaceLogServiceImpl">
+		<property name="maintenanceLogDao">
+			<ref bean="brkdownMtLogDao" />
+		</property>
+	</bean>
+	<bean id="brkdownMtLogDao" class="com.mnt.erp.dao.BrkDownMaintenanceLogDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- PayGrade SalElement -->
+	<bean id="pgseService" class="com.mnt.erp.service.PayGradeSalElementServiceImpl">
+		<property name="pgsDao">
+			<ref bean="payGradeSalEleDao" />
+		</property>
+	</bean>
+	<bean id="payGradeSalEleDao" class="com.mnt.erp.dao.PayGradeSalElementDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!--PrevMaintenance -->
+	<bean id="PrevMService" class="com.mnt.erp.service.PrevMaintenanceServiceImpl">
+		<property name="prevMaintenanceDao">
+			<ref bean="prevMaintenanceDao" />
+		</property>
+	</bean>
+	<bean id="prevMaintenanceDao" class="com.mnt.erp.dao.PrevMaintenanceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<!-- Project Task -->
+	<bean id="PTaskService" class="com.mnt.erp.service.ProjectTaskServiceImpl">
+		<property name="PTaskDao">
+			<ref bean="projectTaskDao" />
+		</property>
+	</bean>
+	<bean id="projectTaskDao" class="com.mnt.erp.dao.ProjectTaskDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Employee Attendence -->
+	<bean id="empAttendanceService" class="com.mnt.erp.service.EmployeeAttendanceServiceImpl">
+		<property name="empAttendancedao">
+			<ref bean="empAttenDao" />
+		</property>
+	</bean>
+	<bean id="empAttenDao" class="com.mnt.erp.dao.EmployeeAttendanceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!--PrevMaintenance Schedule Catelog -->
+	<bean id="prevMtSchCatService" class="com.mnt.erp.service.PrevMaintenaceSchCatLogServiceImpl">
+		<property name="schCatLogDao">
+			<ref bean="schCatLogDao" />
+		</property>
+	</bean>
+	<bean id="schCatLogDao" class="com.mnt.erp.dao.PrevMaintenaceSchCatLogDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!--Emp Experience -->
+	<bean id="empexService" class="com.mnt.erp.service.EmpExperienceServiceImpl">
+		<property name="empExperiencedao">
+			<ref bean="empExperiencedao" />
+		</property>
+	</bean>
+	<bean id="empExperiencedao" class="com.mnt.erp.dao.EmpExperienceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<bean id="warehousebintypeservice" class="com.mnt.erp.service.WarehouseBinTypeServiceImpl">
+		<property name="whousebintype">
+			<ref bean="WarehouseBinTypeDaoImpl" />
+		</property>
+	</bean>
+	<bean id="WarehouseBinTypeDaoImpl" class="com.mnt.erp.dao.WarehouseBinTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="warehousebinservice" class="com.mnt.erp.service.WareHouseBinServiceImpl">
+		<property name="whbdao">
+			<ref bean="whbdao" />
+		</property>
+	</bean>
+	<bean id="whbdao" class="com.mnt.erp.dao.WareHouseBinDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!--Emp Performance -->
+	<bean id="empPerformanceService" class="com.mnt.erp.service.EmpPerformanceServiceImpl">
+		<property name="empPerformanceDao">
+			<ref bean="empPerformanceDao" />
+		</property>
+	</bean>
+	<bean id="empPerformanceDao" class="com.mnt.erp.dao.EmpPerformanceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+
+	<!--Agreement -->
+	<bean id="agpservice" class="com.mnt.erp.service.AgreementServiceImpl">
+		<property name="agdao">
+			<ref bean="agDaoImpl" />
+		</property>
+	</bean>
+	<bean id="agDaoImpl" class="com.mnt.erp.dao.AgreementDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+
+
+	<!-- EmpTimeSheet Configuration -->
+	<bean id="etsService" class="com.mnt.erp.service.EmpTimeSheetServiceImpl">
+		<property name="etsDao">
+			<ref bean="etsDao" />
+		</property>
+	</bean>
+	<bean id="etsDao" class="com.mnt.erp.dao.EmpTimeSheetDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<!--Asset -->
+	<bean id="assetservice" class="com.mnt.erp.service.AssetServiceImpl">
+		<property name="astdao">
+			<ref bean="assettdao" />
+		</property>
+	</bean>
+	<bean id="assettdao" class="com.mnt.erp.dao.AssetDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--Document -->
+	<bean id="documentService" class="com.mnt.erp.service.DocumentServiceImpl">
+		<property name="documentDao">
+			<ref bean="documentDao" />
+		</property>
+	</bean>
+	<bean id="documentDao" class="com.mnt.erp.dao.DocumentDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--Employee Advance -->
+	<bean id="empAdvanceService" class="com.mnt.erp.service.EmpAdvanceServiceImpl">
+		<property name="empAdvanceDao">
+			<ref bean="empAdvanceDao" />
+		</property>
+	</bean>
+	<bean id="empAdvanceDao" class="com.mnt.erp.dao.EmpAdvanceDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Employee Advance Payments -->
+	<bean id="eapservice" class="com.mnt.erp.service.EmpAdvPaymentsServiceImpl">
+		<property name="empadvpaymentsdao">
+			<ref bean="eapdao" />
+		</property>
+	</bean>
+	<bean id="eapdao" class="com.mnt.erp.dao.EmpAdvPaymentsDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Employee Advance Receipts -->
+	<bean id="earservice" class="com.mnt.erp.service.EmpAdvReceiptsServiceImpl">
+		<property name="empadvreceiptsdao">
+			<ref bean="eardao" />
+		</property>
+	</bean>
+	<bean id="eardao" class="com.mnt.erp.dao.EmpAdvReceiptsDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--Evaluation Criteria -->
+	<bean id="evaluationCriteriaService" class="com.mnt.erp.service.EvaluationCriteriaServiceImpl">
+		<property name="evaluationCriteriaDao">
+			<ref bean="evaluationCriteriaDao" />
+		</property>
+	</bean>
+	<bean id="evaluationCriteriaDao" class="com.mnt.erp.dao.EvaluationCriteriaDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+
+	</bean>
+
+	<!--Organization Chart -->
+	<bean id="organizationChartService" class="com.mnt.erp.service.OrganizationChartServiceImpl">
+		<property name="orgChatdao">
+			<ref bean="orgChatdao" />
+		</property>
+	</bean>
+	<bean id="orgChatdao" class="com.mnt.erp.dao.OrganizationChartDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- PayMode Configuration -->
+
+	<bean id="payService" class="com.mnt.erp.service.payModeServiceImpl">
+		<property name="pmDao">
+			<ref bean="payMode" />
+		</property>
+	</bean>
+	<bean id="payMode" class="com.mnt.erp.dao.payModeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Ticket Type Configuration -->
+	<bean id="tService" class="com.mnt.erp.service.ticketTypeServiceImpl">
+		<property name="tDao">
+			<ref bean="ticketType" />
+		</property>
+	</bean>
+	<bean id="ticketType" class="com.mnt.erp.dao.ticketTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--Inspection Plan -->
+	
+	<bean id="inspectionPlanService" class="com.mnt.erp.service.InspectionPlanServiceImpl">
+		<property name="inspectionPlanDao">
+			<ref bean="inspectionPlanDao" />
+		</property>
+	</bean>
+	<bean id="inspectionPlanDao" class="com.mnt.erp.dao.InspectionPlanDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<!-- Claim Configuration -->	
+			<bean id="clService" class="com.mnt.erp.service.ClaimServiceImpl">
+		<property name="clDao">
+			<ref bean="claim" />
+		</property>
+	</bean>
+	<bean id="claim" class="com.mnt.erp.dao.ClaimDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+			</bean>
+
+</beans>

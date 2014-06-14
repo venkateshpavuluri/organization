@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ClaimBean" table="Claim">
+
+<id name="claimId" column="Claim_Id">
+<generator class="increment"></generator>
+</id>
+<property name="claimNo" column="ClaimNo"></property>
+<property name="claimTypeId" column="ClaimType_Id"></property>
+<property name="employeeId" column="Employee_Id"></property>
+<property name="amount" column="Amount"></property>
+<property name="statusId" column="Status_Id"></property>
+<property name="description" column="Description"></property>
+
+
+<set name="claimDocDetails" cascade="all" lazy="false"  fetch="join">
+<key column="Claim_Id" not-null="true" update="true"  ></key>
+<one-to-many  class="com.mnt.erp.bean.ClaimDocumentsBean"  />
+</set>
+
+<many-to-one name="claimTypeDetails" class="com.mnt.erp.bean.ClaimTypeBean" not-null="true" insert="false" update="false" lazy="false">
+<column name="ClaimType_Id"/>
+</many-to-one>
+<many-to-one name="empDetails" class="com.mnt.erp.bean.Employee" not-null="true" insert="false" update="false" lazy="false">
+<column name="Employee_Id"/>
+</many-to-one>
+<many-to-one name="statusDetails" class="com.mnt.erp.bean.Status" not-null="true" insert="false" update="false" lazy="false">
+<column name="Status_Id"/>
+</many-to-one>
+</class>
+</hibernate-mapping>

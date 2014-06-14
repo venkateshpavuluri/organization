@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.EmpQualification" table="EmpQualification">
+
+		<id name="empQual_Id" column="EmpQual_Id">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="employee_Id" column="Employee_Id"></property>
+		<property name="qualification_Id" column="Qualification_Id"></property>
+		<property name="yearPassed" column="YearPassed"></property>
+		<property name="grade" column="Grade"></property>
+		<property name="board" column="Board"></property>
+		<property name="totMarks" column="TotMarks"></property>
+		<property name="percentage" column="Percentage"></property>
+ 
+ 		<many-to-one name="employee" cascade="all"
+			class="com.mnt.erp.bean.Employee" not-null="true" insert="false"
+			update="false">
+			<column name="employee_Id" />
+		</many-to-one>
+
+      	<many-to-one name="qualification" cascade="all"
+			class="com.mnt.erp.bean.Qualification" not-null="true" insert="false"
+			update="false">
+			<column name="qualification_Id" />
+		</many-to-one> 
+		
+		  
+	</class>
+</hibernate-mapping>

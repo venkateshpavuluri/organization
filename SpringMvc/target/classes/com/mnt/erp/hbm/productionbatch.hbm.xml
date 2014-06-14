@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ProductionBatchBean"  table="ProductionBatch">
+<id name="probatchId" column="ProdBatch_Id">
+<generator class="increment"></generator>
+</id>
+<property name="proId" column="ProductionOrder_Id"></property>
+<property name="batchtype" column="BatchType"></property>
+<property name="batchdate" column="BatchDT"></property>
+<property name="batchqty" column="BatchQty"></property>
+<property name="batchstdt" column="BatchSTDT"></property>
+<property name="deliverydt" column="DeliveryDT"></property>
+<property name="batchedt" column="BatchENDT"></property>
+<property name="batchastdt" column="BatchASTDT"></property>
+<property name="batchaedt" column="BatchAENDT"></property>
+<property name="statusId" column="Status_Id"></property>
+ <many-to-one name="pobean" cascade="all"
+			class="com.mnt.erp.bean.ProductionOrderBean" not-null="true" insert="false" update="false">
+			<column name="ProductionOrder_Id"/>
+		</many-to-one> 
+		 <many-to-one name="statusbean" cascade="all"
+			class="com.mnt.erp.bean.Status" not-null="true" insert="false" update="false">
+			<column name="Status_Id"/>
+		</many-to-one> 
+</class>
+</hibernate-mapping>

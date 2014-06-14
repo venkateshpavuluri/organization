@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @Copyright MNTSOFT
+@author pvenkateswarlu
+@version 1.0 23-09-2013 -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.StorageLocation" table="Storagelocation">
+<id name="storageLocationId" column="StorageLocation_Id">
+<generator class="increment"></generator>
+</id>
+<property name="storageLocation" column="StorageLocation"></property>
+<property name="plantId" column="Plant_Id"></property>
+<property name="add1" column="Add1"></property>
+<property name="add2" column="Add2"></property>
+<property name="add3" column="Add3"></property>
+<property name="city" column="City"></property>
+<property name="state" column="State"></property>
+<property name="country" column="Country"></property>
+<property name="phone" column="Phone"></property>
+<property name="fax" column="Fax"></property>
+<property name="mobile" column="Mobile"></property>
+<property name="zip" column="Zip"></property>
+<many-to-one name="countrysList" class="com.mnt.erp.bean.CountrysList" insert="false" not-null="true" cascade="all" update="false" >
+<column name="Country" not-null="true"></column>
+</many-to-one>
+<many-to-one name="plants" class="com.mnt.erp.bean.Plant" insert="false" not-null="true" cascade="all" update="false" >
+<column name="Plant_Id" not-null="true"></column>
+</many-to-one>
+<!-- <set name="storageLocOrgs" cascade="all" lazy="false"  fetch="join">
+<key column="StorageLocation_Id" not-null="true" update="true"  ></key>
+<index column="index_column"></index> 
+<one-to-many  class="com.mnt.erp.bean.StorageLocOrg"  />
+</set> -->
+</class>
+</hibernate-mapping>

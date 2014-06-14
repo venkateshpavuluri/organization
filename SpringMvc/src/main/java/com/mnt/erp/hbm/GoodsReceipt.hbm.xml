@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.GoodsReceipt" table="GoodsReceipt">
+
+<id name="goodsReceipt_Id" column="GoodsReceipt_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="goodsReceiptType_Id" column="GoodsReceiptType_Id"></property>
+<property name="goodsReceiptTypeNum" column="GoodsReceiptTypeNum"></property>
+<property name="receivingID" column="ReceivingID"></property>
+<property name="receivingDate" column="ReceivingDate"></property>
+<property name="statusId" column="ReceivingStatus"></property>
+<property name="memo" column="Memo"></property>
+<property name="vendor_Id" column="Vendor_Id"></property>
+<property name="shippingAddress" column="ShippingAddress"></property>
+<property name="dCNumber" column="DCNumber"></property>
+<property name="dCDate" column="DCDate"></property>
+<property name="transportAgency" column="TransportAgency"></property>
+<property name="docketNum" column="DocketNum"></property>
+<property name="docketDate" column="DocketDate"></property>
+<property name="totalPackages" column="TotalPackages"></property>
+<property name="weight" column="Weight"></property>
+<property name="uom_Id" column="WeightUOM"></property>
+<property name="receivingAddress" column="ReceivingAddress"></property>
+<property name="freightCharges" column="FreightCharges"></property>
+<property name="totalValue" column="TotalValue"></property>
+<property name="prodOrder_Id" column="ProdOrder_Id"></property>
+<property name="batch_Id" column="Batch_Id"></property>
+<property name="routeCard_Id" column="RouteCard_Id"></property>
+<property name="createdBy" column="CreatedBy"></property>
+<property name="createdDTTM" column="CreatedDTTM"></property>
+<property name="modifiedBy" column="ModifiedBy"></property>
+<property name="modifiedDTTM" column="ModifiedDTTM"></property>
+
+ <bag name="goodsReceiptLine" cascade="all" lazy="false" fetch="join">
+<key column="GoodsReceipt_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.GoodsReceiptLine"/>
+</bag> 
+
+
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EmpAdvance" table="EmpAdvance">
+
+<id name="empAdvanceId" column="EmpAdvance_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="loanTypeId" column="LoanType_Id"></property>
+<property name="employeeId" column="Employee_Id"></property>
+<property name="advanceAmount" column="AdvanceAmount"></property>
+<property name="currencyId" column="Currency_Id"></property>
+<property name="repayAmountPM" column="RepayAmountPM"></property>
+<property name="statusId" column="Status_Id"></property>
+<property name="description" column="Description"></property>
+<property name="payModeId" column="PayMode_Id"></property>
+<property name="bankId" column="Bank_Id"></property>
+<property name="branch" column="Branch"></property>
+<property name="isFixedAmount" column="IsFixedAmount"></property>
+<property name="fixedAmount" column="FixedAmount"></property>
+<property name="isEMI" column="IsEMI"></property>
+<property name="noofInstallments" column="NoofInstallments"></property>
+<property name="sTDT" column="STDT"></property>
+
+<many-to-one name="status" cascade="all"
+			class="com.mnt.erp.bean.Status" not-null="true" insert="false" update="false">
+			<column name="Status_Id"/>
+		</many-to-one>
+		<many-to-one name="currency" cascade="all"
+			class="com.mnt.erp.bean.Currency" not-null="true" insert="false" update="false">
+			<column name="Currency_Id"/>
+		</many-to-one>
+		<many-to-one name="employee" cascade="all"
+			class="com.mnt.erp.bean.Employee" not-null="true" insert="false" update="false">
+			<column name="Employee_Id"/>
+		</many-to-one>
+		<many-to-one name="loanType" cascade="all"
+			class="com.mnt.erp.bean.LoanTypeBean" not-null="true" insert="false" update="false">
+			<column name="LoanType_Id"/>
+		</many-to-one>
+
+
+</class>
+</hibernate-mapping>

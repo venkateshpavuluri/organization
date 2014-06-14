@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.VendorReturn" table="VendorReturn">
+		<id name="vendorReturnId" column="VendorReturn_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="vendorReturnNo" column="VendorReturn_No"></property>
+		<property name="vendorReturnDate" column="VendorReturnDate"></property>
+		<property name="reference" column="Reference"></property>
+		<property name="description" column="Description"></property>
+		<property name="purchaseOrderId" column="PurchaseOrder_Id"></property>
+		<property name="goodsReceiptId" column="GoodsReceipt_Id"></property>
+		
+		<bag name="vendorReturnLine" cascade="all" lazy="false" fetch="join">
+			<key column="VendorReturn_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.VendorReturnLine" />
+		</bag>
+		<many-to-one name="purchaseOrderBean" cascade="all"
+			class="com.mnt.erp.bean.PurchaseOrder" not-null="false" insert="false"
+			update="false">
+			<column name="PurchaseOrder_Id" />
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>
+
+
+

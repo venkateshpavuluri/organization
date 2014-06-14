@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.ShippingConditionBean" table="ShippingCondition">
+		<id name="shippingConditionId" column="ShippingCondition_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="shippingCondition" column="ShippingCondition"></property>
+
+	</class>
+
+</hibernate-mapping>

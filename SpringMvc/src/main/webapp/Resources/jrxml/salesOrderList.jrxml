@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="salesOrderList" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7f5c857c-d151-46dc-a884-53fd85bf7fb0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D3D3D3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="salesOrderList" uuid="32986d4a-0362-461d-810a-dafc27ca8a0c">
+		<parameter name="salesOrderNo" class="java.lang.String" isForPrompting="false"/>
+		<parameter name="salesOrderDate" class="java.lang.String" isForPrompting="false"/>
+		<parameter name="datePattern" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[exec SalesOrderList $P{salesOrderNo},$P{salesOrderDate}]]>
+		</queryString>
+		<field name="SalesOrder_Id" class="java.lang.Integer"/>
+		<field name="SalesOrderNo" class="java.lang.String"/>
+		<field name="CustomerName" class="java.lang.String"/>
+		<field name="CustomerPONumber" class="java.lang.String"/>
+		<field name="CustomerPODate" class="java.util.Date"/>
+		<field name="SalesGroup" class="java.lang.String"/>
+		<field name="SalesOrderDate" class="java.util.Date"/>
+		<field name="Status" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="logoID" class="java.lang.String"/>
+	<parameter name="salesOrderNo" class="java.lang.String"/>
+	<parameter name="salesOrderDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="datePattern" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[exec reportImage $P{logoID}]]>
+	</queryString>
+	<field name="logo" class="java.io.InputStream"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8289a3e4-f982-45ee-b813-7346370bc80a" x="292" y="0" width="268" height="35" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  MNT SOFT PVT.LTD]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="1c2e5e0c-b8fd-4c81-8a46-72b290c4e8f7" x="18" y="2" width="160" height="50"/>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="8aa19537-0894-47d0-8b31-c8d1bc896116" x="0" y="55" width="802" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c4f00aa5-b78a-43e1-842f-b16828d763d6" x="339" y="0" width="168" height="29" forecolor="#333333"/>
+				<textElement>
+					<font fontName="Verdana" size="18" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[SALES ORDER]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="9199c175-0d3c-4841-b241-938eb385d9cc" x="715" y="0" width="112" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="9d8c93e9-5db3-43b6-94e8-9df080cb159c" key="table 7" x="60" y="19" width="630" height="50"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="salesOrderList" uuid="32749ebf-6801-4123-9b38-d35f2e1462e6">
+						<datasetParameter name="salesOrderNo">
+							<datasetParameterExpression><![CDATA[$P{salesOrderNo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="salesOrderDate">
+							<datasetParameterExpression><![CDATA[$P{salesOrderDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="datePattern">
+							<datasetParameterExpression><![CDATA[$P{datePattern}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="50" uuid="e7feacb0-4b4e-4148-ac0c-91b70a38145c">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="9ba02dbc-3927-4668-9a82-1a25fd4cfd0f" style="table_CH" x="0" y="0" width="50" height="30" backcolor="#FFFFFF"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Bottom">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Serial No]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="8fdda165-7abf-4123-b4d5-2e937657bd63" style="table_TD" x="0" y="0" width="50" height="30"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="21bfc0ca-a517-4cf7-ad91-cb2aff7b6f8f">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="71679ffd-622f-46f2-bb7e-53a4d88a305b" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SalesOrderNo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="5c1cbf34-1936-4535-bf84-a002ca8dc7a0" style="table_TD" x="0" y="0" width="90" height="30"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SalesOrderNo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2faf4c0f-4e22-4915-9999-22cc3b0e0477">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="2c598e3a-2da6-4031-869d-3438e8a650f0" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[CustomerName]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="9147b983-2a6c-4ec0-ba60-d737b4f208d6" style="table_TD" x="0" y="0" width="90" height="30"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CustomerName}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="76" uuid="fce20f47-5190-43e7-8097-27e067c8fed9">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="61bb5a5d-58a8-43ad-82f8-2f08c4798598" style="table_CH" x="0" y="0" width="76" height="30" backcolor="#FFFFFF"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[CustomerPONumber]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="c51c519c-afbe-46e0-b6d5-1d649adcab69" style="table_TD" x="0" y="0" width="76" height="30"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CustomerPONumber}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="104" uuid="ab76b9a4-f3c8-4a0a-8dcb-d32fe6bb1f63">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="55d4b6a7-2ad9-4718-9366-757816b281f5" style="table_CH" x="0" y="0" width="104" height="30" backcolor="#FFFFFF"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[CustomerPODate]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="371d46e3-3b30-4cc8-9945-5f0df733ddc7" style="table_TD" x="0" y="0" width="104" height="30"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{CustomerPODate})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0cfcb24f-e698-4de6-b359-37131f36082a">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="01d332d2-d858-4bba-a74c-33d63cb8499b" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SalesGroup]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="7608c278-f2b9-427f-9f66-c5f28af108b3" style="table_TD" x="0" y="0" width="90" height="30"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SalesGroup}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e417d8ff-4e76-48eb-bbdd-549818b32cd2">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="90742040-94ff-48dc-ba87-ac91a630a501" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SalesOrderDate]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="aa04b122-d7ce-4ade-bd1b-dbe8a24bcdb0" style="table_TD" x="0" y="0" width="90" height="30"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{SalesOrderDate})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="cf1b27a3-98dd-44f5-9472-5fe288065e02">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="5eb8dcc1-3e83-4793-a7ba-66a0091fbee7" style="table_CH" x="0" y="0" width="90" height="30" backcolor="#FFFFFF"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="5d0e20d5-eea2-4081-8825-ea51b09a5fa6" style="table_TD" x="0" y="0" width="90" height="30"/>
+								<box>
+									<pen lineColor="#333333"/>
+									<topPen lineColor="#333333"/>
+									<leftPen lineColor="#333333"/>
+									<bottomPen lineColor="#333333"/>
+									<rightPen lineColor="#333333"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Verdana"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Status}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ffbe06d2-688d-4ba0-ac83-add7accacd60" x="667" y="14" width="80" height="20" forecolor="#666666"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8b61a4c7-7762-4aef-b240-d82ca673c360" x="747" y="14" width="40" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="704709f0-5399-4e81-b105-3fe94a43bc2c" x="0" y="14" width="178" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<text><![CDATA[Copy rights @MNT Soft Pvt.Ltd]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.InterViewSchedule"  table="InterviewSchedule">
+<id name="interviewScheduleId" column="Schedule_Id">
+<generator class="increment"></generator>
+</id>
+<property name="vacancyDetailId" column="VacancyDetail_Id"></property>
+<property name="applicantId" column="Applicant_Id"></property>
+<property name="scheduledDate" column="ScheduledDT"></property>
+<property name="scheduledTime" column="ScheduledTime"></property>
+<property name="interviewRoundId" column="InterviewRound_Id"></property>
+<property name="assignedTo" column="AssignedTo"></property>
+<property name="venue" column="Venue"></property>
+<many-to-one name="vacancyDetails" class="com.mnt.erp.bean.VacancyDetailLine" insert="false" not-null="true" update="false" >
+<column name="VacancyDetail_Id"></column>
+</many-to-one>
+<many-to-one name="employees" class="com.mnt.erp.bean.Employee" insert="false" not-null="true" update="false" >
+<column name="AssignedTo"></column>
+</many-to-one>
+<many-to-one name="applicant" class="com.mnt.erp.bean.ApplicantBean" insert="false" not-null="true" update="false" >
+<column name="Applicant_Id"></column>
+</many-to-one>
+
+<many-to-one name="interviewRound" class="com.mnt.erp.bean.InterviewRound" insert="false" not-null="true" update="false" >
+<column name="InterviewRound_Id"></column>
+</many-to-one>
+
+<bag name="ivResultDetails" cascade="all" lazy="false" fetch="join">
+			<key column="Schedule_Id" not-null="true" update="true"></key>
+			<one-to-many class="com.mnt.erp.bean.InterViewResult" />
+		</bag>
+		
+</class>
+<!-- Dashboard -->
+<sql-query name="GetScheduleInterviews" callable="true" >
+   <return-scalar column="Schedule_Id" type="string"/>
+   <return-scalar column="ApplicantName" type="string"/>
+   <return-scalar column="ScheduledDT" type="string"/>
+   <return-scalar column="ScheduledTime" type="string"/>
+   <return-scalar column="InterviewRound" type="string"/>
+   <return-scalar column="AssignedTo" type="string"/>
+      {call GetScheduleInterviews()}
+    </sql-query> 
+</hibernate-mapping>

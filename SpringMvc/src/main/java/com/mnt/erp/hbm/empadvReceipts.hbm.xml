@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EmpAdvanceReceipts"  table="EmpAdvanceReceipts">
+<id name="earId" column="EmpAdvanceReceipts_Id">
+<generator class="increment"></generator>
+</id>
+<property name="earadvId" column="EmpAdvance_Id"></property>
+<property name="receivedamount" column="ReceivedAmount"></property>
+<property name="receiveddate" column="ReceivedDT"></property>
+<property name="month" column="Month"></property>
+<many-to-one name="empadvrecbean" cascade="all"
+			class="com.mnt.erp.bean.EmpAdvance" not-null="true" insert="false" update="false">
+			<column name="EmpAdvance_Id"/>
+</many-to-one>
+</class>
+</hibernate-mapping>

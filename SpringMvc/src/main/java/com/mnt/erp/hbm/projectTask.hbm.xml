@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ProjectTask" table="ProjectTask">
+
+<id name="projectTaskId" column="ProjectTask_Id">
+<generator class="increment"></generator>
+</id>
+<property name="projectTask" column="ProjectTask"></property>
+<property name="projectId" column="Project_Id"></property>
+<property name="plantStartDt" column="PSTDT"></property>
+<property name="plantEndDt" column="PENDT"></property>
+<property name="actualStartDt" column="ASTDT"></property>
+<property name="actualEndDt" column="AENDT"></property>
+<property name="durationHrs" column="DurationHrs"></property>
+<property name="predessor" column="Predessor"></property>
+<property name="percentComplete" column="PCTComplete"></property>
+<property name="milestone" column="Milestone"></property>
+
+<bag name="projectTaskResources" lazy="false" cascade="all" fetch="join">
+<key column="ProjectTask_Id" not-null="true" update="true" ></key>
+<one-to-many  class="com.mnt.erp.bean.ProjectTaskResource"  />
+</bag>
+<set name="PTaskDetails" cascade="all" lazy="false"  fetch="join">
+<key column="ProjectTask_Id" not-null="true" update="true"  ></key>
+<one-to-many  class="com.mnt.erp.bean.ProjectTaskDocument"  />
+</set>
+
+<many-to-one name="prjctDetails" class="com.mnt.erp.bean.Project" not-null="true" insert="false" update="false" lazy="false">
+<column name="Project_Id"/>
+</many-to-one>
+</class>
+</hibernate-mapping>

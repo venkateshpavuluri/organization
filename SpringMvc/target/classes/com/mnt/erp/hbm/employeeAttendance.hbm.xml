@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EmployeeAttendance" table="EmpAttendance">
+
+<id name="empAttendanceId" column="EmpAttendance_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="employee_Id" column="Employee_Id"></property>
+<property name="date" column="Date"></property>
+<property name="shiftId" column="Shift_Id"></property>
+<property name="inTime" column="TimeIn"></property>
+<property name="outTime" column="TimeOut"></property>
+<property name="attendance" column="Attendance"></property>
+<property name="overTime" column="OT"></property>
+
+
+<many-to-one name="employeeBean" class="com.mnt.erp.bean.Employee" insert="false" not-null="true" lazy="false" cascade="all" update="false" >
+<column name="Employee_Id"></column>
+</many-to-one>
+ <many-to-one name="shiftBean" class="com.mnt.erp.bean.ShiftBean" insert="false" not-null="true" lazy="false" cascade="all" update="false" >
+<column name="Shift_Id"></column>
+</many-to-one>
+
+</class>
+</hibernate-mapping>

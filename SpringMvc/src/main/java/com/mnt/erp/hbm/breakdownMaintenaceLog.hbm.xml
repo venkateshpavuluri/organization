@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.BreakDownMaintenanceLog" table="BreakdownMaintenaceLog">
+
+<id name="brkdownMaintenaceLogId" column="BreakdownMaintenaceLog_Id">
+<generator class="increment"></generator>
+</id>
+<property name="brkdownMaintenaceId" column="BreakdownMaintenace_Id"></property>
+<property name="logNo" column="LogNo"></property>
+<property name="startDt" column="STDT"></property>
+<property name="endDt" column="ENDT"></property>
+<property name="repairedBy" column="RepairedBy"></property>
+<bag name="brkDownMtSpare" cascade="all"  lazy="false" fetch="join">
+			<key column="BreakdownMaintenaceLog_Id" not-null="true" update="true"></key>
+			<one-to-many class="com.mnt.erp.bean.BreakDownMaintenanceSpare" />
+		</bag>
+		<many-to-one name="brkdwnMiant"  class="com.mnt.erp.bean.BreakDownMaintenance" lazy="false" not-null="true" insert="false" update="false">
+			<column name="BreakdownMaintenace_Id" />
+		</many-to-one>
+</class>
+</hibernate-mapping>

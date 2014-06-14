@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.MatStockBean" table="MatStock">
+		<id name="matStockId" column="MaterialStock_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="materialId" column="Material_Id"></property>
+		<property name="storLocId" column="StorageLocation_Id"></property>
+		<property name="batchNo" column="BatchNo"></property>
+		<property name="qtyAval" column="QtyAvailabale"></property>
+		
+		<many-to-one name="storageLocDetails" class="com.mnt.erp.bean.StorageLocation"
+			insert="false" cascade="all" not-null="true" lazy="false" fetch="join"
+			update="false">
+			<column name="StorageLocation_Id"></column>
+		</many-to-one>
+
+		<many-to-one name="materialsDetails" class="com.mnt.erp.bean.Material"
+			insert="false" not-null="true" cascade="all" lazy="false" fetch="join"
+			update="false">
+			<column name="Material_Id"></column>
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

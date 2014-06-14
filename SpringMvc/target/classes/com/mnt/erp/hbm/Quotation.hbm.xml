@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Quotation" table="Quotation">
+<id name="quotationId" column="Quotation_Id">
+<generator class="increment"></generator>
+</id>
+<property name="quotationNo" column="QuotationNo"></property>
+<property name="vendorId" column="Vendor_Id"></property>
+<property name="rfqid" column="RFQ_Id" ></property>
+
+<property name="quotationDate" column="QuotationDate"></property>
+<property name="description" column="Description"></property>
+<property name="quotStatusId" column="Status_Id"></property>
+
+<bag name="quotationLine" cascade="all" lazy="false" fetch="join">
+<key column="Quotation_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.QuotationLine"/>
+</bag> 
+
+<many-to-one name="vendorBean"  lazy="false"
+	class="com.mnt.erp.bean.Vendor" not-null="true" insert="false" update="false">
+	<column name="Vendor_Id"/>
+</many-to-one>
+<many-to-one name="statusBean"  lazy="false"
+	class="com.mnt.erp.bean.Status" not-null="true" insert="false" update="false">
+	<column name="Status_Id"/>
+</many-to-one>
+</class>
+</hibernate-mapping>
+
+
+

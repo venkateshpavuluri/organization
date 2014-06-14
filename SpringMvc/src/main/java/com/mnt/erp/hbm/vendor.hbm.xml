@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Vendor" table="Vendor">
+<id name="vendorId" column="Vendor_Id">
+<generator class="increment"></generator>
+</id>
+<property name="customerId" column="Customer_Id"></property>
+<property name="vendorName" column="VendorName"></property>
+<property name="address" column="Address"></property>
+<property name="city" column="City"></property>
+<property name="state" column="State"></property>
+<property name="country" column="Country"></property>
+<property name="zip" column="Zip"></property>
+<property name="email" column="Email"></property>
+<property name="phone" column="Phone"></property>
+<property name="fax" column="Fax"></property>
+<property name="mobile" column="Mobile"></property>
+<property name="vendGroupId" column="VendGroup_Id"></property>
+<property name="blocked" column="Blocked"></property>
+<property name="tinNo" column="TINNo"></property>
+<property name="panNo" column="PANNo"></property>
+<property name="vatNo" column="VATNo"></property>
+<property name="serviceTaxNo" column="ServiceTaxNo"></property>
+<property name="statusId" column="Status_Id"></property>
+
+<!-- <bag name="vendorBankDet" cascade="all">
+<key column="Vendor_Id"></key>
+<one-to-many class="com.mnt.erp.bean.VendorBankDet" />
+</bag> -->
+
+
+<!-- <set name="vendAccount" cascade="all" lazy="false">
+			<key column="Vendor_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.VendorAccountDetails" />
+		</set> -->
+</class>
+</hibernate-mapping>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   
+  <!-- @Copyright MNTSOFT
+@author pvenkateswarlu
+@version 1.0 15-09-2013 -->
+   
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Material" table="Material">
+<id name="material_Id" column="Material_Id">
+<generator class="increment"></generator>
+</id>
+<property name="materialCode" column="MaterialCode"></property>
+<property name="materialName" column="MaterialName"></property>
+<property name="materialDescription" column="Description"></property>
+  <property name="materialCategory" column="MaterialCategory_Id" ></property>  
+ <property name="materialType" column="MaterialType_Id" ></property> 
+<property name="salesUOM" column="SalesUOM"></property>
+<property name="active" column="Active"></property>
+<property name="uom" column="UOM_Id"></property>  
+<property name="purchaseUOM" column="PurchaseUOM"></property>
+<property name="avgWeight" column="AvgWeight"></property>
+<property name="avgHeight" column="AvgHeight"></property>
+<property name="avgLength" column="AvgLength"></property>
+<property name="avgVolume" column="AvgVolume"></property>
+<property name="weightUOM" column="WeightUOM"></property>
+<property name="heightUOM" column="HeightUOM"></property>
+<property name="lengthUOM" column="LengthUOM"></property>
+<property name="dimension" column="Dimension"></property>
+<property name="shelfLife" column="ShelfLife"></property>
+<property name="shelfLifeUOM" column="ShelfLifeUOM"></property>
+<property name="reorderLevel" column="ReorderLevel"></property>
+ <property name="taxCatogery" column="TaxCategory_Id" not-null="false"></property>  
+<property name="maxDeliveryTime" column="MaxDeliveryTime"></property>
+<property name="maxDeliveryTimeUOM" column="MaxDeliveryTimeUOM"></property>
+<property name="alternateUOM" column="AlternateUOM"></property>
+<property name="stock" column="Stock"></property>
+<set name="mibean" cascade="all" lazy="false" fetch="join">
+			<key column="Material_Id" not-null="true" update="true"></key>
+			<one-to-many class="com.mnt.erp.bean.MaterialInspection" />
+		</set>
+
+ <many-to-one name="category" class="com.mnt.erp.bean.MaterialCategory" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="MaterialCategory_Id" ></column>
+</many-to-one> 
+<many-to-one name="materialTypeValues" class="com.mnt.erp.bean.MaterialType" insert="false"  not-null="true" cascade="all"  update="false" >
+<column name="MaterialType_Id" ></column>
+</many-to-one>
+<many-to-one name="taxCategory" class="com.mnt.erp.bean.TaxCategory" insert="false" not-null="false" cascade="all" update="false" >
+<column name="TaxCategory_Id"></column>
+</many-to-one>
+<many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom" insert="false" not-null="true" cascade="all" update="false" >
+<column name="UOM_Id"  ></column>
+</many-to-one> 
+
+
+
+</class>
+
+ <sql-query name="material" callable="true">
+      <return class="com.mnt.erp.bean.Material"/>
+      {call GetMaterial()}
+    </sql-query> 
+    
+     <sql-query name="TobeReorderedMaterial" callable="true">
+    <return-scalar column="MaterialName" type="string"/>
+   <return-scalar column="QtyAvailabale" type="string"/>
+     <return-scalar column="ReorderLevel" type="string"/>
+     <return-scalar column="UOM" type="string"/>
+      {call TobeReorderedMaterial(:exMessage)}
+    </sql-query> 
+</hibernate-mapping>

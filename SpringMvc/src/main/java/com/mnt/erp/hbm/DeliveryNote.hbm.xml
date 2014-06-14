@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.DeliveryNote" table="DeliveryNote">
+
+		<id name="deliveryNoteId" column="DeliveryNote_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="deliveryNoteDate" column="DeliveryNoteDate"></property>
+		<property name="salesOrderId" column="SalesOrder_Id"></property>
+		<property name="totalWeight" column="TotalWeight"></property>
+		<property name="uomId" column="UOM_Id"></property>
+		<property name="plannedGI" column="PlannedGI"></property>
+		<property name="actualGI" column="ActualGI"></property>
+		<property name="noofPacks" column="NoofPacks"></property>
+		<property name="statusId" column="Status_Id"></property>
+		
+		<set name="deliveryNotes" cascade="all" lazy="false" fetch="join">
+			<key column="DeliveryNote_Id" not-null="true" update="true"></key>
+			<one-to-many class="com.mnt.erp.bean.DeliveryNoteLine" />
+		</set>
+		<many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom"
+			not-null="true" insert="false" update="false" lazy="false">
+			<column name="UOM_Id" />
+		</many-to-one>
+		<many-to-one name="statusDetails" class="com.mnt.erp.bean.Status"
+			not-null="true" insert="false" update="false" lazy="false">
+			<column name="Status_Id" />
+		</many-to-one>
+		<many-to-one name="salesOrderDetails" class="com.mnt.erp.bean.SalesOrderBean"
+			not-null="true" insert="false" update="false" lazy="false">
+			<column name="SalesOrder_Id" />
+		</many-to-one>
+
+
+	</class>
+
+
+</hibernate-mapping>

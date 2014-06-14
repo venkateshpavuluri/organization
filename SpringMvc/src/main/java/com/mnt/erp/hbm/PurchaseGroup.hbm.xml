@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PurchaseGroup" table="PurchaseGroup">
+<id name="purchaseGroupId" column="PurchaseGroup_Id" type="integer">
+<generator class="increment"/>
+</id>
+<property name="purOrg_Id" column="PurchaseOrganization_Id" ></property>
+<property name="purchaseGroup" column="PurchaseGroup"></property>
+
+		<many-to-one name="poBean" cascade="none"
+			class="com.mnt.erp.bean.PurchaseOrganization" not-null="true" insert="false"
+			update="false">
+			<column name="PurchaseOrganization_Id" />
+		</many-to-one> 
+</class>
+</hibernate-mapping>

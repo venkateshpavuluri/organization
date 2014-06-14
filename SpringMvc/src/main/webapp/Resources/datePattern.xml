@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datePatternsBean>
+
+	<datePattern>dd-mm-yy</datePattern>
+	<conPattern>dd-MM-yyyy</conPattern>
+	<dbPattern>yyyy-MM-dd</dbPattern>
+	
+</datePatternsBean>
+
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.UserRolePrivilege" table="UserRolePrivileges">
+<id name="userRolePrivilegeId" column="UserRolePrivilege_Id"><generator class="increment"></generator>
+</id>
+<property name="roleId" column="Role_Id"></property>
+<property name="userId" column="User_Id" ></property>
+<property name="menuId" column="Menu_Id" ></property>
+<property name="privilegeId" column="Privilege_Id" ></property>
+<many-to-one name="usersDetails" class="com.mnt.erp.bean.Users" insert="false" not-null="true" fetch="join" cascade="all" update="false" lazy="false" >
+<column name="User_Id" not-null="true" ></column>
+</many-to-one> 
+<many-to-one name="roleDetails" class="com.mnt.erp.bean.Role" insert="false" not-null="true" fetch="join" cascade="all" update="false" lazy="false" >
+<column name="Role_Id" not-null="true" ></column>
+</many-to-one>
+<many-to-one name="menuDetails" class="com.mnt.erp.bean.MenuItems" insert="false" not-null="true" fetch="join" cascade="all" update="false" lazy="false" >
+<column name="Menu_Id" not-null="true" ></column>
+</many-to-one>
+<many-to-one name="privilegeDetails" class="com.mnt.erp.bean.Privilege" insert="false" not-null="true" fetch="join" cascade="all" update="false" lazy="false" >
+<column name="Privilege_Id" not-null="true" ></column>
+</many-to-one>
+</class>
+ <sql-query name="GetMenuPrivilege" callable="true" >
+   <return-scalar column="Privilege_Id" type="string"/>
+  <!--  <return-scalar column="ActionComments" type="string"/> -->
+      {call GetMenuPrivilege(:UserId,:MenuId)}
+    </sql-query>
+</hibernate-mapping>

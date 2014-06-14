@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dt:mobileTracking xmlns:dt="http://mnt.org/types/sales" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mnt.org/types/sales mobileTracking.xsd ">
+  <dt:imienumber>159</dt:imienumber>
+  <dt:latitude>159</dt:latitude>
+  <dt:longitude>159</dt:longitude>
+  <dt:dt>6-01-2013</dt:dt>
+</dt:mobileTracking>

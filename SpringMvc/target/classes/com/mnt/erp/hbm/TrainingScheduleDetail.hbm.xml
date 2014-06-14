@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.TrainingScheduleDetail" table="TrainingScheduleDetails">
+
+<id name="trainingScheduleDet_Id" column="TrainingScheduleDet_Id">
+<generator class="increment"></generator>
+</id>
+<property name="trainingSchedule_Id" column="TrainingSchedule_Id" insert="false" update="false"></property> 
+
+<property name="employeeId" column="Employee_Id"></property>
+
+<many-to-one name="empDetails" class="com.mnt.erp.bean.Employee" not-null="true" insert="false" update="false" lazy="false">
+<column name="Employee_Id"/>
+</many-to-one>
+
+</class>
+
+
+</hibernate-mapping>

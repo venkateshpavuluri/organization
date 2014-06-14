@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.VacancyDetailLine" table="VacancyDetail">
+
+<id name="vacancyDetailLineId" column="VacancyDetail_Id">
+<generator class="increment"></generator>
+</id>
+<property name="vacancyId" column="Vacancy_Id" insert="false" update="false"></property> 
+
+<property name="departmentId" column="Department_Id"></property>
+<property name="noOfPositions" column="NoofPositions"></property>
+<property name="vacancyDetailNo" column="VacancyDetailNo"></property>
+<property name="skillId" column="Skill_Id"></property>
+<property name="statusId" column="Status_Id"></property>
+ <many-to-one name="deptDetails" class="com.mnt.erp.bean.Department" not-null="true" insert="false" update="false" lazy="false">
+<column name="Department_Id"/>
+</many-to-one>
+<many-to-one name="statusDetails" class="com.mnt.erp.bean.Status" not-null="true" insert="false" update="false" lazy="false">
+<column name="Status_Id"/>
+</many-to-one>
+<many-to-one name="skillDetails" class="com.mnt.erp.bean.Skill" not-null="true" insert="false" update="false" lazy="false">
+<column name="Skill_Id"/>
+</many-to-one>
+
+</class>
+</hibernate-mapping>

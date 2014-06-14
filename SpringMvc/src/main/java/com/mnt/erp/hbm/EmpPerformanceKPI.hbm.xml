@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EmpPerformanceKPI" table="EmpPerformanceKPI">
+
+<id name="performanceReviewKPIId" column="PerformanceReviewKPI_Id">
+<generator class="increment"></generator>
+</id>
+<property name="kPIId" column="KPI_Id"></property>
+<property name="rating" column="Rating"></property>
+<property name="comment" column="Comment"></property>
+<property name="evaluationBy" column="EvaluationBy"></property>
+
+<many-to-one name="kpibean" class="com.mnt.erp.bean.KPIBean"  insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="KPI_Id"></column>
+</many-to-one> 
+
+<many-to-one name="employee" class="com.mnt.erp.bean.Employee"  insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="EvaluationBy"></column>
+</many-to-one> 
+
+</class>
+</hibernate-mapping>

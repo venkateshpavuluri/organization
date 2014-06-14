@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.CustomerBean" table="Customer">
+		<id name="customerId" column="Customer_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="customerName" column="CustomerName"></property>
+		<property name="customerGroupId" column="CustomerGroup_Id"></property>
+		<property name="salesAreaId" column="SalesArea_Id"></property>
+		<property name="companyName" column="CompanyName"></property>
+		<property name="address" column="Address"></property>
+		<property name="city" column="City"></property>
+		<property name="state" column="State"></property>
+		<property name="countryId" column="Country_Id"></property>
+		<property name="zip" column="Zip"></property>
+		<property name="email" column="Email"></property>
+		<property name="phone" column="Phone"></property>
+		<property name="mobile" column="Mobile"></property>
+		<property name="fax" column="Fax"></property>
+		<property name="statusId" column="Status_Id"></property>
+		<property name="active" column="Active"></property>
+
+		<property name="contactPerson" column="ContactPerson"></property>
+		<property name="contactPersonPhone" column="ContactPersonPhone"></property>
+
+		<bag name="custBank" cascade="all" lazy="false">
+			<key column="Customer_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.CustomerBankDept" />
+		</bag>
+
+		<set name="custAccount" cascade="all" lazy="false">
+			<key column="Customer_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.CustomerAccount" />
+		</set>
+
+		<many-to-one name="countrys" cascade="all"
+			class="com.mnt.erp.bean.CountrysList" not-null="true" insert="false"
+			update="false">
+			<column name="Country_Id" />
+		</many-to-one>
+
+		<many-to-one name="custGroup" cascade="all"
+			class="com.mnt.erp.bean.CustomerGroup" not-null="true" insert="false"
+			update="false">
+			<column name="CustomerGroup_Id" />
+		</many-to-one>
+
+		<many-to-one name="salesArea" cascade="all"
+			class="com.mnt.erp.bean.SalesAreaBean" not-null="true" insert="false"
+			update="false">
+			<column name="SalesArea_Id"></column>
+		</many-to-one>
+
+		<many-to-one name="status" cascade="all"
+			class="com.mnt.erp.bean.Status" not-null="true" insert="false"
+			update="false">
+			<column name="Status_Id"></column>
+		</many-to-one>
+	</class>
+
+</hibernate-mapping>

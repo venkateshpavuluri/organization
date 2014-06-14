@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.DocumentObject" table="DocumentObject">
+
+<id name="documentObjectId" column="DocumentObject_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="objectId" column="Object_Id"></property>
+<property name="objectRefId" column="ObjectRefId"></property>
+
+ <many-to-one name="objectBean" class="com.mnt.erp.bean.ObjectBean" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="Object_Id"></column>
+</many-to-one> 
+</class>
+</hibernate-mapping>

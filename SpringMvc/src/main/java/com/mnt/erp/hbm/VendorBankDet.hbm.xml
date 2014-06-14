@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.VendorBankDet" table="VendorBankDet">
+<id name="vendorBankDetId" column="VendorBankDet_Id">
+<generator class="increment"></generator>
+</id>
+<property name="bankName" column="BankName"></property>
+<property name="bankAddress" column="BankAddress"></property>
+<property name="micrCode" column="MICRCode"></property>
+<property name="ifscCode" column="IFSCCode"></property>
+<property name="accountType" column="AccountType"></property>
+<property name="accountNumber" column="AccountNumber"></property>
+<property name="vendorId" column="Vendor_Id"></property>
+
+
+</class>
+</hibernate-mapping>

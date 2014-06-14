@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.GoodsIssue" table="GoodsIssue">
+
+		<id name="goodsIssueId" column="GoodsIssue_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="goodsIssueNo" column="GoodsIssueNo"></property>
+		<property name="goodsIssueDate" column="GoodsIssueDate"></property>
+		<property name="deliveryNoteId" column="DeliveryNote_Id"
+			not-null="false"></property>
+		<property name="producionOrderId" column="ProducionOrder_Id"
+			not-null="false"></property>
+		<property name="postingDate" column="PostingDate"></property>
+		<property name="reasonForMovementId" column="ReasonForMovement_Id"></property>
+		<property name="reference" column="Reference"></property>
+
+		<bag name="goodsIssueLineDetails" cascade="all" lazy="false"
+			fetch="join">
+			<key column="GoodsIssue_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.GoodsIssueLine" />
+		</bag>
+
+		<many-to-one name="reasonForMovementDetails" class="com.mnt.erp.bean.ReasonForMovement"
+			insert="false" not-null="true" cascade="all" lazy="false" fetch="join"
+			update="false">
+			<column name="ReasonForMovement_Id"></column>
+		</many-to-one>
+	</class>
+
+	<sql-query name="availableQuantity" callable="true">
+		{call
+		availableQuantity(:material,:batchNo,:storageLocation)}
+	</sql-query>
+
+	<sql-query name="materialStockUpdate" callable="true">
+
+		{call materialStockUpdate(:materialid,:stockDeductedOrAdded,:mode)}
+	</sql-query>
+
+	<sql-query name="GoodsDeliveryIntheYear" callable="true">
+		<return-scalar column="MaterialName" type="string" />
+		<return-scalar column="DeliveredQty" type="string" />
+		{call GoodsDeliveryIntheYear(:message)}
+	</sql-query>
+
+</hibernate-mapping>

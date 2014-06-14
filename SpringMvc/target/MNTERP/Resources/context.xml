@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<contexts>
+	<context id="assetId">
+			<field  visible="true" label="Asset Type" dbfield="assertTypeName"></field>	
+	</context>
+	
+	<context id="shippingId">
+	<field  visible="true" label="Shipping Condition" dbfield="shippingCondition"></field>
+	</context>
+	
+	<context id="shedulingId">
+	<field  visible="true" label="Sheduling Type" dbfield="shedulingType"></field>
+	</context>
+	
+	<context id="customerId">
+	<field  visible="true" label="Customer Name" dbfield="customerName"></field>
+	<field  visible="true" label="Company Name" dbfield="companyName"></field>
+	<field  visible="true" label="City" dbfield="city"></field>
+	</context>
+	
+	<context id="assetGroupId">
+	<field  visible="true" label="Asset Group Type" dbfield="assetGroupType"></field>
+	</context>
+	
+	<context id="accountGroupId">
+	<field  visible="true" label="Account Group" dbfield="accountgroup"></field>
+	</context>
+	
+	<context id="equipmentId">
+	<field  visible="true" label="Equipment Category" dbfield="equipmentCategory"></field>
+	</context>
+	
+	<context id="goodsReceiptId">
+	<field  visible="true" label="Goods Receipt Type" dbfield="goodsReceiptType"></field>
+	</context>
+	
+	<context id="industryTypeId">
+	<field  visible="true" label="Industry Type" dbfield="industryType"></field>
+	</context>
+	
+	<context id="inspectionMethodId">
+	<field  visible="true" label="Inspection Method" dbfield="inspectionmethod"></field>
+	</context>
+	
+	<context id="inspectionTypeId">
+	<field  visible="true" label="Inspection Type" dbfield="inspectionType"></field>
+	</context>
+	
+	<context id="quotationId">
+	<field  visible="true" label="Quotation No" dbfield="quotationNo"></field>
+	<field  visible="true" label="RFQ No" dbfield="rfqNo"></field>
+	</context>
+	
+	<context id="vendorId">
+	<field  visible="true" label="Vendor Name" dbfield="vendorName"></field>
+	<field  visible="true" label="City" dbfield="city"></field>
+	<field  visible="true" label="State" dbfield="state"></field>
+	</context>
+	
+	<context id="currencyId">
+	<field  visible="true" label="Currency" dbfield="currency"></field>
+	<field  visible="true" label="ISO Code" dbfield="isoCode"></field>
+	</context>
+	
+	<context id="purchaseReqId">
+	<field  visible="true" label="Purchase ReqNo" dbfield="purchaseReqNo"></field>
+	<field  visible="true" label="Reference No" dbfield="refNo"></field>
+	</context>
+	
+	<context id="bomCategoryId">
+	<field  visible="true" label="Bom Category" dbfield="bomCategory"></field>
+	</context>
+	
+	<context id="materialCategoryId">
+	<field  visible="true" label="Material Category" dbfield="materialCategory"></field>
+	<field  visible="true" label="Material Category Code" dbfield="materialCategoryCode"></field>
+	</context>
+	
+	<context id="storageLocationId">
+	<field  visible="true" label="Storage Location Name" dbfield="storageLocation"></field>
+	<field  visible="true" label="City" dbfield="city"></field>
+	<field  visible="true" label="State" dbfield="state"></field>
+	</context>
+	
+	<context id="plantId">
+	<field  visible="true" label="Plant Name" dbfield="plantName"></field>
+	<field  visible="true" label="City" dbfield="city"></field>
+	<field  visible="true" label="State" dbfield="state"></field>
+	</context>
+	
+	<context id="orgTypeId">
+	<field  visible="true" label="Organization Type" dbfield="orgType"></field>
+	</context>
+	<context id="organizationId">
+	<field  visible="true" label="Organization Name" dbfield="orgName"></field>
+	<field  visible="true" label="City" dbfield="city"></field>
+	<field  visible="true" label="State" dbfield="State"></field>
+	</context>
+	
+	<context id="processid">
+	<field  visible="true" label="Process" dbfield="process"></field>
+	</context>
+	<context id="shiftId">
+	<field  visible="true" label="Shift Code" dbfield="shiftcode"></field>
+	<field  visible="true" label="Shift" dbfield="shift"></field>
+	</context>
+	<context id="statusId">
+	<field  visible="true" label="Status" dbfield="status"></field>
+	</context>
+	<context id="valuationCategoryId">
+	<field  visible="true" label="Valuation Category" dbfield="valuationCategory"></field>
+	</context>
+	<context id="materialType">
+	<field  visible="true" label="Material Type" dbfield="materialTypeName"></field>
+	<field  visible="true" label="Material Type Code" dbfield="MaterialTypeCode"></field>
+	</context>
+	<context id="taxCategoryId">
+	<field  visible="true" label="Tax Category" dbfield="taxCategory"></field>
+	<field  visible="true" label="Tax Category Code" dbfield="taxCategoryCode"></field>
+	</context>
+	<context id="paymentMethodId">
+	<field  visible="true" label="Payment Method" dbfield="paymentMethodName"></field>
+	</context>
+	<context id="paymentTermId">
+	<field  visible="true" label="Payment Term" dbfield="paymentTermName"></field>
+	</context>
+	<context id="orderTypeId">
+	<field  visible="true" label="Order Type" dbfield="orderType"></field>
+	</context>
+	<context id="custGroupId">
+	<field  visible="true" label="Customer Group" dbfield="custGroup"></field>
+	</context>
+	<context id="itemCategoryId">
+	<field  visible="true" label="Item Category" dbfield="itemCategory"></field>
+	</context>
+	<context id="rfqTypeId">
+	<field  visible="true" label="RFQ Type" dbfield="rfqType"></field>
+	</context>
+	<context id="uom_Id">
+	<field  visible="true" label="UOM" dbfield="uom"></field>
+	<field  visible="true" label="UOM Code" dbfield="uomCode"></field>
+	</context>
+	<context id="vendorGroup_Id">
+	<field  visible="true" label="Vendor Group" dbfield="vendorGroup"></field>
+	<field  visible="true" label="Vendor Group Code" dbfield="vendorGroupCode"></field>
+	</context>
+	<context id="deliveryType_Id">
+	<field  visible="true" label="Delivery Type " dbfield="deliveryType"></field>
+	</context>
+	<context id="agreementType_Id">
+	<field  visible="true" label="Agreement Type " dbfield="agreementType"></field>
+	</context>
+	<context id="purOrg_Id">
+	<field  visible="true" label="Purchase Organization " dbfield="purOrg"></field>
+	</context>
+	<context id="material_Id">
+	<field  visible="true" label="Material Code " dbfield="materialCode"></field>
+	<field  visible="true" label="Material Name" dbfield="materialName"></field>
+	</context>
+	
+	
+	<context id="vendor">
+	<advanceSearch>
+	<field  visible="true" label="Vendor Name" dbfield="vendorName"></field>
+	<field  visible="true" label="Address" dbfield="address"></field>
+	<field  visible="true" label="City" dbfield="city"></field>
+	</advanceSearch>
+	</context>
+	
+	
+	
+</contexts>

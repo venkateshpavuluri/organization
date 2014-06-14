@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.WFAction" table="WFAction">
+<id name="wfactionId" column="ActionId"><generator class="guid"></generator></id>
+<property name="wfactionStepGUID" column="StepID"></property>
+<property name="wfactionAction" column="Action"></property>
+<property name="wActionId" column="WAction_Id"></property>
+<property name="wfactionName" column="Name"></property>
+<property name="wfactionType" column="Type"></property>
+<property name="wfactionCondition" column="Condition"></property>
+<property name="wfactionDirection" column="Direction"></property>
+<property name="wfactionGotoStep" column="GotoStep"></property>
+<property name="wfactionEmail" column="Email"></property>
+<!-- <property name="wfactionWorkList" column="WorkList"></property> -->
+<property name="wfactionComments" column="Comments"></property>
+<property name="wfactionMessage" column="Message"></property>
+<property name="wfactionMessageDetails" column="MessageDetails"></property>
+<property name="wfactionCreatedBy" column="CreatedBy"></property>
+<property name="wfactionCreateddate" column="CreatedDate"></property>
+<property name="wfactionUpdatedBy" column="UpdatedBy"></property>
+<property name="wfactionupdateDate" column="UpdatedDate"></property>
+<many-to-one name="wfstep" class="com.mnt.erp.bean.WFStep" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="StepID" ></column>
+</many-to-one>  
+
+<many-to-one name="waction" class="com.mnt.erp.bean.WAction" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="WAction_Id" ></column>
+</many-to-one> 
+</class>
+</hibernate-mapping>

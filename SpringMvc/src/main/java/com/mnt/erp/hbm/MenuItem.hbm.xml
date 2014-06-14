@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.MenuItems" table="MenuItems">
+
+<id name="menuId" column="Menu_Id">
+<generator class="increment"></generator>
+</id>
+<property name="parentName" column="Parent_Name" ></property>
+<property name="name" column="Name" ></property>
+<property name="title" column="Title" ></property>
+<property name="description" column="Description" ></property>
+<property name="location" column="Location" ></property>
+<property name="target" column="Target" ></property>
+<property name="onClick" column="OnClick" ></property>
+<property name="onMouseOver" column="OnMouseOver"></property>
+<property name="onMouseOut" column="OnMouseOut"></property>
+<property name="image" column="Image"></property>
+<property name="altImage" column="AltImage"></property>
+<property name="tooltip" column="Tooltip"></property>
+<property name="page" column="Page"></property>
+<property name="width" column="Width"></property>
+<property name="height" column="Height"></property>
+<property name="forward" column="Forward"></property>
+<property name="action" column="Action"></property>
+</class>
+</hibernate-mapping>

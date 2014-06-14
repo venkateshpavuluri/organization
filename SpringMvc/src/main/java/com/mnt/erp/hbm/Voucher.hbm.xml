@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.Voucher" table="Voucher">
+
+		<id name="voucherId" column="Voucher_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="signature" column="Signature"></property>
+		<property name="voucherDT" column="VoucherDT"></property>
+		<property name="employeeId" column="Payeee"></property>
+		<property name="amount" column="Amount"></property>
+		<property name="statusId" column="Status_Id"></property>
+		<property name="voucherNo" column="VoucherNo"></property>
+		<property name="voucherType_Id" column="VoucherType_Id"></property>
+		
+		
+		<many-to-one name="voucherTypeIdDetails" class="com.mnt.erp.bean.VoucherTypeBean"
+			insert="false" not-null="true" cascade="all" lazy="false" fetch="join"
+			update="false">
+			<column name="VoucherType_Id"></column>
+		</many-to-one>
+		
+		<many-to-one name="statusDetails" class="com.mnt.erp.bean.Status"
+			cascade="all" not-null="true" lazy="false" insert="false" update="false">
+			<column name="Status_Id"></column>
+		</many-to-one>
+		
+	</class>
+	<sql-query name="StepUserForVO" callable="true">
+		<return-scalar column="StepId" type="string" />
+		<return-scalar column="User_Id" type="string" />
+		{call StepUserForVO()}
+	</sql-query>
+</hibernate-mapping>

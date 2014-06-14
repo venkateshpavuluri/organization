@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.SalesInquiryBean" table="SalesInquiry">
+		<id name="salesInquiryId" column="SalesInquiry_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="salesInquiryNo" column="SalesInquiryNo"></property>
+		<property name="customerId" column="Customer_Id"></property>
+		<property name="requestedDate" column="RequestedDate"></property>
+		<property name="validFrom" column="ValidFrom"></property>
+		<property name="validTo" column="ValidTo"></property>
+		<property name="requiredDeliveryDate" column="RequiredDeliveryDate"></property>
+		<property name="salesGroupId" column="SalesGroup_Id"></property>
+		<property name="description" column="Description"></property>
+		<property name="statusId" column="Status_Id"></property>
+
+
+		<bag name="salesEnquiryLine" cascade="all" lazy="false" fetch="join">
+			<key column="SalesInquiry_Id" not-null="true" update="true"></key>
+			<one-to-many class="com.mnt.erp.bean.SalesInquiryLineBean" />
+		</bag>
+
+		<many-to-one name="custBean" cascade="all"
+			class="com.mnt.erp.bean.CustomerBean" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="Customer_Id" not-null="true" />
+		</many-to-one>
+
+		<many-to-one name="salesGroup" cascade="all"
+			class="com.mnt.erp.bean.SalesGroup" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="SalesGroup_Id" not-null="true"/>
+		</many-to-one>
+
+	</class>
+
+</hibernate-mapping>

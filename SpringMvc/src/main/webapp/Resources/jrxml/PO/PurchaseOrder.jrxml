@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PurchaseOrder" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7f5c857c-d151-46dc-a884-53fd85bf7fb0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="57"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D3D3D3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="dataset1" uuid="771ea2f8-f3a9-47de-bd76-0898db5c6766">
+		<parameter name="logoID" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{logoID}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[exec reportImage $P{logoID}]]>
+		</queryString>
+		<field name="logo" class="java.io.InputStream"/>
+	</subDataset>
+	<parameter name="rootPath" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{rootPath}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="poNo" class="java.lang.String"/>
+	<parameter name="logoID" class="java.lang.String"/>
+	<parameter name="datePattern" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[exec PurchaseOrderReport $P{poNo}]]>
+	</queryString>
+	<field name="PurchaseOrder_Id" class="java.lang.Integer"/>
+	<field name="PurchaseOrderNbr" class="java.lang.String"/>
+	<field name="PurchaseOrderDate" class="java.util.Date"/>
+	<field name="PurchaseOrderValue" class="java.math.BigDecimal"/>
+	<field name="Status" class="java.lang.String"/>
+	<field name="Description" class="java.lang.String"/>
+	<field name="vendorName" class="java.lang.String"/>
+	<field name="QuotationNo" class="java.lang.String"/>
+	<field name="PaymentTerm" class="java.lang.String"/>
+	<field name="Memo" class="java.lang.String"/>
+	<field name="SalesTaxAmount" class="java.math.BigDecimal"/>
+	<field name="VATAmount" class="java.math.BigDecimal"/>
+	<field name="ExiciseAmount" class="java.math.BigDecimal"/>
+	<field name="FrieghtCharges" class="java.math.BigDecimal"/>
+	<field name="PnFCharges" class="java.math.BigDecimal"/>
+	<field name="DueDate" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8289a3e4-f982-45ee-b813-7346370bc80a" x="292" y="0" width="268" height="35" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  MNT SOFT PVT LTD]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8aa19537-0894-47d0-8b31-c8d1bc896116" x="0" y="55" width="802" height="1"/>
+			</line>
+			<componentElement>
+				<reportElement uuid="379a9499-bad7-4616-a838-ffc53a9065fc" x="0" y="0" width="284" height="50"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="cb607c9b-88f3-416a-b9a9-345a8389ee59">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="50" width="284">
+						<image>
+							<reportElement uuid="f1506da1-4f2c-4a37-83f4-dda23fcbf3d3" x="32" y="4" width="169" height="25"/>
+							<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+						</image>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c4f00aa5-b78a-43e1-842f-b16828d763d6" x="292" y="0" width="288" height="29" forecolor="#333333"/>
+				<textElement>
+					<font fontName="Verdana" size="18" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[PURCHASE ORDER REPORT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e4107ccf-419b-498e-a1ba-b988a78204a8" x="484" y="29" width="221" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PURCHASE ORDER DETAILS]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="9199c175-0d3c-4841-b241-938eb385d9cc" x="705" y="0" width="127" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="182" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ed3b83e7-9c21-40ae-8513-6153730e23cf" x="35" y="4" width="129" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Purchase Order No]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="92fbd615-58c9-4ef0-8a02-beb4ec8f7f28" x="184" y="4" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PurchaseOrderNbr}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e50b1b16-1d0b-43e5-8249-577dbf6e5d5e" x="35" y="24" width="129" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Purchase Order Date]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="7349293f-160e-4b47-8efc-f583871de338" x="184" y="25" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{PurchaseOrderDate})
+]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e5e89e53-a252-4ab2-be2f-20b0feba76eb" x="35" y="44" width="129" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Purchase Order Value]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ae6e33d4-a288-486c-9813-371b22146c0c" x="184" y="44" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PurchaseOrderValue}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6c1a602a-17b2-4220-843c-675758127769" x="35" y="63" width="129" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="75a53a5a-b0a3-48a8-92f8-9ac2e189332d" x="184" y="64" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Status}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5e9395ae-1f48-4db1-85ae-cef57085a6f6" x="309" y="24" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VAT Amount]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f74ee658-e9fc-4bc1-adc8-e7f57034e031" x="427" y="24" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VATAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="936a0258-c9fc-49e4-b637-9013dfe8e308" x="309" y="4" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales Tax Amount]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b7537548-b4c3-4828-82c3-165605417109" x="427" y="4" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SalesTaxAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6c67d137-e7e7-4440-823d-1ba88eb4d6fe" x="309" y="44" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Exicise Amount]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ce2ac678-63cf-4032-9aba-096286d1b378" x="427" y="44" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ExiciseAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ad0d5d50-d9de-4004-ae98-7988bc3f6597" x="309" y="64" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Frieght Charges]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b76e3a1d-88dc-4355-9bfd-34f93cc92246" x="427" y="64" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FrieghtCharges}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="10587211-c63e-473e-8264-f548b4c85022" x="164" y="4" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6e6f0e30-d22d-4ed7-8360-6a4669e87b4b" x="164" y="24" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4a06e753-4a12-46ba-bd91-14ff262bdf96" x="164" y="43" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9838e09e-725b-4dd0-a318-2e92a76309c0" x="164" y="63" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="044611f4-92d4-4272-9b7b-a7f492013947" x="409" y="25" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="559201c6-a405-4755-90d8-7878564911a4" x="409" y="64" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="84f627bf-12bf-4b9d-b56b-8efd20d65ace" x="409" y="44" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c98e8707-114b-473a-a1bc-36b7b6614456" x="409" y="4" width="5" height="21"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0d5cb1ac-96bc-4422-abf6-94b38677fc68" x="540" y="4" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[vendor Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f52d8bea-7662-43b0-814d-fa8e02a788e0" x="660" y="4" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vendorName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b68c61a0-ac72-4ca5-9eed-b8a16583c69b" x="540" y="24" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quotation No]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="241194fd-5d79-4da5-bebd-a458ff64c258" x="660" y="22" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QuotationNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="71c6d0c7-60f2-49f4-9fb1-962b6c5acbd5" x="540" y="44" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment Term]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="da33284c-4445-4cca-a900-bd3fc5c212b2" x="660" y="42" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PaymentTerm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="28366a2f-f162-4a13-bb92-63a4bade11a8" x="640" y="43" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="56e9cc59-09ec-4931-9542-47dc37cb55e1" x="640" y="24" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dc9e1ef1-74be-4765-918d-8a57409fb7e9" x="640" y="4" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7add1119-ebb6-4e98-b3ba-113d77fce206" x="309" y="83" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PnF Charges]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="779996c6-f078-404b-a3cc-1cd050c45425" x="427" y="84" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PnFCharges}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e60977a9-0a2f-4444-99ef-22a5fb4df751" x="409" y="84" width="5" height="19"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="340a314a-f9a2-4d73-bdf2-47b0108d1e29" x="540" y="64" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Due Date]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="425fd8e0-e738-4d50-8c8a-35f5848f1451" x="660" y="64" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{DueDate})
+]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9c51650b-b5c5-44b2-865a-177a8c6a1621" x="640" y="64" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f3b1a4db-3649-467e-8df5-0028bbdf8758" x="35" y="83" width="129" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Memo]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3b2de563-93d4-41d6-a656-bdd4f2cf2207" x="184" y="84" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Memo}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="d9771d82-586b-41bd-8af6-ce867d8365fc" x="78" y="118" width="256" height="64"/>
+				<subreportParameter name="poId">
+					<subreportParameterExpression><![CDATA[$F{PurchaseOrder_Id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="datePattern">
+					<subreportParameterExpression><![CDATA[$P{datePattern}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PurchaseOrderChild.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="444de311-b4d6-4c7d-9c51-8bc10c1b3ebe" x="164" y="83" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ffbe06d2-688d-4ba0-ac83-add7accacd60" x="667" y="14" width="80" height="20" forecolor="#666666"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8b61a4c7-7762-4aef-b240-d82ca673c360" x="747" y="14" width="40" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="704709f0-5399-4e81-b105-3fe94a43bc2c" x="0" y="14" width="178" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<text><![CDATA[Copy rights @MNT Soft Pvt.Ltd]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

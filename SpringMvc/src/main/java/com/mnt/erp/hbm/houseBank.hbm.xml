@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.HouseBankBean"  table="HouseBank">
+<id name="bankid" column="Bank_Id">
+<generator class="increment"></generator>
+</id>
+<property name="orgid" column="Org_Id"></property>
+<property name="bankcode" column="BankCode"></property>
+<property name="bankname" column="BankName"></property>
+<property name="branchname" column="BranchName"></property>
+<property name="address" column="Add1"></property>
+<property name="city" column="City"></property>
+<property name="state" column="State"></property>
+<property name="country" column="Country_Id"></property>
+<property name="swiftcode" column="SwiftCode"></property>
+<property name="ifsccode" column="IFSCCode"></property>
+
+
+<many-to-one name="orgbean" cascade="all"
+			class="com.mnt.erp.bean.Organization" not-null="true" insert="false" update="false">
+			<column name="Org_Id"/>
+		</many-to-one>
+<many-to-one name="countrybean" cascade="all"
+			class="com.mnt.erp.bean.CountrysList" not-null="true" insert="false" update="false">
+			<column name="Country_Id"/>
+		</many-to-one>
+		
+</class>
+</hibernate-mapping>

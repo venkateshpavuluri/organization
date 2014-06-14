@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.OrganizationChart" table="OrganizationChart">
+
+<id name="organizationChartId" column="OrganizationChart_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="orgId" column="Org_Id"></property>
+<property name="designationId" column="Designation_Id"></property>
+<property name="parentDesignationId" column="ParentDesignation_Id"></property>
+ <many-to-one name="organization" class="com.mnt.erp.bean.Organization" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="Org_Id"></column>
+</many-to-one> 
+ <many-to-one name="designation" class="com.mnt.erp.bean.Designation" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="Designation_Id"></column>
+</many-to-one> 
+ <many-to-one name="parentDesignation" class="com.mnt.erp.bean.Designation" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="ParentDesignation_Id"></column>
+</many-to-one> 
+</class>
+</hibernate-mapping>

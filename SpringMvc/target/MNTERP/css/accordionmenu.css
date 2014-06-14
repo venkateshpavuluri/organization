@@ -1,0 +1,66 @@
+/* Accordion Menu powered by www.menucool.com */
+
+/* ##### Top level items #####*/
+#acdnmenu { /* Note about height: 
+    Set "height:auto;" if flexible height is required. 
+    A fixed height is prefered as content below the menu won't be pulled down/up when the menu is expanding/collapsing. */
+    /*height: 300px;*/ height:auto; width: 238px; margin:10px 0 10px 0;}
+#acdnmenu ul.top { padding-left:0; }
+#acdnmenu div.heading, #acdnmenu a.link { padding:6px 5px 6px 8px; padding-left:22px; text-align:left; font:normal 12px Verdana; color:#fff; text-decoration:none; outline:none; }
+#acdnmenu div.current, #acdnmenu div:hover, #acdnmenu a.link:hover, #acdnmenu div.current a.link { color:#000; font-weight:normal; text-decoration:none; }
+/*Top level link without children*/
+#acdnmenu a.current, #acdnmenu a.current:hover { color:#292929; text-decoration:none; }
+/* arrow image for the top headings */
+#acdnmenu div.arrowImage { width:12px; height:12px; top:6px; left:4px; /* Changing it to "right:8px;" will position the arrow image to the right */ background-image:url(images/arrows.png); background-position:0 0; }
+#acdnmenu div.current div.arrowImage { background-position:0 -12px; }
+#acdnmenu li.separator { border-top:none; border-bottom:none; }
+/* ##### Sub level items #####*/
+#acdnmenu ul.sub { padding-left:20px; margin-bottom:1px; /*This determines the hierarchical offset*/ }
+#acdnmenu ul.sub div.heading { text-align:left; font:normal 12px Arial; padding:5px 5px 3px 16px; color:#000; background:none; }
+#acdnmenu ul.sub div.heading a { color:#000; }
+#acdnmenu ul.sub div.current { color:#000;}
+#acdnmenu ul.sub a.link { font:normal 12px 'Droid Sans',sans-serif; line-height:12px; color:#3A3A3A; padding:5px; text-shadow:1px 1px #FFFFFF; padding-left:16px; text-decoration:none; background:url(images/arrow2.jpg) no-repeat 4px 8px; }
+#acdnmenu ul.sub a.link:hover, /*#acdnmenu ul.sub a.current,*/ #acdnmenu ul.sub div.heading a:hover /*#acdnmenu ul.sub div.heading a.current*/ { color:#000; background:#dce3eb url(images/arrow2.jpg) no-repeat 4px 8px; }
+#acdnmenu ul.sub div.arrowImage { width:12px; height:12px; top:6px; left:0px; background-image:url(images/arrows.png); background-position:0 -24px; }
+#acdnmenu ul.sub div.current div.arrowImage { background-position:0 -36px; }
+/* ##### Followings usually don't need modification ###### */
+/*Hack the font-size:0 bug for IE6 */
+#acdnmenu, #acdnmenu ul { display:block; font-size:0px; line-height:0px; }
+#acdnmenu li { font-size:12px; line-height:16px; }
+#acdnmenu:after { content:'.'; height:0; clear:both; display:block; visibility:hidden; }
+/*Hack for IE6-7*/
+
+ul.options li a.view{ background:url(images/view.png) no-repeat left 4px;}
+ul.options li a.delete{ background:url(images/delete.png) no-repeat left 2px;}
+ul.options li a.save{ background:url(images/save.png) no-repeat left 2px;}
+ul.options li a.previous{ background:url(images/previous.png) no-repeat left 2px;}
+ul.options li a.next{ background:url(images/next.png) no-repeat left 2px;}
+ul.options li a.refresh{ background:url(images/refresh.png) no-repeat left 2px;}
+
+.table2 { background:#FBFBFB; border:1px solid #8AC4EB; border-collapse:collapse; margin:5px 0;}
+.table2 tr th{ background:#eeeeee; border:1px solid #eeeeee; border-collapse:collapse; font-weight:bold; color:#000; padding:5px 5px;text-align:left;}
+.table2 tr td{ background:#FBFBFB; border:none; border-collapse:collapse; padding:3px 5px;}
+
+ul.options { margin:0; padding:0;}
+ul.options li{ list-style:none; float:left; display:inline-block; color:#000;}
+ul.options li a{ color:#000; text-decoration:none; float:left; display:block; padding:0 0 0 20px;}
+ul.options li a:hover{ text-decoration:underline;}
+
+ul.options li a.view{ background:url(images/view.png) no-repeat left 2px;}
+ul.options li a.delete{ background:url(images/delete.png) no-repeat left 2px;}
+ul.options li a.save{ background:url(images/save.png) no-repeat left 2px;}
+ul.options li a.previous{ background:url(images/previous.png) no-repeat left 2px;}
+ul.options li a.next{ background:url(images/next.png) no-repeat left 2px;}
+ul.options li a.refresh{ background:url(images/refresh.png) no-repeat left 2px;}
+
+
+#acdnmenu ul, #acdnmenu li, #acdnmenu div.heading, #acdnmenu a.smLink, #acdnmenu div.description { *zoom:1;
+}
+#acdnmenu li { *float:left;
+*width:100%;
+}
+#acdnmenu ul { position:relative;/*!*/ overflow:hidden; padding:0; margin:0; list-style-type: none; padding-left:10px; }
+#acdnmenu>ul { visibility: hidden; }
+#acdnmenu li { padding:0; margin:0; }
+#acdnmenu div.heading, #acdnmenu div.current { position:relative; cursor: pointer; background:url(images/nav-bg.jpg) repeat-x left top; color:#292929; text-transform:uppercase; font-size:11px; font-weight:bold;}
+#acdnmenu div.arrowImage { position:absolute; overflow:hidden; }

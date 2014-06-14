@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.CreditNote" table="CreditNote">
+<id name="creditNoteId" column="CreditNote_Id">
+<generator class="increment"></generator>
+</id>
+<property name="creditNoteNo" column="CreditNoteNo"></property>
+<property name="creditNoteDT" column="CreditNoteDT"></property>
+<property name="customerInvoiceId" column="CustomerInvoice_Id"></property>
+<property name="vendorInvoiceId" column="VendorInvoice_Id"></property>
+
+
+
+<bag name="creditNoteDetail" cascade="all" lazy="false" fetch="join">
+<key column="CreditNote_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.CreditNoteDetail"/>
+</bag>
+
+<!-- <many-to-one name="customerInvoiceDetails" class="com.mnt.erp.bean.CustomerInvoice" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="CustomerInvoice_Id"></column>
+</many-to-one>
+<many-to-one name="vendorInvoiceDetails" class="com.mnt.erp.bean.VendorInvoice" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="VendorInvoice_Id"></column>
+</many-to-one> -->
+</class>
+</hibernate-mapping>
+
+
+

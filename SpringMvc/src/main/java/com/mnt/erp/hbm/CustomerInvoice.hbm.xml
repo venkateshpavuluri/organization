@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.CustomerInvoice" table="CustomerInvoice">
+		<id name="customerinvoiceid" column="CustomerInvoice_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="customerinvoiceno" column="CustomerInvoice_No"></property>
+		<property name="customerinvoicedate" column="CustomerInvoiceDate"></property>
+		<property name="postingdate" column="PostingDate"></property>
+		<property name="deliverynoteid" column="DeliveryNote_Id"></property>
+		<property name="amount" column="Amount"></property>
+		<property name="currencyid" column="Currecny_Id"></property>
+		<property name="reference" column="Reference" not-null="false"></property>
+		<property name="description" column="Description"></property>
+		<property name="orgid" column="Org_Id"></property>
+		<property name="fy" column="FY"></property>
+
+		<bag name="customerinvoicelinebean" cascade="all" lazy="false"
+			fetch="join">
+			<key column="CustomerInvoice_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.CustomerInvoiceLine" />
+		</bag>
+		<many-to-one name="currencybean" cascade="all"
+			class="com.mnt.erp.bean.Currency" not-null="true" insert="false"
+			update="false">
+			<column name="Currecny_Id" />
+		</many-to-one>
+		<many-to-one name="deliverynotebean" cascade="all"
+			class="com.mnt.erp.bean.DeliveryNote" not-null="true" insert="false"
+			update="false">
+			<column name="DeliveryNote_Id" />
+		</many-to-one>
+		<many-to-one name="orgbean" cascade="all"
+			class="com.mnt.erp.bean.Organization" not-null="true" insert="false"
+			update="false">
+			<column name="Org_Id" />
+		</many-to-one>
+
+	</class>
+	
+	
+	 <sql-query name="GetInvoiesToCollect" callable="true" >
+   <return-scalar column="CustomerInvoice_No" type="string"/>
+   <return-scalar column="CustomerName" type="string"/>
+   <return-scalar column="Amount" type="string"/>
+ <return-scalar column="ReceivedAmount" type="string"/> 
+   <return-scalar column="PendingAmount" type="string"/>
+   <return-scalar column="Currency" type="string"/>
+      <return-scalar column="PostingDate" type="string"/>
+   
+      {call GetInvoiesToCollect()}
+    </sql-query> 
+    	 <sql-query name="TOP5GetInvoiesToCollect" callable="true" >
+   <return-scalar column="CustomerInvoice_No" type="string"/>
+   <return-scalar column="CustomerName" type="string"/>
+   <return-scalar column="Amount" type="string"/>
+ <return-scalar column="ReceivedAmount" type="string"/> 
+   <return-scalar column="PendingAmount" type="string"/>
+   <return-scalar column="Currency" type="string"/>
+      <return-scalar column="PostingDate" type="string"/>
+      {call TOP5GetInvoiesToCollect()}
+    </sql-query> 
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.AuditLog" table="AuditLog">
+
+<id name="auditLog_Id" column="AuditLog_Id">
+<generator class="increment"></generator>
+</id>
+<property name="userId" column="User_Id"></property>
+<property name="operation" column="Operation"></property>
+<property name="objectChanged" column="ObjectChanged"></property>
+<property name="objectType" column="ObjectType"></property>
+<property name="objectId" column="ObjectId"></property>
+<property name="status" column="Status"></property>
+<property name="timeStamp" column="TimeStamp"></property>
+<property name="userName" column="UserName"></property>
+
+<!-- <bag name="auditLogDetail" cascade="all" lazy="false">
+			<key column="AuditLog_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.AuditLogDetail" />
+		</bag>
+		 -->
+		
+<set name="auditLogDetails" cascade="all" lazy="false" fetch="join">
+<key column="AuditLog_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.AuditLogDetail"/>
+</set>
+</class>
+
+</hibernate-mapping>

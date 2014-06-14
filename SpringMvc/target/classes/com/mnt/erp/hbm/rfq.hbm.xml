@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.RfqBean"  table="RFQ">
+<id name="rfqid" column="RFQ_Id">
+<generator class="increment"></generator>
+</id>
+<property name="rfqType" column="RFQType_Id"></property>
+<property name="rfqNo" column="RFQNo"></property>
+<property name="rfqDate" column="RFQDate"></property>
+<property name="quotationdeadline" column="QuotationDeadline"></property>
+<property name="itemCategory" column="ItemCategory_Id"></property>
+<property name="deliveryDate" column="DeliveryDate"></property>
+<property name="validFrom" column="ValidFom"></property>
+<property name="validTo" column="ValidTo"></property>
+<property name="storageLocation" column="StorageLocation_Id"></property>
+<property name="palntRfq" column="Plant_Id"></property>
+<property name="refNumber" column="RefNumber"></property>
+<property name="purchaseGrouprfq" column="PurchaseGroup_Id"></property>
+<property name="statusid" column="Status_Id"></property>
+<bag name="rfqlinebean" cascade="all" lazy="false" fetch="join">
+			<key column="RFQ_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.RFQLineBean" />
+		</bag>
+			<many-to-one name="rfqbean" cascade="all"
+			class="com.mnt.erp.bean.RFQType" not-null="true" insert="false" update="false">
+			<column name="RFQType_Id"/>
+		</many-to-one>
+		<many-to-one name="itemcategorybean" cascade="all"
+			class="com.mnt.erp.bean.ItemCategory" not-null="true" insert="false" update="false">
+			<column name="ItemCategory_Id"/>
+		</many-to-one>
+		<many-to-one name="statusbean" cascade="all"
+			class="com.mnt.erp.bean.Status" not-null="true" insert="false" update="false">
+			<column name="Status_Id"/>
+		</many-to-one>
+		<many-to-one name="storagelocationbean" cascade="all"
+			class="com.mnt.erp.bean.StorageLocation" not-null="true"  insert="false" update="false">
+			<column name="StorageLocation_Id"/>
+		</many-to-one>
+		<many-to-one name="plantbean" cascade="all"
+			class="com.mnt.erp.bean.Plant" not-null="true" insert="false" update="false">
+			<column name="Plant_Id"/>
+		</many-to-one>
+		<many-to-one name="purchasegroupbean" cascade="all"
+			class="com.mnt.erp.bean.PurchaseGroup" not-null="true" insert="false" update="false">
+			<column name="PurchaseGroup_Id"/>
+		</many-to-one>
+</class>
+</hibernate-mapping>

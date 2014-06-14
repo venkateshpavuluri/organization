@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Warehouse" table="Warehouse">
+<id name="warehouseId" column="Warehouse_Id"><generator class="increment"></generator></id>
+<property name="warehouse" column="Warehouse"></property>
+<property name="address" column="Address"></property>
+<property name="city" column="City"></property>
+<property name="state" column="State"></property>
+<property name="countryId" column="Country_Id"></property>
+<property name="zip" column="Zip"></property>
+<property name="phone1" column="Phone1"></property>
+<property name="phone2" column="Phone2"></property>
+<property name="fax" column="Fax"></property>
+ <many-to-one name="countrylist" class="com.mnt.erp.bean.CountrysList" insert="false" not-null="true"  cascade="all" update="false" >
+<column name="Country_Id" ></column>
+</many-to-one> 
+</class>
+</hibernate-mapping>

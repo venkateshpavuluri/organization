@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.ReceiptBean" table="Receipt">
+		<id name="receiptId" column="Receipt_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="orgId" column="Org_Id"></property>
+		<property name="paymentMethodId" column="PaymentMethod_Id"></property>
+		<property name="currencyId" column="Currency_Id"></property>
+		<property name="bankId" column="Bank_Id"></property>
+		<property name="custId" column="Customer_Id"></property>
+		<property name="custInvoiceId" column="CustomerInvoice_Id"></property>
+		<property name="paymentTypeId" column="PaymentType_Id"></property>
+		<property name="receiptStatus" column="ReceiptStatus"></property>
+
+		<property name="accNo" column="AccountNo"></property>
+		<property name="postingDate" column="Posting_Date"></property>
+		<property name="receiptNo" column="ReceiptNo"></property>
+		<property name="amount" column="Amount"></property>
+		<property name="chequeNo" column="ChequeNo"></property>
+		<property name="chequeDate" column="ChequeDate"></property>
+		<property name="desc" column="Description"></property>
+		<property name="chequeIssuedBy" column="ChequeIssuedBy"></property>
+		<property name="chequeIssuedDate" column="ChequeIssuedDate"></property>
+		<property name="chequeClearanceStatus" column="ChequeClearanceStatus"></property>
+		<property name="chequeClearanceDate" column="ChequeClearanceDate"></property>
+
+		<bag name="recWithHold" cascade="all" lazy="false" >
+			<key column="Receipt_Id" not-null="true" />
+			<one-to-many class="com.mnt.erp.bean.ReceiptWithHold" />
+		</bag>
+
+
+		<many-to-one name="custInvoice" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.CustomerInvoice" insert="false" update="false"
+			lazy="false" fetch="join">
+			<column name="CustomerInvoice_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="cust" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.CustomerBean" insert="false" update="false"
+			lazy="false" fetch="join">
+			<column name="Customer_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="status" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Status" insert="false" update="false" lazy="false"
+			fetch="join">
+			<column name="ReceiptStatus" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="currency" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Currency" insert="false" update="false" lazy="false"
+			fetch="join">
+			<column name="Currency_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="organization" cascade="all"
+			class="com.mnt.erp.bean.Organization" insert="false" update="false"
+			lazy="false">
+			<column name="Org_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="paymentMethod" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.PaymentMethod" insert="false" update="false"
+			lazy="false">
+			<column name="PaymentMethod_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="paymentType" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.PaymentType" insert="false" update="false"
+			lazy="false">
+			<column name="PaymentType_Id" not-null="true"></column>
+		</many-to-one>
+		<many-to-one name="bank" cascade="all" insert="false"
+			update="false" lazy="false" class="com.mnt.erp.bean.HouseBankBean"
+			not-null="true">
+			<column name="Bank_Id" not-null="true"></column>
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

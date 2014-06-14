@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.GoodsReceiptLine" table="GoodsReceiptLine">
+
+		<id name="goodsReceiptLine_Id" column="GoodsReceiptLine_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="goodsReceipt_Id" column="goodsReceipt_Id"
+			insert="false" update="false"></property>
+		<property name="material_Id" column="Material_Id"></property>
+		<property name="batchNo" column="BatchNo"></property>
+		<property name="receivedQty" column="ReceivedQty"></property>
+		<property name="quantityUOM" column="QuantityUOM"></property>
+		<property name="qtyInspected" column="QtyInspected"></property>
+		<property name="qtyAccepted" column="QtyAccepted"></property>
+		<property name="qtyRejected" column="QtyRejected"></property>
+		<property name="qtyReturned" column="QtyReturned"></property>
+		<property name="inspection" column="Inspection"></property>
+		<property name="qAStatus" column="QAStatus"></property>
+		<property name="inspectedBy" column="InspectedBy"></property>
+		<property name="inspectedDTTM" column="InspectedDTTM"></property>
+		<property name="vendorMaterialNbr" column="VendorMaterialNbr"></property>
+		<property name="storageLocationId" column="StorageLocation_Id"></property>
+		<property name="materialSpecs" column="MaterialSpecs"></property>
+		<property name="qtyLength" column="QtyLength"></property>
+		<property name="qtyLengthUOM" column="QtyLengthUOM"></property>
+		<property name="qtyWeight" column="QtyWeight"></property>
+		<property name="qtyWeightUOM" column="QtyWeightUOM"></property>
+		<property name="createdBy" column="CreatedBy"></property>
+		<property name="createdDTTM" column="CreatedDTTM"></property>
+		<property name="modifiedBy" column="ModifiedBy"></property>
+		<property name="modifiedDTTM" column="ModifiedDTTM"></property>
+
+		<many-to-one name="materialDetails" class="com.mnt.erp.bean.Material"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="Material_Id"></column>
+		</many-to-one>
+
+		<many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="quantityUOM"></column>
+		</many-to-one>
+
+		<many-to-one name="qtylUomDetails" class="com.mnt.erp.bean.Uom"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="QtyLengthUOM"></column>
+		</many-to-one>
+
+		<many-to-one name="qtywUomDetails" class="com.mnt.erp.bean.Uom"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="qtyWeightUOM"></column>
+		</many-to-one>
+
+		<!-- <many-to-one name="statusDetails" class="com.mnt.erp.bean.Status" 
+			insert="false" not-null="true" lazy="false" cascade="all" update="false" 
+			> <column name="QAStatus"></column> </many-to-one> -->
+
+		<many-to-one name="storagelocDetails" class="com.mnt.erp.bean.StorageLocation"
+			insert="false" not-null="true" lazy="false" cascade="all" update="false">
+			<column name="StorageLocation_Id"></column>
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

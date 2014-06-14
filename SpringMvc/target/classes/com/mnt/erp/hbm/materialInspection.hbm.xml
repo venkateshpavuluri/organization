@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   
+  <!-- @Copyright MNTSOFT
+@author srinivas
+@version 1.0 15-09-2013 -->
+   
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.MaterialInspection" table="MaterialInspection">
+<id name="materialinspId" column="MaterialInsp_Id">
+<generator class="increment"></generator>
+</id>
+<property name="materialId" column="Material_Id" insert="false" update="false" />
+<property name="inspectionTypeId" column="InspectionType_Id"></property>
+<property name="inspectionPct" column="InspectionPCT"></property>
+  <property name="serialControl" column="SerialControl" ></property>  
+ <property name="skip" column="Skip" ></property> 
+<property name="sampleProc" column="SamplingProc"></property>
+<property name="activemi" column="Active"></property>
+
+<many-to-one name="itbean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.InspectionType" insert="false" update="false" lazy="false" >
+			<column name="InspectionType_Id" not-null="true"></column>
+		</many-to-one>
+</class>
+</hibernate-mapping>

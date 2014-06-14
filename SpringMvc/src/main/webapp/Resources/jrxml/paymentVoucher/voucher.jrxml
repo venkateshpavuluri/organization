@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="voucher" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" scriptletClass="com.mnt.tmr.WriteImage" uuid="7f5c857c-d151-46dc-a884-53fd85bf7fb0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="74"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D3D3D3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#73B0E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="ImageDataset" uuid="e52344c5-9ec7-4f68-8ddc-38f0844e4d1c">
+		<parameter name="logoID" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{logoID}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[exec reportImage $P{logoID}]]>
+		</queryString>
+		<field name="logo" class="java.io.InputStream"/>
+	</subDataset>
+	<parameter name="voucherId" class="java.lang.String"/>
+	<parameter name="logoID" class="java.lang.String"/>
+	<parameter name="rootPath" class="java.lang.String"/>
+	<parameter name="datePattern" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[exec getVoucher $P{voucherId}]]>
+	</queryString>
+	<field name="Voucher_Id" class="java.lang.Integer"/>
+	<field name="VoucherNo" class="java.lang.String"/>
+	<field name="VoucherDT" class="java.util.Date"/>
+	<field name="Amount" class="java.lang.Integer"/>
+	<field name="Payeee" class="java.lang.String"/>
+	<field name="Signature" class="java.lang.String"/>
+	<field name="Status" class="java.lang.String"/>
+	<variable name="numberToWords" class="java.lang.String">
+		<variableExpression><![CDATA[$P{REPORT_SCRIPTLET}.convertNumberToWords($F{Amount})+"Rupees Only"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="103" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8289a3e4-f982-45ee-b813-7346370bc80a" x="78" y="0" width="278" height="35" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Verdana" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MNT SOFT PVT.LTD]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="3c23a04c-4cd5-4d2d-bbd5-9e53f19a0b5e" x="3" y="0" width="75" height="35"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ImageDataset" uuid="2b88678b-8f9a-4288-825d-9ee5981f7120">
+						<datasetParameter name="logoID">
+							<datasetParameterExpression><![CDATA[$P{logoID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="35" width="75">
+						<image>
+							<reportElement uuid="39885457-a962-45a4-89ca-7a6ddca4442a" x="0" y="5" width="75" height="30"/>
+							<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+						</image>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement uuid="9fb4ffca-c8da-464c-ad25-f4b2eb98edda" x="19" y="35" width="305" height="48"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<text><![CDATA[D.No.7-1-392, 1st Floor, Balkampet Main Road,                                                                                SR Nagar, Hyderabad - 500038. A.p, India
+Ph : 040 - 23717750  www.mntsoft.co.in                                                       ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="87f440e1-6f13-48a5-8e2c-736ebf923703" x="356" y="71" width="102" height="32"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Verdana" size="18" isBold="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[VOUCHER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2e95e1ab-45cb-4776-964c-7f1cadd9a8c9" x="604" y="35" width="38" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[No   :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a40752b3-4cf7-4f07-b224-d60867f836d3" x="604" y="63" width="38" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="f36575e7-b3d9-4c83-bc34-86e28e570d8a" x="648" y="49" width="154" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="0cdf758b-721b-49b4-8bd8-d22cc54788a9" x="648" y="75" width="154" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="e69dd375-1587-45af-8802-52775f2ca511" x="678" y="30" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VoucherNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f93ae9c6-00d7-43d0-8108-501b5dcedecf" x="678" y="56" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat($P{datePattern}).format($F{VoucherDT})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="317" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="cf131f25-0f78-4bba-b11d-879546ac969a" x="16" y="16" width="786" height="215"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement uuid="28c7400b-ad0d-4da7-be1e-41b4693b5334" x="16" y="43" width="786" height="1"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement uuid="8ead1e82-e345-4521-b19e-2edf0b105e1b" x="603" y="16" width="1" height="215"/>
+			</line>
+			<staticText>
+				<reportElement uuid="803ef7ba-79d7-4f1e-8b1a-bd4fb6a28f4b" x="19" y="16" width="231" height="27"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[   Payment Voucher]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="89921681-7940-4cdf-8c21-3cccc8c8ac86" x="630" y="16" width="117" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="0ec0bbab-6607-4758-bdaa-8760eabe9223" x="604" y="200" width="198" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="73acb3f3-dbcc-475b-8f3a-1b38b9ee8dc5" x="604" y="201" width="74" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="10"/>
+				</textElement>
+				<text><![CDATA[  Total : Rs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="536c52c9-a7a8-40e5-8aff-d82e9da6b7de" x="31" y="59" width="63" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[Paid To ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e1eb9d55-6375-43a0-94fb-2d0c8530ba28" x="31" y="89" width="63" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[Towards]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da30cf00-d477-420b-b311-aaae646cbacc" x="112" y="59" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6908fdb9-1e98-4054-99f3-ff80c7825e8d" x="112" y="89" width="5" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bca720e6-632e-4b94-b89b-76d7b2cde920" x="33" y="134" width="100" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[Paid By Cheque]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9cf3a40d-52cf-4fb7-94e4-c1b4872c9a51" x="31" y="170" width="53" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[Rupees]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="eeacd6e6-030b-4069-b000-0936811868f5" x="100" y="190" width="480" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="be91c1a8-61fa-4ae4-abc9-8eedd565a807" x="128" y="76" width="442" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8d4a58c7-ff65-47d3-be44-62ecd199e80d" x="128" y="107" width="442" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="1e45a1e3-c2e6-431b-a1cd-114f35036ecf" x="157" y="56" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Payeee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ba806eef-4a56-4f7e-9737-2a6a8b7b18e9" x="683" y="87" width="119" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b543863f-897b-4af8-90a5-f01c01a58e62" x="683" y="201" width="119" height="30"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Amount}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="eb9529a1-3e57-43f4-ba0d-9e3d1feca9d1" x="3" y="251" width="799" height="66"/>
+				<subreportParameter name="voucherId">
+					<subreportParameterExpression><![CDATA[$F{Voucher_Id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{rootPath}]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement uuid="d2da29b1-9af7-42f7-bfc7-efc07ffdae18" x="128" y="170" width="390" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{numberToWords}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ffbe06d2-688d-4ba0-ac83-add7accacd60" x="667" y="14" width="80" height="20" forecolor="#666666"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8b61a4c7-7762-4aef-b240-d82ca673c360" x="747" y="14" width="40" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="704709f0-5399-4e81-b105-3fe94a43bc2c" x="0" y="14" width="178" height="20" forecolor="#666666"/>
+				<textElement>
+					<font fontName="Verdana"/>
+				</textElement>
+				<text><![CDATA[Copy rights @MNT Soft Pvt.Ltd]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

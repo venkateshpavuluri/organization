@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ProductionPlanLine" table="ProductionPlanLine">
+
+<id name="productionPlanLine_Id" column="ProductionPlanLine_Id">
+<generator class="increment"></generator>
+</id>
+
+
+<property name="material_Id" column="Material_Id"></property>
+<property name="qty" column="Qty"></property>
+<property name="uOM_Id" column="UOM_Id"></property>
+<property name="startDT" column="StartDT"></property>
+<property name="finishDT" column="FinishDT"></property>
+<property name="productionOrder_Id" column="ProductionOrder_Id" not-null="false"></property>
+
+<many-to-one name="material" class="com.mnt.erp.bean.Material"  insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="material_Id"></column>
+</many-to-one>
+
+<many-to-one name="uom" class="com.mnt.erp.bean.Uom" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="uOM_Id"></column>
+</many-to-one> 
+
+<many-to-one name="productionOrder" class="com.mnt.erp.bean.ProductionOrderBean" insert="false" not-null="false" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="productionOrder_Id"></column>
+</many-to-one> 
+
+</class>
+</hibernate-mapping>

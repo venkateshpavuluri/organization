@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ProductionPlan" table="ProductionPlan">
+
+<id name="productionPlan_Id" column="ProductionPlan_Id">
+<generator class="increment"></generator>
+</id>
+<property name="productionPlanType_Id" column="ProductionPlanType_Id"></property> 
+<property name="planDate" column="PlanDate"></property>
+<property name="plant_Id" column="Plant_Id"></property>
+<property name="project_Id" column="Project_Id"></property>
+<property name="status_Id" column="Status_Id"></property>
+
+ <many-to-one name="productionPlanType" class="com.mnt.erp.bean.productionPlanTypeBean" lazy="false"  cascade="all" not-null="true" insert="false" update="false">
+<column name="productionPlanType_Id"></column>
+</many-to-one> 
+ <many-to-one name="status" class="com.mnt.erp.bean.Status" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="status_Id"></column>
+</many-to-one> 
+ <many-to-one name="plant" class="com.mnt.erp.bean.Plant" cascade="all" not-null="true"  lazy="false" insert="false" update="false" >
+<column name="plant_Id"></column>
+</many-to-one> 
+<many-to-one name="project" class="com.mnt.erp.bean.Project" lazy="false"  cascade="all" not-null="true" insert="false" update="false">
+<column name="project_Id"></column>
+</many-to-one>
+<bag  name="productionPlanLine" cascade="all" lazy="false" fetch="join"  >
+<key column="ProductionPlan_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.ProductionPlanLine"/>
+</bag>
+
+</class>
+
+
+</hibernate-mapping>

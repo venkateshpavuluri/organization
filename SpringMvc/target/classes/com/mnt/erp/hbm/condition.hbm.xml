@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.ConditionBean" table="Condition" >
+		<id name="conditionId" column="Condition_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="conditionTypeId" column="ConditionType_Id"></property>
+		<property name="condition" column="Condition"></property>
+		
+		<many-to-one name="conditionTypeChild" cascade="all" update="false"
+			insert="false" not-null="true" class="com.mnt.erp.bean.ConditionType">
+			<column name="ConditionType_Id" />
+		</many-to-one>
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,249 @@
+/* CSS Document */
+@charset "utf-8";
+/* CSS Document */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { border: 0; font-family: inherit; font-size: 100%; font-style: inherit; margin: 0; outline: 0; padding: 0; }
+:focus {/* remember to define focus styles! */ outline: 0; }
+ol, ul { list-style: none; }
+table {/* tables still need 'cellspacing="0"' in the markup */ border-collapse: separate; border-spacing: 0; }
+caption, th, td { font-weight: normal; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; }
+blockquote, q { quotes: "" ""; }
+a img { border: 0; }
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+body, p { font:normal 12px Arial, Helvetica, sans-serif; line-height:20px; color:#333; }
+.clear { clear:both; }
+
+
+/*----------Common Styles----------*/
+body { background:#fff; }
+#header { width:100%; height:100px; background:url(images/header-bg.jpg) repeat-x left top; }
+a.logo { float:left; margin:10px 0 0 10px; }
+#header-right { float:right; text-align:right; margin:30px 10px 0 0; }
+#header-right p { text-align:right; margin:0 0 8px 0; }
+.color { color:#0a56e2; }
+.left { float:left;text-align:right; width:45%; padding:3px 0;}
+.right { float:right;text-align:left; width:54%;padding:3px 0;}
+
+
+/*----------Login Styles----------*/
+
+#login-block { width:340px; height:370px; margin:6% auto 5% auto; background:url(images/sign-up.jpg) no-repeat left top; padding:94px 0 0 22px; color:#fff; font-size:14px; }
+#login-block label { width:92px; float:left; text-align:right; font-size:11px; line-height:30px; margin:2px 5px 10px 0; clear:left; color:#333;}
+#login-block input { float:left; background:#fff; border:1px solid #c5c5c5; font-size:14px; color:#888; padding:8px 5px; width:206px; border-radius:3px;-webkit-border-radius:3px;}
+#login-block input[type="submit"] {background:url(images/login-btn.jpg) repeat-x left top; width:76px; height:36px; margin:5px 0 0 98px; cursor:pointer;border-radius:3px;-webkit-border-radius:3px; color:#fff; font-size:14px; text-shadow:1px 1px #888; border:none;}
+#login-block input[type="submit"]:hover { text-decoration:underline;}
+
+
+
+#login { width:340px; height:220px; margin:6% auto 5% auto; background:url(images/login-bg.jpg) no-repeat left top; padding:94px 0 0 22px; color:#fff; font-size:14px; }
+#login label { width:92px; float:left; text-align:right; font-size:11px; line-height:30px; margin:2px 5px 10px 0; clear:left; color:#333;}
+#login input { float:left; background:#fff; border:1px solid #c5c5c5; font-size:14px; color:#888; padding:8px 5px; width:206px; border-radius:3px;-webkit-border-radius:3px;}
+#login input[type="submit"] {background:url(images/login-btn.jpg) repeat-x left top; width:76px; height:36px; margin:5px 0 0 70px; cursor:pointer;border-radius:3px;-webkit-border-radius:3px; color:#fff; font-size:14px; text-shadow:1px 1px #888; border:none;}
+#login input[type="submit"]:hover { text-decoration:underline;}
+
+
+
+/*----------Main Template Styles----------*/
+p.welcome { background:url(images/icons.png) no-repeat 0 0; width:20px; height:20px; text-indent:-9999px; float:right; text-align:right }
+a.logout { text-decoration:none; color:#000;}
+a.logout:hover { text-decoration:underline; }
+.home-logo { margin:100px 0 250px 100px;}
+#container {background:url(images/sidebar-bg.jpg) repeat-y left top;}
+
+
+.sidebar { /*background-color: #ECECEC;*/ height: 100%; left: 0; list-style: none outside none; top: 0; width: 287px; }
+.cotent-wrap { float: left; height: auto !important; margin-left: 5px; min-height: 100%; width: 99.5%; }
+
+
+/*----------Inner Content Styles----------*/
+.page-title { background:url(images/page-title-bg.jpg) repeat-x left top; font:bold 12px Arial, Helvetica, sans-serif; color:#353535; padding:5px 5px 5px 10px; display:block; margin:0 0 1px 0;}
+table tr th a, table tr td a { color:#c25d00; text-decoration:underline; font-weight:normal;}
+table tr th a:hover, table tr td a:hover { text-decoration:none;}
+.table { background:url(images/nav-active-bg.jpg);border:1px solid #cccccc; border-collapse:collapse; margin-bottom:10px;}
+.table tr th{ background:url(images/nav-active-bg.jpg); border:1px solid #cccccc; border-collapse:collapse; font-weight:bold; color:#c25d00; padding:2px 5px; text-align:left;}
+.table tr td{ background:url(images/nav-active-bg.jpg); border:1px solid #cccccc; border-collapse:collapse; padding:2px 5px;}
+
+.table1 { background:url(images/nav-active-bg.jpg);border:1px solid #cccccc; border-collapse:collapse; margin-bottom:10px;}
+.table1 tr th{ background:url(images/nav-active-bg.jpg); border:1px solid #cccccc; border-collapse:collapse; font-weight:bold; color:#c25d00; padding:2px 5px;text-align:left;}
+.table1 tr td{ background:url(images/nav-active-bg.jpg); border:1px solid #cccccc; border-collapse:collapse; padding:1px 5px;}
+.table1 tr:nth-child(2n+1) td{ background:#fff;}
+
+.table2 { background:url(images/nav-active-bg.jpg);border:none; border-collapse:collapse; margin:5px 0;}
+.table2 tr th{ background:url(images/nav-active-bg.jpg); border:none; border-collapse:collapse; font-weight:bold; color:#c25d00; padding:2px 5px;text-align:left;}
+.table2 tr td{ background:url(images/nav-active-bg.jpg); border:none; border-collapse:collapse; padding:2px 5px;}
+
+.sub-table { background:url(images/nav-active-bg.jpg);border:1px solid #e0e0e0; border-collapse:collapse; margin:6px 0;}
+.sub-table tr th{ background:url(images/nav-active-bg.jpg); border:1px solid #cccccc; border-collapse:collapse; font-weight:bold; color:#000; padding:2px 5px; text-align:left;}
+.sub-table tr td{ background:url(images/nav-active-bg.jpg); border:1px solid #e0e0e0; border-collapse:collapse; padding:2px 5px; line-height:16px;}
+
+.nb-table { border:none; border-collapse:collapse; margin:6px 0;}
+.nb-table tr td{ border:none; border-collapse:collapse; padding:2px 5px;}
+
+
+
+/*----------Inputs Styles----------*/
+.table label { width:120px; float:left; font:normal 12px Arial, Helvetica, sans-serif; color:#464545;}
+input[type="text"] { float:left; width:185px;}
+input[type="submit"] { float:left; color:#fff; padding:3px 15px; background:url(images/nav-bg.jpg) repeat-x left top; border:none; cursor:pointer;}
+input[type="reset"] { float:left; color:#fff; padding:3px 15px; background:url(images/nav-bg.jpg) repeat-x left top; border:none; cursor:pointer;}
+
+.cotent-wrap input[type="text"] { width:182px; height:16px;}
+.cotent-wrap select{ width:186px;}
+.select1 { width:112px !important;}
+.cotent-wrap textarea {width:182px;}
+.cotent-wrap input[type="submit"] { background:url(images/nav-bg.jpg) repeat-x left top; padding:3px 8px; color:#fff; border:1px solid #b3500b; font:bold 11px Tahoma, Geneva, sans-serif; margin:0 5px 6px 0; border-radius:3px; -moz-border-radius:3px;}
+.cotent-wrap input[type="submit"]:hover { color:#FF0;}
+
+.cotent-wrap input[type="reset"] { background:url(images/nav-bg.jpg) repeat-x left top; padding:3px 8px; color:#fff; border:1px solid #b3500b; font:bold 11px Tahoma, Geneva, sans-serif; margin:0 5px 6px 0; border-radius:3px; -moz-border-radius:3px;}
+.cotent-wrap input[type="reset"]:hover { color:#FF0;}
+
+.alignleft { float:left; text-align:left;}
+.alignright { float:right; text-align:right;}
+
+/*----------Body Styles----------*/
+div#footer { padding:3px 0 10px 0; float:left; clear:both; width:100%;background:url(images/footer-bg.jpg) repeat-x left top;}
+div#footer p.powered{ float:right; margin:5px 300px 0 0;}
+div#footer ul { margin:0 auto; padding:0; text-align:center;}
+div#footer ul li{ list-style:none; display:inline-block; text-align:center; padding:0 5px;}
+div#footer ul li a{ color:#000; text-decoration:none;}
+div#footer ul li a:hover{ text-decoration:underline;} 
+
+.button { padding:3px 15px; background:url(images/nav-bg.jpg) repeat-x left top; color:#000; border:1px solid #3eb835; border-radius:3px; -moz-border-radius:3px; cursor:pointer; background:url(images/header-bg.jpg) repeat-x left top;float: left;margin-right: 10px}
+.button:hover { background:url(images/header-bg.jpg) repeat-x left bottom;}
+
+div#tit { background:url(images/nav-active-bg.jpg.jpg) repeat-x left top }
+.main{
+            width:1200px;
+            height:auto;
+            position:relative;
+            margin-bottom:auto;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top:auto;
+
+        }
+        .header{
+            height:50px;
+        }
+        .menu{           
+         height:auto;
+            width:auto;
+            float:left;
+            
+            
+        }
+        .content{
+            min-height:520px;
+            width:auto;
+            float:left;
+            margin:0 0 0 50px;
+            
+        }
+        .footer{
+            clear:both;
+            text-align:center;
+            height:50px;
+
+        }
+        .sidebar { border-right:1px solid #ccc;}
+        .tit{
+        clear:both;
+            text-align:center;
+            height:50px;
+        
+        }
+
+<title>D787 - Dashboard</title>
+
+
+#sliderFrame {position:relative;width:700px;margin: 0 auto;} /*remove the "margin:0 auto;" if you want to align the whole slider to the left side*/
+
+#ribbon {width:111px;height:111px;position:absolute;top:-4px;left:-4px;background:url(ribbon.png) no-repeat;z-index:7;}
+        
+#slider {
+    width:700px;height:306px;/* Make it the same size as your images */
+	background:#fff url(loading.gif) no-repeat 50% 50%;
+	position:relative;
+	margin:0 auto;/*make the image slider center-aligned */
+    box-shadow: 0px 1px 5px #999999;
+}
+#slider img {
+	position:absolute;
+	border:none;
+	display:none;
+}
+
+/* the link style (if an image is wrapped in a link) */
+#slider a.imgLink {
+	z-index:2;
+	display:none;position:absolute;
+	top:0px;left:0px;border:0;padding:0;margin:0;
+	width:100%;height:100%;
+}
+
+/* Caption styles */
+div.mc-caption-bg, div.mc-caption-bg2 {
+	position:absolute;
+	width:100%;
+	height:auto;
+	padding:0;
+	left:0px; /*if the caption needs to be aligned from right, specify by right instead of left. i.e. right:20px;*/
+	bottom:0px;/*if the caption needs to be aligned from top, specify by top instead of bottom. i.e. top:150px;*/
+	z-index:3;
+	overflow:hidden;
+	font-size: 0;
+}
+div.mc-caption-bg {
+	background-color:black;
+}
+div.mc-caption {
+	font: bold 14px/20px Arial;
+	color:#EEE;
+	z-index:4;
+	padding:10px 0;/*Adding a padding-left or padding-right here will make the caption area wider than its background. Sometimes you may need to define its width again here to keep it the same width as its background area (div.mc-caption-bg).*/
+	text-align:center;
+}
+div.mc-caption a {
+	color:#FB0;
+}
+div.mc-caption a:hover {
+	color:#DA0;
+}
+
+
+
+div.navBulletsWrapper  {
+	top:320px; left:280px; /* Its position is relative to the #slider */
+	width:150px;
+	background:none;
+	padding-left:20px;
+	position:relative;
+	z-index:5;
+	cursor:pointer;
+}
+
+/* each bullet */
+div.navBulletsWrapper div 
+{
+    width:11px; height:11px;
+    background:transparent url(bullet.png) no-repeat 0 0;
+    float:left;overflow:hidden;vertical-align:middle;cursor:pointer;
+    margin-right:11px;/* distance between each bullet*/
+    _position:relative;/*IE6 hack*/
+}
+
+div.navBulletsWrapper div.active {background-position:0 -11px;}
+
+
+/* --------- Others ------- */
+#slider 
+{
+	transform: translate3d(0,0,0);
+    -ms-transform:translate3d(0,0,0);
+    -moz-transform:translate3d(0,0,0);
+    -o-transform:translate3d(0,0,0);
+}
+
+
+

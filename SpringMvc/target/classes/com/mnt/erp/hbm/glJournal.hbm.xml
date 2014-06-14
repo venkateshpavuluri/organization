@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.GLJournalBean" table="GLJournal">
+		<id name="glAccountId" column="GLAccount_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="glAccountDT" column="GLAccountDT"></property>
+		<property name="postingDT" column="PostingDT"></property>
+		<property name="reference" column="Reference"></property>
+		<property name="orgId" column="Org_Id"></property>
+		<property name="currencyId" column="Currency_Id"></property>
+		<property name="glFiscalYearId" column="GLFiscalYear_Id"></property>
+		<property name="description" column="Description"></property>
+		<property name="createdBy" column="CreatedBy"></property>
+		<property name="createdDTTM" column="CreatedDTTM"></property>
+		<property name="modifiedBy" column="ModifiedBy"></property>
+		<property name="modifiedDTTM" column="ModifiedDTTM"></property>
+
+
+		<bag name="glJournalLine" cascade="all" lazy="false">
+			<key column="GLAccount_Id" not-null="true"></key>
+			<one-to-many class="com.mnt.erp.bean.GLJournalLine"/>
+		</bag>
+
+
+		<many-to-one name="glFiscalYear" cascade="all"
+			class="com.mnt.erp.bean.GLFiscalYear" not-null="true" insert="false"
+			update="false">
+			<column name="GLFiscalYear_Id" />
+		</many-to-one>
+
+		<many-to-one name="currency" cascade="all"
+			class="com.mnt.erp.bean.Currency" not-null="true" insert="false"
+			update="false">
+			<column name="Currency_Id" />
+		</many-to-one>
+
+		<many-to-one name="organization" cascade="all"
+			class="com.mnt.erp.bean.Organization" not-null="true" insert="false"
+			update="false">
+			<column name="Org_Id" />
+		</many-to-one>
+
+
+	</class>
+
+</hibernate-mapping>

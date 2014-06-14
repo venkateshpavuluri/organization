@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- @Copyright MNTSOFT
+@author pvenkateswarlu
+@version 1.0 20-09-2013 -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Plant" table="Plant">
+<id name="plantId" column="Plant_Id">
+<generator class="increment"></generator>
+</id>
+<properties name="plantName" unique="true" ><property name="plantName"  unique="true" column="Plant_Name" unique-key="plantName"></property> </properties>
+<!-- <property name="plantName" column="Plant_name" unique="true"></property> -->
+<property name="add1" column="Add1"></property>
+<property name="add2" column="Add2"></property>
+<property name="add3" column="Add3"></property>
+<property name="city" column="City"></property>
+<property name="state" column="State"></property>
+<property name="country" column="Country"></property>
+<property name="phone" column="Phone"></property>
+<property name="fax" column="Fax"></property>
+<property name="mobile" column="Mobile"></property>
+<property name="orgId" column="Org_Id"></property>
+<property name="searchkey" column="Searchkey"></property>
+<property name="purorgid" column="Purorgid"></property>
+<many-to-one name="organization" class="com.mnt.erp.bean.Organization" insert="false" not-null="true" cascade="all" update="false" >
+<column name="Org_Id"></column>
+</many-to-one> 
+<many-to-one name="countrysList" class="com.mnt.erp.bean.CountrysList" insert="false" not-null="true" cascade="all" update="false" >
+<column name="Country"></column>
+</many-to-one>
+</class>
+</hibernate-mapping>

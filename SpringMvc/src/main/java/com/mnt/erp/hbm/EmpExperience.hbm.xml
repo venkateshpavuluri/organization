@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.EmpExperience" table="EmpExperience">
+
+<id name="experience_Id" column="Experience_Id">
+<generator class="increment"></generator>
+</id>
+
+
+      <property name="employee_Id" column="employee_Id"></property>
+      <property name="fromDT" column="fromDT"></property>
+      <property name="todate" column="todate"></property>
+      <property name="designation_Id" column="designation_Id"></property>
+      <property name="company" column="company"></property>
+      <property name="compPhone" column="compPhone"></property>
+      <property name="referenceName" column="referenceName"></property>
+      <property name="redDesigntion_Id" column="redDesigntion_Id"></property>
+      <property name="email" column="email"></property>
+
+
+<many-to-one name="empDetails" class="com.mnt.erp.bean.Employee" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Employee_Id"></column>
+</many-to-one> 
+<many-to-one name="desDetails" class="com.mnt.erp.bean.Designation" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Designation_Id"></column>
+</many-to-one> 
+
+<many-to-one name="redDesDetails" class="com.mnt.erp.bean.Designation" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="redDesigntion_Id"></column>
+</many-to-one> 
+
+
+</class>
+</hibernate-mapping>

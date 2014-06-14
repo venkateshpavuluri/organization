@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.InspLotResultBean" table="InspLotResult">
+		<id name="inspLotResultId" column="InspLotResult_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="inspLotNoId" column="InspLotNo_Id"></property>
+		<property name="startDate" column="StartDT"></property>
+		<property name="endDate" column="EndDT"></property>
+		<property name="inspected" column="Inspected"></property>
+		<property name="accepted" column="Accepted"></property>
+		<property name="nonConf" column="NonConf"></property>
+		<property name="mean" column="Mean"></property>
+		<property name="stdValue" column="StdValue"></property>
+		<property name="skip" column="Skip"></property>
+		<property name="inspDecisionId" column="inspDecision_Id"></property>
+		<property name="qualityScore" column="QualityScore"></property>
+		
+		<many-to-one name="inspLotBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.InspectionLotBean" insert="false" update="false"
+			lazy="false" fetch="join">
+			<column name="InspLotNo_Id" not-null="true"></column>
+		</many-to-one>
+		
+		<many-to-one name="inspDecision" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.InspectionDecision" insert="false" update="false"
+			lazy="false">
+			<column name="inspDecision_Id" not-null="true"></column>
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.RecruitmentPlan" table="RecruitmentPlan">
+
+<id name="recruitmentPlanId" column="RecruitmentPlan_Id">
+<generator class="increment"></generator>
+</id>
+<property name="vacancyId" column="Vacancy_Id"></property>
+<property name="recruitmentPlanDT" column="RecruitmentPlanDT"></property>
+ <many-to-one name="vacancy" cascade="all" lazy="false"
+	class="com.mnt.erp.bean.Vacancy" not-null="true" insert="false" update="false">
+	<column name="Vacancy_Id"/>
+</many-to-one>
+<bag  name="recruitmentPlanLine" cascade="all" lazy="false" fetch="join"  >
+<key column="RecruitmentPlan_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.RecruitmentPlanLine"/>
+</bag>
+</class>
+</hibernate-mapping>

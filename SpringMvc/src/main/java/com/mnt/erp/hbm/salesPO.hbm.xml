@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.SalesPurchaseOrderBean" table="SalesPurchaseOrder">
+		<id name="salesPOId" column="SalesPurchaseOrder_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="customerId" column="Customer_Id"></property>
+		<property name="salesQuotationId" column="SalesQuotation_Id"
+			not-null="false"></property>
+		<property name="paymentTermId" column="PaymentTerm_Id"></property>
+		<property name="currencyId" column="Currency_Id"></property>
+		<property name="statusId" column="Status_Id"></property>
+
+		<property name="salesPONbr" column="SalesPurchaseOrderNbr"></property>
+		<property name="salesPODate" column="SalesPurchaseOrderDate"></property>
+		<property name="salesPOValue" column="SalesPurchaseOrderValue"></property>
+		<property name="description" column="Description"></property>
+		<property name="memo" column="Memo"></property>
+		<property name="salesTaxAmount" column="SalesTaxAmount"></property>
+		<property name="VATAmount" column="VATAmount"></property>
+		<property name="exiciseAmount" column="ExiciseAmount"></property>
+		<property name="frieghtCharges" column="FrieghtCharges"></property>
+		<property name="PnFCharges" column="PnFCharges"></property>
+		<property name="dueDate" column="DueDate"></property>
+		<property name="createdBy" column="CreatedBy"></property>
+		<property name="createdDTTM" column="CreatedDTTM"></property>
+		<property name="modifiedBy" column="ModifiedBy"></property>
+		<property name="modifiedDTTM" column="ModifiedDTTM"></property>
+
+
+		<bag name="salesPOLine" cascade="all" lazy="false" fetch="join">
+			<key column="SalesPurchaseOrder_Id" not-null="true" update="true"></key>
+			<one-to-many class="com.mnt.erp.bean.SalesPOLineBean" />
+		</bag>
+
+		<many-to-one name="custBean" cascade="all"
+			class="com.mnt.erp.bean.CustomerBean" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="Customer_Id" not-null="true" />
+		</many-to-one>
+
+
+		<many-to-one name="paymentTerm" cascade="all"
+			class="com.mnt.erp.bean.PaymentTerms" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="PaymentTerm_Id" not-null="true" />
+		</many-to-one>
+
+		<many-to-one name="status" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Status" insert="false" update="false" lazy="false"
+			fetch="join">
+			<column name="Status_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="currency" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Currency" insert="false" update="false" lazy="false"
+			fetch="join">
+			<column name="Currency_Id" not-null="true"></column>
+		</many-to-one>
+
+
+
+	</class>
+
+</hibernate-mapping>

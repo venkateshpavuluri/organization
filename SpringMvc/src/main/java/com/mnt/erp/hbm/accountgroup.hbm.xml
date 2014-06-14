@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.AccountGroupBean"  table="AccountGroup">
+<id name="accountgroupid" column="AccountGroup_Id">
+<generator class="increment"></generator>
+</id>
+<property name="accountgroup" column="AccountGroup"></property>
+<property name="coaid" column="COA_Id"></property>
+
+<many-to-one name="coabean" cascade="all"
+			class="com.mnt.erp.bean.ChartofAccount" not-null="true" insert="false" update="false">
+			<column name="COA_Id"/>
+		</many-to-one>
+</class>
+</hibernate-mapping>

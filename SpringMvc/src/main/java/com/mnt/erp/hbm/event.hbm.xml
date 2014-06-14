@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.EventBean" table="Event">
+		<id name="eventId" column="Event_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="event" column="Event"></property>
+		<property name="fromDate" column="FromDT"></property>
+		<property name="toDate" column="ToDT"></property>
+		<property name="fromTM" column="FromTM"></property>
+		<property name="toTM" column="ToTM"></property>
+		<property name="venue" column="Venue"></property>
+		<property name="contactPerson" column="ContactPerson"></property>
+		<property name="contactPhone" column="ContactPhone"></property>
+		<property name="reference" column="Reference"></property>
+
+	</class>
+</hibernate-mapping>

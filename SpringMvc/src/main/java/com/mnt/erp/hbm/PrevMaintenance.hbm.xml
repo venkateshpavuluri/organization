@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PrevMaintenance" table="PrevMaintenance">
+
+<id name="prevMaintenanceSchId" column="PrevMaintenanceSch_Id">
+<generator class="increment"></generator>
+</id>
+<property name="prevMaintenanceSchNo" column="PrevMaintenanceSchNo"></property>
+<property name="equipmentId" column="Equipment_Id"></property>
+
+ <bag name="prevMaintenanceSchCat" cascade="all" lazy="false" fetch="join"  >
+<key column="PrevMaintenanceSch_Id" not-null="true"></key>
+<one-to-many  class="com.mnt.erp.bean.PrevMaintenanceSchCat"/>
+</bag>
+
+<many-to-one name="equipmentBean" class="com.mnt.erp.bean.EquipmentBean" insert="false" not-null="true" lazy="false" cascade="all" update="false" >
+<column name="Equipment_Id"></column>
+</many-to-one> 
+
+
+</class>
+</hibernate-mapping>

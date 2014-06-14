@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.mnt.erp.bean.SalesOrderBean" table="SalesOrder">
+		<id name="salesOrderId" column="SalesOrder_Id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="orderTypeId" column="Ordertype_Id"></property>
+		<property name="customerId" column="Customer_Id"></property>
+		<property name="paymentTermId" column="PaymentTerm_Id"></property>
+		<property name="salesGroupId" column="SalesGroup_Id"></property>
+		<property name="uom" column="UOM_Id"></property>
+
+		<property name="salesOrderNo" column="SalesOrderNo"></property>
+		<property name="custPONumber" column="CustomerPONumber"></property>
+		<property name="salesOrderDate" column="SalesOrderDate"></property>
+		<property name="custPODate" column="CustomerPODate"></property>
+		<property name="reqDeliveryDate" column="RequiredDeliveryDate"></property>
+		<property name="netWeight" column="NetWeight"></property>
+		<property name="totalWeight" column="TotalWeight"></property>
+		<property name="totalVolume" column="TotalVolume"></property>
+		<property name="orderReason" column="OrderReason"></property>
+		<property name="priority" column="Priority"></property>
+		<property name="unloadingPoint" column="UnloadingPoint"></property>
+		<property name="route" column="Route"></property>
+		<property name="receivingPoint" column="ReceivingPoint"></property>
+		<property name="statusId" column="Status_Id"></property>
+
+		<bag name="salesOrderLineBean" cascade="all" lazy="false" fetch="join">
+			<key column="SalesOrder_Id" not-null="true" update="true"></key>
+			<one-to-many class="com.mnt.erp.bean.SalesOrderLineBean" />
+		</bag>
+
+		<many-to-one name="custBean" cascade="all"
+			class="com.mnt.erp.bean.CustomerBean" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="Customer_Id" not-null="true" />
+		</many-to-one>
+
+		<many-to-one name="salesGroup" cascade="all"
+			class="com.mnt.erp.bean.SalesGroup" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="SalesGroup_Id" not-null="true" />
+		</many-to-one>
+
+		<many-to-one name="orderType" cascade="all"
+			class="com.mnt.erp.bean.OrderType" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="Ordertype_Id" not-null="true" />
+		</many-to-one>
+
+		<many-to-one name="paymentTerm" cascade="all"
+			class="com.mnt.erp.bean.PaymentTerms" not-null="true" insert="false"
+			update="false" lazy="false" fetch="join">
+			<column name="PaymentTerm_Id" not-null="true" />
+		</many-to-one>
+
+		<many-to-one name="uomBean" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Uom" insert="false" update="false" lazy="false"
+			fetch="join">
+			<column name="UOM_Id" not-null="true"></column>
+		</many-to-one>
+
+		<many-to-one name="status" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Status" insert="false" update="false" lazy="false"
+			fetch="join">
+			<column name="Status_Id" not-null="true"></column>
+		</many-to-one>
+
+
+
+	</class>
+<sql-query name="StepUserForSO" callable="true">
+		<return-scalar column="StepId" type="string" />
+		<return-scalar column="User_Id" type="string" />
+		{call StepUserForSO()}
+	</sql-query>
+</hibernate-mapping>

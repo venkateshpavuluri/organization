@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.AgreementLine"  table="AgreementLine">
+<id name="agreementlineid" column="AgreementLine_Id">
+<generator class="increment"></generator>
+</id>
+<property name="materialId" column="Material_Id"></property>
+<property name="targetqty" column="TargetQty"></property>
+<property name="uomId" column="UOM_Id"></property>
+<property name="netprice" column="NetPrice"></property>
+		 <many-to-one name="materialdetail" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Material" insert="false" update="false" lazy="false" >
+			<column name="Material_Id" not-null="true"></column>
+		</many-to-one>
+		
+		<many-to-one name="uomdetail" cascade="all" not-null="true"
+			class="com.mnt.erp.bean.Uom" insert="false" update="false" lazy="false" >
+			<column name="UOM_Id" not-null="true"></column>
+		</many-to-one>
+
+</class>
+</hibernate-mapping>

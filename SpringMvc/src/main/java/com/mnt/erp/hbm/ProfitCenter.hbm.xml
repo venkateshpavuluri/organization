@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ProfitCenter" table="ProfitCenter">
+
+<id name="profitCenterId" column="ProfitCenter_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="profitCenter" column="ProfitCenter"></property>
+
+
+</class>
+</hibernate-mapping>

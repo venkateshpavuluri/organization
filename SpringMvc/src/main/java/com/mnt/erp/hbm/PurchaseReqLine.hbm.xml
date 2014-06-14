@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PurchaseReqLine" table="PurchaseReqLine">
+
+<id name="purchaseReqLine_Id" column="PurchaseReqLine_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="material_Id" column="Material_Id"></property>
+<property name="purchaseReqId" column="PurchaseReq_Id" insert="false" update="false"></property>
+<property name="qty" column="Qty"></property>
+<property name="uom" column="UOM"></property>
+<property name="requiredDate" column="RequiredDate"></property>
+<property name="status_Id" column="Status_Id"></property>
+<property name="plant_Id" column="Plant_Id"></property>
+<property name="storageLoc_Id" column="StorageLoc_Id"></property>
+<many-to-one name="material" class="com.mnt.erp.bean.Material"  insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="material_Id"></column>
+</many-to-one>
+<many-to-one name="uomDetails" class="com.mnt.erp.bean.Uom" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="uom"></column>
+</many-to-one>
+<many-to-one name="statusDetails" class="com.mnt.erp.bean.Status" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="status_Id"></column>
+</many-to-one>
+<many-to-one name="plantDetails" class="com.mnt.erp.bean.Plant" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="plant_Id"></column>
+</many-to-one>
+<many-to-one name="storageLocationDetails" class="com.mnt.erp.bean.StorageLocation" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="storageLoc_Id"></column>
+</many-to-one>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @Copyright MNTSOFT
+@author devi
+@version 1.0 18-09-2013 -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.ApplicantBean" table="Applicant">
+<id name="applicant_Id" column="Applicant_Id">
+<generator class="increment"></generator>
+</id>
+<property name="fname" column="FName"></property>
+<property name="lname" column="LastName"></property>
+<property name="mname" column="MName"></property>
+<property name="phoneNo" column="PhoneNo"></property>
+<property name="email" column="Email"></property>
+<property name="vacancyDetail_Id" column="VacancyDetail_Id"></property>
+<property name="refNo" column="ReferenceNo"></property>
+<property name="docPath" column="DocPath"></property>
+<property name="shortListed" column="ShortListed"></property>
+<property name="selected" column="Selected"></property>
+<property name="joined" column="Joined"></property>
+
+<many-to-one name="vacancyDetail" class="com.mnt.erp.bean.VacancyDetailLine" insert="false" not-null="true" lazy="false" cascade="all" update="false" >
+<column name="VacancyDetail_Id"></column>
+</many-to-one> 
+
+</class>
+</hibernate-mapping>

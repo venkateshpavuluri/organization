@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.InspCharacteristicMethod" table="InspCharacteristicMethod">
+
+<id name="inspCharacteristicMethodId" column="InspCharacteristicMethod_Id">
+<generator class="increment"></generator>
+</id>
+
+     <property name="inspectionMethodId" column="InspectionMethod_Id"></property>
+      
+      <many-to-one name="inspectionMethodBeanDetails" class="com.mnt.erp.bean.InspectionMethodBean" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="InspectionMethod_Id" not-null="true"></column>
+</many-to-one>
+</class>
+</hibernate-mapping>

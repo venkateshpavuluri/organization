@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.InspectionPlanLine" table="InspectionPlanLine">
+
+<id name="inspectionPlanLineId" column="InspectionPlanLine_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="processDetailId" column="ProcessDetail_Id"></property>
+<property name="inspCharacteristicId" column="InspCharacteristic_Id"></property>
+<property name="equipmentId" column="Equipment_Id"></property>
+<many-to-one name="processDetailBean" class="com.mnt.erp.bean.ProcessDetailBean" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="ProcessDetail_Id"></column>
+</many-to-one>
+<many-to-one name="inspectionCharacteristic" class="com.mnt.erp.bean.InspCharacteristic" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="InspCharacteristic_Id"></column>
+</many-to-one>
+<many-to-one name="equipment" class="com.mnt.erp.bean.EquipmentBean" cascade="all" not-null="true" fetch="join" lazy="false" insert="false" update="false" >
+<column name="Equipment_Id"></column>
+</many-to-one>
+</class>
+</hibernate-mapping>

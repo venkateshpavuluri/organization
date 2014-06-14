@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.Project" table="Project">
+
+      
+      
+<id name="projectId" column="Project_Id">
+<generator class="increment"></generator>
+</id>
+
+<property name="projectName" column="ProjectName"></property>
+<property name="orgId" column="Org_Id"></property>
+<property name="startDT" column="StartDT"></property>
+<property name="finishDT" column="FinishDT"></property>
+<property name="parentProject_Id" column="ParentProject_Id"></property>
+<property name="projectManager" column="ProjectManager"></property>
+<property name="salesOrderId" column="SalesOrder_Id"></property>
+<property name="status_Id" column="Status_Id"></property>
+
+<many-to-one name="orgDetails" class="com.mnt.erp.bean.Organization" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="Org_Id"></column>
+</many-to-one>
+<many-to-one name="managerDetails" class="com.mnt.erp.bean.Employee" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="projectManager"></column>
+</many-to-one>
+<many-to-one name="statusDetails" class="com.mnt.erp.bean.Status" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="status_Id"></column>
+</many-to-one>
+<!-- <many-to-one name="salesOrder" class="com.mnt.erp.bean.SalesOrderBean" insert="false" not-null="true" cascade="all" lazy="false"  fetch="join" update="false">
+<column name="SalesOrder_Id"></column>
+</many-to-one> -->
+</class>
+</hibernate-mapping>

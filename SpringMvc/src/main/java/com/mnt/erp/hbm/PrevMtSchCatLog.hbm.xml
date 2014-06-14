@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PrevMaintenanceSchCatLog" table="PrevMaintenanceSchCatLog">
+
+<id name="prevMaintenanceSchCatLogId" column="PrevMaintenanceSchCatLog_Id">
+<generator class="increment"></generator>
+</id>
+<property name="prevMaintenanceSchCatId" column="PrevMaintenanceSchCat_Id"></property>
+<property name="maintenanceDT" column="MaintenanceDT"></property>
+<property name="maintainedBy" column="MaintainedBy"></property>
+<property name="statusId" column="Status_Id"></property>
+<bag name="prevMtSchCatLogSpares" cascade="all"  lazy="false" fetch="join">
+			<key column="PrevMaintenanceSchCatLog_Id" not-null="true" update="true"></key>
+			<one-to-many class="com.mnt.erp.bean.PrevMaintenanceSchCatLogSpare" />
+		</bag>
+		<many-to-one name="prevMtSchCats"  class="com.mnt.erp.bean.PrevMaintenanceSchCat" lazy="false" not-null="true" insert="false" update="false">
+			<column name="PrevMaintenanceSchCat_Id" />
+		</many-to-one>
+		<many-to-one name="statusDetails"  class="com.mnt.erp.bean.Status" lazy="false" not-null="true" insert="false" update="false">
+			<column name="Status_Id" />
+		</many-to-one>
+</class>
+</hibernate-mapping>

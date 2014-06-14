@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.mnt.erp.bean.PayGradeSalElementBean"  table="PayGradeSalElement">
+<id name="payGradeSalElement_Id" column="PayGradeSalElement_Id">
+<generator class="increment"></generator>
+</id>
+<property name="payGrade_Id" column="PayGrade_Id"></property>
+<property name="payElement_Id" column="PayElement_Id"></property>
+<property name="amount_Formulae" column="Amount_Formulae"></property>
+<property name="include" column="Include"></property>
+
+		<many-to-one name="payGradeBean" 
+			class="com.mnt.erp.bean.PayGradeBean" not-null="true" insert="false" update="false">
+			<column name="PayGrade_Id"/>
+			</many-to-one>
+			<many-to-one name="payElementBean" 
+			class="com.mnt.erp.bean.PayElementBean" not-null="true" insert="false" update="false">
+			<column name="PayElement_Id"/>
+			</many-to-one>
+</class>
+</hibernate-mapping>
